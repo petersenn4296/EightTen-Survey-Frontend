@@ -25,7 +25,7 @@ https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0
 ```
 
 ## Server Route Planning
-
+```
 Admin Specific Routes:
     - User login (GET): /API/users/login
         - All survey & client info returned
@@ -46,6 +46,6 @@ Client (Users) Specific Routes:
     - Client survey setup (GET): /API/questions
     - Save question response (POST): /API/client:/:id/:question_id
     - Retrieve client’s survey results: (GET): /API/client/:id/:survey_id
-
+```
 
 ## Front End Route Planning
