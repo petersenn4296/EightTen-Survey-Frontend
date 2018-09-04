@@ -17,12 +17,14 @@
 https://trello.com/b/iKFpuvPu/eightten-capstone-project
 
 ## <a name="wire-frame"></a> Wire Frame
+[Contents](#contents)
 
 ![admin_wire](/810/admin_wire.png)
 
 ![client_wire](/810/client_wire.png)
 
 ## <a name="erd"></a> ERD
+[Contents](#contents)
 
 https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0?shared=true
 
@@ -30,6 +32,7 @@ https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0
 
 
 ## <a name="style-guide"></a> Style Guide
+[Contents](#contents)
 
 ![eight_ten_logo](/810/eight_ten_logo.png)
 
@@ -43,6 +46,8 @@ https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0
 ```
 
 ## <a name="server-routes"></a> Server Route Planning
+[Contents](#contents)
+
 ```
 Admin Specific Routes:
     - User login (GET): /API/users/login
@@ -67,6 +72,8 @@ Client (Users) Specific Routes:
 ```
 
 ## <a name="front-end-routes"></a> Front End Route Planning
+[Contents](#contents)
+
 ```
 Admin:
   - /login
@@ -80,6 +87,8 @@ Client:
   ```
 
 ## <a name="components"></a> Component Planning
+[Contents](#contents)
+
 ```
 [*General*]
 <App/>
@@ -104,6 +113,8 @@ Client:
 ```
 
 ##  <a name="technologies-used"></a> Technologies Used
+[Contents](#contents)
+
 - React
 - Redux
 - React-Materialize
