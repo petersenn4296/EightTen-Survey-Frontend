@@ -1,5 +1,8 @@
 # EightTen-Survey-Frontend
 
+## Project Planning Board
+
+https://trello.com/b/iKFpuvPu/eightten-capstone-project
 
 ## Wire Frame
 
