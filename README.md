@@ -14,7 +14,7 @@
 ## <a name="project-planning-board"></a> Project Planning Board
 [Contents](#contents)
 
-https://trello.com/b/iKFpuvPu/eightten-capstone-project
+[Trello](https://trello.com/b/iKFpuvPu/eightten-capstone-project)
 
 ## <a name="wire-frame"></a> Wire Frame
 [Contents](#contents)
@@ -28,7 +28,7 @@ https://trello.com/b/iKFpuvPu/eightten-capstone-project
 ## <a name="erd"></a> ERD
 [Contents](#contents)
 
-https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0?shared=true
+[ERD](https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0?shared=true)
 
 ![eight_ten_erd](/810/eight_ten_erd.png)
 
@@ -41,11 +41,6 @@ https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0
 ![eight_ten_palette](/810/eight_ten_palette.png)
 
 ![random_grey_variations](/810/random_grey_variations.png)
-
-```
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-
-```
 
 ## <a name="server-routes"></a> Server Route Planning
 [Contents](#contents)
