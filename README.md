@@ -66,6 +66,7 @@ Client:
 [*General*]
 <App/>
 <List/> —> Clients, Traits, Surveys, Companies
+
 [*Admin Components*]
 <AdminLoginForm/>
 <CTSView/> —> Overall view for Client, Trait, Survey pages
@@ -75,6 +76,7 @@ Client:
 <SpecificQuestionView/> —> Specific data about a particular question response
 <CompanyTraitView/> —> Specific data about a company’s particular trait
 <NewQuestionView/>
+
 [*Client Components*]
 <ClientLoginForm/>
 <ClientIntakeForm/>
@@ -82,3 +84,10 @@ Client:
 <ClientResultView/>
 <TraitResult/>
 ```
+
+## Technologies Used
+- React
+- Redux
+- React-Materialize
+- React-Router
+- Moment
