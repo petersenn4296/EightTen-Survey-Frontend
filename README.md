@@ -9,7 +9,7 @@
 [Server Routes](#server-routes)\
 [Front End Routes](#front-end-routes)\
 [Components](#components)\
-[Technologies Used](#technologies-used)\
+[Technologies Used](#technologies-used)
 
 ## <a name="project-planning-board"></a> Project Planning Board
 [Contents](#contents)
