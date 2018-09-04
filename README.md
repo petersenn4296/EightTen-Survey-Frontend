@@ -1,6 +1,7 @@
 # EightTen-Survey-Frontend
+[Project Planning Board](#project-planning-board)
 
-## Project Planning Board
+##<a name="project-planning-board"></a> Project Planning Board
 
 https://trello.com/b/iKFpuvPu/eightten-capstone-project
 
