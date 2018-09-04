@@ -1,4 +1,7 @@
 # EightTen-Survey-Frontend
+
+### <a name="contents"></a> Contents
+
 [Project Planning Board](#project-planning-board)  
 [Wire Frame](#wire-frame)  
 [ERD](#erd)  
@@ -9,6 +12,7 @@
 [Technologies Used](#technologies-used)  
 
 ## <a name="project-planning-board"></a> Project Planning Board
+[Contents](#contents)
 
 https://trello.com/b/iKFpuvPu/eightten-capstone-project
 
