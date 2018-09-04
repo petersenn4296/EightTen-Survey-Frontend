@@ -1,24 +1,31 @@
 # EightTen-Survey-Frontend
 [Project Planning Board](#project-planning-board)
+[Wire Frame](#wire-frame)
+[ERD](#erd)
+[Style Guide](#style-guide)
+[Server Routes](#server-routes)
+[Front End Routes](#front-end-routes)
+[Components](#components)
+[Technologies Used](#technologies-used)
 
 ## <a name="project-planning-board"></a> Project Planning Board
 
 https://trello.com/b/iKFpuvPu/eightten-capstone-project
 
-## Wire Frame
+## <a name="wire-frame"></a> Wire Frame
 
 ![admin_wire](/810/admin_wire.png)
 
 ![client_wire](/810/client_wire.png)
 
-## ERD
+## <a name="erd"></a> ERD
 
 https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0?shared=true
 
 ![eight_ten_erd](/810/eight_ten_erd.png)
 
 
-## Colors, Fonts, Background, Logo
+## <a name="style-guide"></a> Style Guide
 
 ![eight_ten_logo](/810/eight_ten_logo.png)
 
@@ -31,7 +38,7 @@ https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0
 
 ```
 
-## Server Route Planning
+## <a name="server-routes"></a> Server Route Planning
 ```
 Admin Specific Routes:
     - User login (GET): /API/users/login
@@ -55,7 +62,7 @@ Client (Users) Specific Routes:
     - Retrieve client’s survey results: (GET): /API/client/:id/:survey_id
 ```
 
-## Front End Route Planning
+## <a name="front-end-routes"></a> Front End Route Planning
 ```
 Admin:
   - /login
@@ -68,7 +75,7 @@ Client:
   - /results
   ```
 
-## Component Planning
+## <a name="components"></a> Component Planning
 ```
 [*General*]
 <App/>
@@ -92,7 +99,7 @@ Client:
 <TraitResult/>
 ```
 
-## Technologies Used
+##  <a name="technologies-used"></a> Technologies Used
 - React
 - Redux
 - React-Materialize
