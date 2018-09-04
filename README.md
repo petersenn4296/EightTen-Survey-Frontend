@@ -25,7 +25,7 @@ https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0
 
 ![random_grey_variations](/810/random_grey_variations.png)
 
-```html
+```
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
 ```
@@ -55,3 +55,36 @@ Client (Users) Specific Routes:
 ```
 
 ## Front End Route Planning
+```
+Admin:
+  - /login
+  - /companies
+  - /surveys
+  - /traits
+
+Client:
+  - /login
+  - /results
+  ```
+
+## Component Planning
+```
+[*General*]
+<App/>
+<List/> —> Clients, Traits, Surveys, Companies
+[*Admin Components*]
+<AdminLoginForm/>
+<CTSView/> —> Overall view for Client, Trait, Survey pages
+<EditTrait/> —> Trait editing view
+<CompanyView/> —> <List/> of company’s traits and scores
+<SurveyView/>
+<SpecificQuestionView/> —> Specific data about a particular question response
+<CompanyTraitView/> —> Specific data about a company’s particular trait
+<NewQuestionView/>
+[*Client Components*]
+<ClientLoginForm/>
+<ClientIntakeForm/>
+<SurveyQuestionView/>
+<ClientResultView/>
+<TraitResult/>
+```
