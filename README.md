@@ -2,14 +2,14 @@
 
 ### <a name="contents"></a> Contents
 
-[Project Planning Board](#project-planning-board)  
-[Wire Frame](#wire-frame)  
-[ERD](#erd)  
-[Style Guide](#style-guide)  
-[Server Routes](#server-routes)  
-[Front End Routes](#front-end-routes)  
-[Components](#components)  
-[Technologies Used](#technologies-used)  
+[Project Planning Board](#project-planning-board)\
+[Wire Frame](#wire-frame)\
+[ERD](#erd)\
+[Style Guide](#style-guide)\
+[Server Routes](#server-routes)\
+[Front End Routes](#front-end-routes)\
+[Components](#components)\
+[Technologies Used](#technologies-used)\
 
 ## <a name="project-planning-board"></a> Project Planning Board
 [Contents](#contents)
