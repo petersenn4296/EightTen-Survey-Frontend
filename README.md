@@ -19,8 +19,10 @@ https://trello.com/b/iKFpuvPu/eightten-capstone-project
 ## <a name="wire-frame"></a> Wire Frame
 [Contents](#contents)
 
+### Admin
 ![admin_wire](/810/admin_wire.png)
 
+### Client
 ![client_wire](/810/client_wire.png)
 
 ## <a name="erd"></a> ERD
