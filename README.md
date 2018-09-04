@@ -1,8 +1,14 @@
 # EightTen-Survey-Frontend
 
+## Project Planning Board
+
+https://trello.com/b/iKFpuvPu/eightten-capstone-project
 
 ## Wire Frame
 
+![admin_wire](/810/admin_wire.png)
+
+![client_wire](/810/client_wire.png)
 
 ## ERD
 
@@ -13,7 +19,7 @@ https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0
 
 ## Colors, Fonts, Background, Logo
 
-![EightTen-Logo](/810/EightTen-Logo.png)
+![eight_ten_logo](/810/eight_ten_logo.png)
 
 ![eight_ten_palette](/810/eight_ten_palette.png)
 
