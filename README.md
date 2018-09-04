@@ -2,31 +2,33 @@
 
 ### <a name="contents"></a> Contents
 
-[Project Planning Board](#project-planning-board)  
-[Wire Frame](#wire-frame)  
-[ERD](#erd)  
-[Style Guide](#style-guide)  
-[Server Routes](#server-routes)  
-[Front End Routes](#front-end-routes)  
-[Components](#components)  
-[Technologies Used](#technologies-used)  
+[Project Planning Board](#project-planning-board)\
+[Wire Frame](#wire-frame)\
+[ERD](#erd)\
+[Style Guide](#style-guide)\
+[Server Routes](#server-routes)\
+[Front End Routes](#front-end-routes)\
+[Components](#components)\
+[Technologies Used](#technologies-used)
 
 ## <a name="project-planning-board"></a> Project Planning Board
 [Contents](#contents)
 
-https://trello.com/b/iKFpuvPu/eightten-capstone-project
+[Trello](https://trello.com/b/iKFpuvPu/eightten-capstone-project)
 
 ## <a name="wire-frame"></a> Wire Frame
 [Contents](#contents)
 
+### Admin
 ![admin_wire](/810/admin_wire.png)
 
+### Client
 ![client_wire](/810/client_wire.png)
 
 ## <a name="erd"></a> ERD
 [Contents](#contents)
 
-https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0?shared=true
+[ERD](https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0?shared=true)
 
 ![eight_ten_erd](/810/eight_ten_erd.png)
 
@@ -39,11 +41,6 @@ https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0
 ![eight_ten_palette](/810/eight_ten_palette.png)
 
 ![random_grey_variations](/810/random_grey_variations.png)
-
-```
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-
-```
 
 ## <a name="server-routes"></a> Server Route Planning
 [Contents](#contents)
