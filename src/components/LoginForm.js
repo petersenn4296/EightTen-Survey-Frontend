@@ -2,13 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Row, Input, Button, Icon } from 'react-materialize'
+import { navigate } from '../actions'
 
 class LoginForm extends Component {
-  constructor(props) {
-      super(props)
-      this.state = {
-      }
-    }
 
   render() {
     return (
@@ -16,7 +12,7 @@ class LoginForm extends Component {
           <Input placeholder="you@address.com" s={12} label="Email" required />
           <Input s={12} placeholder="Password..." label="Password" required />
           <div className="center-align">
-              <Button id="login-button" waves='light'>login<Icon left>cloud</Icon></Button>
+              <Button onClick={() => {navigate('CTSView'); console.log('state of view: ', this.props.view)}} id="login-button" waves='light'>login<Icon left>cloud</Icon></Button>
           </div>
       </Row>
     )
@@ -24,16 +20,14 @@ class LoginForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-
+  navigate
 }, dispatch)
 
 const mapStateToProps = state => {
-  // const props = {
-  //   toggle: state.post.toggle,
-  //   posts: state.post.posts,
-  //   comments: state.comments
-  // }
-  // return props
+  const props = {
+    view: state.mainReducer.view
+  }
+  return props
 }
 
 export default connect(
