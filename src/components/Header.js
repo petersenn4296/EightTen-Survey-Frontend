@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Input, Button, Icon } from 'react-materialize'
+import { Row, Col } from 'react-materialize'
 
-class LoginForm extends Component {
+class Header extends Component {
   constructor(props) {
       super(props)
       this.state = {
@@ -12,12 +12,13 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <Row className="container">
-          <Input placeholder="you@address.com" s={12} label="Email" required />
-          <Input s={12} placeholder="Password..." label="Password" required />
-          <div className="center-align">
-              <Button waves='light'>button<Icon left>cloud</Icon></Button>
-          </div>
+      <Row className="container" s={12} m={12} l={2}>
+        {/* <Col s={1} m={3} l={3}>
+
+        </Col> */}
+        <Col className="center-align" s={12} m={12} l={12}>
+          <img src={require('../810/eight_ten_logo.png')}/>
+        </Col>
       </Row>
     )
   }
@@ -39,4 +40,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LoginForm);
+)(Header);
