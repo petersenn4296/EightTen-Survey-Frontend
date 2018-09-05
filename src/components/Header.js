@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Col } from 'react-materialize'
+import { Row } from 'react-materialize'
 
 class Header extends Component {
   constructor(props) {
@@ -12,13 +12,8 @@ class Header extends Component {
 
   render() {
     return (
-      <Row className="container" s={12} m={12} l={2}>
-        {/* <Col s={1} m={3} l={3}>
-
-        </Col> */}
-        <Col className="center-align" s={12} m={12} l={12}>
-          <img src={require('../810/eight_ten_logo.png')}/>
-        </Col>
+      <Row className="container center-align" s={12} m={12} l={2}>
+          <img alt="EightTen company logo"  src={require('../810/eight_ten_logo.png')}/>
       </Row>
     )
   }

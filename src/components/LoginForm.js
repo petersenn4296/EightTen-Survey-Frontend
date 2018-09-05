@@ -16,7 +16,7 @@ class LoginForm extends Component {
           <Input placeholder="you@address.com" s={12} label="Email" required />
           <Input s={12} placeholder="Password..." label="Password" required />
           <div className="center-align">
-              <Button waves='light'>button<Icon left>cloud</Icon></Button>
+              <Button id="login-button" waves='light'>login<Icon left>cloud</Icon></Button>
           </div>
       </Row>
     )
