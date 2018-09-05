@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import LoginForm from './components/LoginForm'
 import Header from './components/Header'
-import 'react-materialize'
+import List from './components/List'
 
 class App extends Component {
   render() {
