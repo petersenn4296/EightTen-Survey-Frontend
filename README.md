@@ -90,9 +90,9 @@ Client:
 [*General*]
 <App/>
 <List/> —> Clients, Traits, Surveys, Companies
+<LoginForm/>
 
 [*Admin Components*]
-<AdminLoginForm/>
 <CTSView/> —> Overall view for Client, Trait, Survey pages
 <EditTrait/> —> Trait editing view
 <CompanyView/> —> <List/> of company’s traits and scores
@@ -102,7 +102,6 @@ Client:
 <NewQuestionView/>
 
 [*Client Components*]
-<ClientLoginForm/>
 <ClientIntakeForm/>
 <SurveyQuestionView/>
 <ClientResultView/>
