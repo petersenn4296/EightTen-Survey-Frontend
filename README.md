@@ -20,27 +20,27 @@
 [Contents](#contents)
 
 ### Admin
-![admin_wire](/810/admin_wire.png)
+![admin_wire](src/810/admin_wire.png)
 
 ### Client
-![client_wire](/810/client_wire.png)
+![client_wire](src/810/client_wire.png)
 
 ## <a name="erd"></a> ERD
 [Contents](#contents)
 
 [ERD](https://www.lucidchart.com/documents/edit/3c9d9ef1-8af0-4a95-89fe-846ac42614e4/0?shared=true)
 
-![eight_ten_erd](/810/eight_ten_erd.png)
+![eight_ten_erd](src/810/eight_ten_erd.png)
 
 
 ## <a name="style-guide"></a> Style Guide
 [Contents](#contents)
 
-![eight_ten_logo](/810/eight_ten_logo.png)
+![eight_ten_logo](src/810/eight_ten_logo.png)
 
-![eight_ten_palette](/810/eight_ten_palette.png)
+![eight_ten_palette](src/810/eight_ten_palette.png)
 
-![random_grey_variations](/810/random_grey_variations.png)
+![random_grey_variations](src/810/random_grey_variations.png)
 
 ## <a name="server-routes"></a> Server Route Planning
 [Contents](#contents)
@@ -91,6 +91,7 @@ Client:
 <App/>
 <List/> —> Clients, Traits, Surveys, Companies
 <LoginForm/>
+<Header/>
 
 [*Admin Components*]
 <CTSView/> —> Overall view for Client, Trait, Survey pages
