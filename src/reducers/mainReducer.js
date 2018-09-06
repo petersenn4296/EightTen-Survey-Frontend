@@ -1,10 +1,12 @@
 import {
-  NAVIGATE
+  NAVIGATE,
+  CHANGE_CTS_VIEW
 } from '../actions'
 
 const initialState = {
   view: 'login',
-  CTSView: 'clients'
+  CTSView: 'Clients',
+  CTSData: []
 }
 
 export default (state = initialState, action) => {
@@ -14,6 +16,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         view: action.payload
+      }
+
+    case CHANGE_CTS_VIEW:
+      return {
+        ...state,
+        CTSView: action.payload
       }
 
 
