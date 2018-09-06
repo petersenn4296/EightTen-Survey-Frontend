@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Row, Input, Button, Icon } from 'react-materialize'
 import List from './List'
-import { changeCTSView } from '../actions'
+import { changeCTSView, loadSurveys, loadTraits, loadClients } from '../actions'
 
 class CTSView extends Component {
   state = {
@@ -11,15 +11,24 @@ class CTSView extends Component {
     button2: 'Surveys'
   }
 
+  async componentDidMount() {
+    this.props.loadClients()
+    this.props.loadTraits()
+    this.props.loadSurveys()
+  }
+
   render() {
-    let { CTSView, changeCTSView } = this.props
+    let { CTSView, changeCTSView, clients, traits, surveys } = this.props
+    let str = CTSView.toLowerCase()
+    let data = this.props[CTSView.toLowerCase()]
     return (
       <div>
         <Row className="container center-align">
             <h4 id="cts-header">{CTSView}</h4>
         </Row>
         <Row>
-          <List/>
+          {CTSView.toLowerCase()}
+          {data ? <List data={data}/> : null}
         </Row>
         <Row className="container center-align">
           <Button onClick={() => {
@@ -45,12 +54,18 @@ class CTSView extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  changeCTSView
+  changeCTSView,
+  loadTraits,
+  loadClients,
+  loadSurveys
 }, dispatch)
 
 const mapStateToProps = state => {
   return {
-    CTSView: state.mainReducer.CTSView
+    CTSView: state.mainReducer.CTSView,
+    traits: state.mainReducer.traits,
+    clients: state.mainReducer.clients,
+    surveys: state.mainReducer.surveys
   }
 }
 
