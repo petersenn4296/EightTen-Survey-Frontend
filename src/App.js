@@ -36,8 +36,6 @@ class App extends Component {
 
 const mapStateToProps = state => {
   const props = {
-    logged_in: state.mainReducer.logged_in,
-    CTSView: state.mainReducer.CTSView,
     view: state.mainReducer.view
   }
   return props
