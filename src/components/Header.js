@@ -1,15 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
 import { Row } from 'react-materialize'
 
 class Header extends Component {
-  constructor(props) {
-      super(props)
-      this.state = {
-      }
-    }
-
   render() {
     return (
       <Row className="container center-align" s={12} m={12} l={2}>
@@ -19,18 +13,18 @@ class Header extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-
-}, dispatch)
-
-const mapStateToProps = state => {
-  // const props = {
-  //   toggle: state.post.toggle,
-  //   posts: state.post.posts,
-  //   comments: state.comments
-  // }
-  // return props
-}
+// const mapDispatchToProps = dispatch => bindActionCreators({
+//
+// }, dispatch)
+//
+// const mapStateToProps = state => {
+//   // const props = {
+//   //   toggle: state.post.toggle,
+//   //   posts: state.post.posts,
+//   //   comments: state.comments
+//   // }
+//   // return props
+// }
 
 export default connect(
   null,

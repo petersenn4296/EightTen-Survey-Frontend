@@ -5,14 +5,20 @@ import { Row, Input, Button, Icon } from 'react-materialize'
 import { navigate } from '../actions'
 
 class LoginForm extends Component {
-
   render() {
+    const {navigate} = this.props
     return (
       <Row className="container">
           <Input placeholder="you@address.com" s={12} label="Email" required />
           <Input s={12} placeholder="Password..." label="Password" required />
           <div className="center-align">
-              <Button onClick={() => {navigate('CTSView'); console.log('state of view: ', this.props.view)}} id="login-button" waves='light'>login<Icon left>cloud</Icon></Button>
+              <Button onClick={() => {
+                navigate('CTSView')
+              }}
+              id="login-button"
+              waves='light'>
+                login<Icon left>cloud</Icon>
+              </Button>
           </div>
       </Row>
     )
@@ -24,10 +30,9 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 const mapStateToProps = state => {
-  const props = {
+  return {
     view: state.mainReducer.view
   }
-  return props
 }
 
 export default connect(
