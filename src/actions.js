@@ -1,9 +1,8 @@
 export const NAVIGATE = 'NAVIGATE'
 
-export const navigate = (destination) => {
-  const action = {
+export const navigate = destination => {
+  return {
     type: NAVIGATE,
     payload: destination
   }
-  return dispatch(action)
 }

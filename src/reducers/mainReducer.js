@@ -3,29 +3,20 @@ import {
 } from '../actions'
 
 const initialState = {
-  logged_in: false,
-  CTSView: 'clients',
-  view: 'login'
+  view: 'login',
+  CTSView: 'clients'
 }
 
 export default (state = initialState, action) => {
-
   switch (action.type) {
 
     case NAVIGATE:
-      console.log('hi')
-      // switch(action.payload) {
-      //
-      //   case 'CTSView':
-      //     return state.view = action.payload
-      //
-      //   default:
-      //     return state
-      //
-      // }
+      return {
+        ...state,
+        view: action.payload
+      }
 
 
-    default:
-      return state
+    default: return state
   }
 }
