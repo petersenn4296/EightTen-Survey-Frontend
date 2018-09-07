@@ -8,6 +8,11 @@ import Header from './components/Header'
 // import List from './components/List'
 import CTSView from './components/CTSView'
 import CompanyView from './components/CompanyView'
+import TraitView from './components/TraitView'
+import SurveyView from './components/SurveyView'
+import SpecificQuestionView from './components/SpecificQuestionView'
+
+
 
 
 class App extends Component {
@@ -21,7 +26,13 @@ class App extends Component {
         return <CompanyView/>
 
       case 'Traits':
-        return 
+        return <TraitView/>
+
+      case 'Surveys':
+        return <SurveyView/>
+
+      case 'SpecificQuestionView':
+        return <SpecificQuestionView/>
 
       default: return <LoginForm/>
     }

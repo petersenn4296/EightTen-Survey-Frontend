@@ -4,14 +4,27 @@ export const LOAD_CLIENTS = 'LOAD_CLIENTS'
 export const LOAD_TRAITS = 'LOAD_TRAITS'
 export const LOAD_SURVEYS = 'LOAD_SURVEYS'
 export const LOAD_CLIENT = 'LOAD_CLIENT'
+export const LOAD_TRAIT = 'LOAD_TRAIT'
+export const LOAD_SURVEY = 'LOAD_SURVEY'
 
 
 const API = 'http://localhost:3000/'
 
 export const navigate = (destination, item = null) => {
+  let data = ''
+  console.log('destination', destination);
+  if (destination === 'Clients'){
+    data = ''
+  } else if (destination === 'Traits'){
+    data = 'trait'
+  } else if (destination === 'Surveys'){
+    data = 'question'
+  } else {
+    data = 'company_name'
+  }
   return {
     type: NAVIGATE,
-    payload: {destination: destination, item: item}
+    payload: {destination: destination, item: item, dataText: data}
   }
 }
 
@@ -45,10 +58,21 @@ export const loadClient = (id) => {
   return async dispatch => {
     const response = await fetch(`${API}users/${id}/responses`)
     const client = await response.json()
-    console.log(client);
     dispatch({
       type: LOAD_CLIENT,
       payload: client
+    })
+  }
+}
+
+export const loadTrait = (id) => {
+  return async dispatch => {
+    const response = await fetch(`${API}traits/${id}`)
+    const trait = await response.json()
+    console.log(trait)
+    dispatch({
+      type: LOAD_TRAITS,
+      payload: trait
     })
   }
 }
@@ -60,6 +84,17 @@ export const loadTraits = () => {
     dispatch({
       type: LOAD_TRAITS,
       payload: traits
+    })
+  }
+}
+
+export const loadSurvey = (id) => {
+  return async dispatch => {
+    const response = await fetch(`${API}survey/${id}`)
+    const survey = await response.json()
+    dispatch({
+      type: LOAD_SURVEY,
+      payload: survey
     })
   }
 }

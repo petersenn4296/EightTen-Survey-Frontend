@@ -2,19 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Row, Input, Button, Icon } from 'react-materialize'
-import { navigate, loadClient } from '../actions'
+import { navigate, loadTrait } from '../actions'
 
 class TraitView extends Component {
 
   async componentDidMount() {
-    this.props.loadClient(this.props.item.id)
+    this.props.loadTrait(this.props.item.id)
   }
 
   render() {
     const { navigate, item } = this.props
     return (
       <Row className="container">
-        hello {item.company_name}
+        hello trait view
       </Row>
     )
   }
@@ -22,13 +22,13 @@ class TraitView extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   navigate,
-  loadClient
+  loadTrait
 }, dispatch)
 
 const mapStateToProps = state => {
   return {
     item: state.mainReducer.item,
-    client: state.mainReducer.client
+    trait: state.mainReducer.trait
   }
 }
 
