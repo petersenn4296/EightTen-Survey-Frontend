@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Row, Input, Button, Icon } from 'react-materialize'
 import { navigate, loadClient } from '../actions'
 
-class CompanyView extends Component {
+class TraitView extends Component {
 
   async componentDidMount() {
     this.props.loadClient(this.props.item.id)
@@ -35,4 +35,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CompanyView);
+)(TraitView);

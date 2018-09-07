@@ -2,50 +2,37 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Collection, CollectionItem } from 'react-materialize'
+import { navigate } from '../actions'
 
 class List extends Component {
-  // constructor(props) {
-  //     super(props)
-  //     this.state = {
-  //     }
-  //   }
-
   render() {
+    let { CTSView, dataText, navigate } = this.props
     return (
       <Collection className="container center-align">
         {this.props.data.map(item => {
           let itemText = ''
           for (let listItem in item) {
-            if (itemText.length > 2) {
-              itemText += `, ${item[listItem]}`
-            } else {
-              itemText = item[listItem]
-            }
+              itemText = item[dataText]
           }
-          console.log('item text', itemText)
-          return <CollectionItem href='#'>{itemText}</CollectionItem>
+          return <CollectionItem onClick={() => navigate(CTSView, item)}>{itemText}</CollectionItem>
         }
       )}
-{/*
-        <CollectionItem href='#'>Alvin</CollectionItem>
-        <CollectionItem href='#'>Alvin</CollectionItem>
-        <CollectionItem href='#'>Alvin</CollectionItem> */}
+
       </Collection>
     )
   }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-
+  navigate
 }, dispatch)
 
 const mapStateToProps = state => {
-  // const props = {
-  //   toggle: state.post.toggle,
-  //   posts: state.post.posts,
-  //   comments: state.comments
-  // }
-  // return props
+  const props = {
+    CTSView: state.mainReducer.CTSView,
+    dataText: state.mainReducer.dataText
+  }
+  return props
 }
 
 export default connect(
