@@ -4,7 +4,9 @@ import {
   LOAD_CLIENTS,
   LOAD_TRAITS,
   LOAD_SURVEYS,
-  LOAD_CLIENT
+  LOAD_CLIENT,
+  LOAD_TRAIT,
+  LOAD_SURVEY
 } from '../actions'
 
 const initialState = {
@@ -21,7 +23,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         view: action.payload.destination,
-        item: action.payload.item
+        item: action.payload.item,
+        dataText: action.payload.dataText
       }
 
     case CHANGE_CTS_VIEW:
@@ -49,10 +52,22 @@ export default (state = initialState, action) => {
         traits: action.payload
     }
 
+    case LOAD_TRAIT:
+      return {
+        ...state,
+        trait: action.payload
+    }
+
     case LOAD_SURVEYS:
       return {
         ...state,
         surveys: action.payload
+    }
+
+    case LOAD_SURVEY:
+      return {
+        ...state,
+        survey: action.payload
     }
 
 
