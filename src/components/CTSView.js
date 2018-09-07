@@ -19,7 +19,6 @@ class CTSView extends Component {
 
   render() {
     let { CTSView, changeCTSView, clients, traits, surveys } = this.props
-    let str = CTSView.toLowerCase()
     let data = this.props[CTSView.toLowerCase()]
     return (
       <div>
@@ -27,7 +26,6 @@ class CTSView extends Component {
             <h4 id="cts-header">{CTSView}</h4>
         </Row>
         <Row>
-          {CTSView.toLowerCase()}
           {data ? <List data={data}/> : null}
         </Row>
         <Row className="container center-align">

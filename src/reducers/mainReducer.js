@@ -3,13 +3,15 @@ import {
   CHANGE_CTS_VIEW,
   LOAD_CLIENTS,
   LOAD_TRAITS,
-  LOAD_SURVEYS
+  LOAD_SURVEYS,
+  LOAD_CLIENT
 } from '../actions'
 
 const initialState = {
   view: 'login',
   CTSView: 'Clients',
-  CTSData: []
+  CTSData: [],
+  dataText: 'company_name'
 }
 
 export default (state = initialState, action) => {
@@ -18,33 +20,38 @@ export default (state = initialState, action) => {
     case NAVIGATE:
       return {
         ...state,
-        view: action.payload
+        view: action.payload.destination,
+        item: action.payload.item
       }
 
     case CHANGE_CTS_VIEW:
       return {
         ...state,
-        CTSView: action.payload
+        CTSView: action.payload.view,
+        dataText: action.payload.data
       }
 
     case LOAD_CLIENTS:
       return {
         ...state,
-        // clients: action.payload
-        clients: [{company_name: 'EightTen', first_name: 'rich'}, {company_name: 'Slater Flooring', first_name: 'Jeff'}, {company_name: 'Vape House', first_name: 'Ben'}, {company_name: 'Cow R Us', first_name: 'Peter'}]
+        clients: action.payload
+    }
+
+    case LOAD_CLIENT:
+      return {
+        ...state,
+        client: action.payload
     }
 
     case LOAD_TRAITS:
       return {
         ...state,
-        // traits: action.payload
-        traits: [{trait: 'Employee Impact'}, {trait: 'Community'}, {trait: 'Talent'}]
+        traits: action.payload
     }
 
     case LOAD_SURVEYS:
       return {
         ...state,
-        // surveys: action.payload
         surveys: action.payload
     }
 

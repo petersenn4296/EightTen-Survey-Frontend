@@ -7,13 +7,21 @@ import LoginForm from './components/LoginForm'
 import Header from './components/Header'
 // import List from './components/List'
 import CTSView from './components/CTSView'
+import CompanyView from './components/CompanyView'
+
 
 class App extends Component {
 
-  viewHashTable = (view) => {
+  viewHashTable = view => {
     switch(view){
       case 'CTSView':
         return <CTSView/>
+
+      case 'Clients':
+        return <CompanyView/>
+
+      case 'Traits':
+        return 
 
       default: return <LoginForm/>
     }
