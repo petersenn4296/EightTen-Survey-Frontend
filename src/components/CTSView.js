@@ -7,8 +7,21 @@ import { changeCTSView, loadSurveys, loadTraits, loadClients } from '../actions'
 
 class CTSView extends Component {
   state = {
-    button1: 'Traits',
-    button2: 'Surveys'
+    button1: '',
+    button2: ''
+  }
+
+  buttons = view => {
+    if(view === 'Clients'){
+      this.state.button1 = 'Traits'
+      this.state.button2 = 'Surveys'
+    } else if (view === 'Traits') {
+      this.state.button1 = 'Clients'
+      this.state.button2 = 'Surveys'
+    } else if (view === 'Surveys') {
+      this.state.button1 = 'Clients'
+      this.state.button2 = 'Traits'
+    }
   }
 
   async componentDidMount() {
@@ -20,6 +33,7 @@ class CTSView extends Component {
   render() {
     let { CTSView, changeCTSView, clients, traits, surveys } = this.props
     let data = this.props[CTSView.toLowerCase()]
+    this.buttons(CTSView)
     return (
       <div>
         <Row className="container center-align">
@@ -30,16 +44,14 @@ class CTSView extends Component {
         </Row>
         <Row className="container center-align">
           <Button onClick={() => {
-            changeCTSView(this.state.button1);
-            this.setState({button1: CTSView})
+            changeCTSView(this.state.button1)
           }}
           id="login-button"
           waves='light'>
             {this.state.button1}<Icon left>cloud</Icon>
           </Button>
           <Button onClick={() => {
-            changeCTSView(this.state.button2);
-            this.setState({button2: CTSView})
+            changeCTSView(this.state.button2)
           }}
           id="login-button"
           waves='light'>

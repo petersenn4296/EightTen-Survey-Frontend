@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
 import './App.css';
-
 import LoginForm from './components/LoginForm'
 import Header from './components/Header'
 // import List from './components/List'
@@ -11,9 +10,7 @@ import CompanyView from './components/CompanyView'
 import TraitView from './components/TraitView'
 import SurveyView from './components/SurveyView'
 import SpecificQuestionView from './components/SpecificQuestionView'
-
-
-
+import BackButton from './components/BackButton'
 
 class App extends Component {
 
@@ -39,10 +36,11 @@ class App extends Component {
   }
 
   render() {
-    const {view} = this.props
+    const { view, back } = this.props
     return (
       <div>
         <Header/>
+        {back > 0 ? <BackButton/> : null}
         {this.viewHashTable(this.props.view)}
       </div>
     );
@@ -55,7 +53,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   const props = {
-    view: state.mainReducer.view
+    view: state.mainReducer.view,
+    back: state.mainReducer.back
   }
   return props
 }
