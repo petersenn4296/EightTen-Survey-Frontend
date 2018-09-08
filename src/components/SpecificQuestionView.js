@@ -13,7 +13,6 @@ class SpecificQuestionView extends Component {
 
   render() {
     const { navigate, item, loadSurvey, survey } = this.props
-    console.log('item', item);
     return (
       <Row className="container">
         {item.question} {item.type}

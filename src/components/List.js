@@ -11,7 +11,6 @@ class List extends Component {
     if (dataText === 'question') {
       destination = 'SpecificQuestionView'
     }
-    console.log('data list 11', dataText);
     return (
       <Collection className="container center-align">
         {this.props.data.map(item => {

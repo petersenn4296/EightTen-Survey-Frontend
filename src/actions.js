@@ -69,7 +69,6 @@ export const loadTrait = (id) => {
   return async dispatch => {
     const response = await fetch(`${API}traits/${id}`)
     const trait = await response.json()
-    console.log(trait)
     dispatch({
       type: LOAD_TRAITS,
       payload: trait
