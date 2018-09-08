@@ -6,13 +6,13 @@ export const LOAD_SURVEYS = 'LOAD_SURVEYS'
 export const LOAD_CLIENT = 'LOAD_CLIENT'
 export const LOAD_TRAIT = 'LOAD_TRAIT'
 export const LOAD_SURVEY = 'LOAD_SURVEY'
+export const BACK = 'BACK'
 
 
 const API = 'http://localhost:3000/'
 
 export const navigate = (destination, item = null) => {
   let data = ''
-  console.log('destination', destination);
   if (destination === 'Clients'){
     data = ''
   } else if (destination === 'Traits'){
@@ -25,6 +25,12 @@ export const navigate = (destination, item = null) => {
   return {
     type: NAVIGATE,
     payload: {destination: destination, item: item, dataText: data}
+  }
+}
+
+export const back = () => {
+  return {
+    type: BACK
   }
 }
 
