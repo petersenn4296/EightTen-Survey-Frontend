@@ -6,28 +6,92 @@ import {
   LOAD_SURVEYS,
   LOAD_CLIENT,
   LOAD_TRAIT,
-  LOAD_SURVEY
+  LOAD_SURVEY,
+  BACK
 } from '../actions'
 
 const initialState = {
   view: 'login',
   CTSView: 'Clients',
   CTSData: [],
-  dataText: 'company_name'
+  dataText: 'company_name',
+  back: 0
 }
+
+class Stack {
+  constructor() {
+    this.size = 0
+    this.storage = {}
+  }
+  push(view, item, dataText){
+    let size = this.size++
+    this.storage[size] = {
+      view: view,
+      item: item,
+      dataText: dataText
+    }
+  }
+  pop(){
+    let size = this.size - 1 , deletedData
+    if(size){
+      deletedData = this.storage[size]
+      delete this.storage[size];
+      this.size--
+      return deletedData
+    }
+  }
+}
+
+const backStack = new Stack
+backStack.push('login')
 
 export default (state = initialState, action) => {
   switch (action.type) {
 
     case NAVIGATE:
+    let ap = action.payload
+    backStack.push(ap.destination, ap.item, ap.dataText)
+    state.back++
       return {
         ...state,
-        view: action.payload.destination,
-        item: action.payload.item,
-        dataText: action.payload.dataText
+        view: ap.destination,
+        item: ap.item,
+        dataText: ap.dataText,
       }
 
+    case BACK:
+    backStack.pop()
+    state.back--
+    let back = backStack.storage[backStack.size - 1]
+    if(state.back === 0){
+      return {
+        view: 'login',
+        CTSView: 'Clients',
+        CTSData: [],
+        dataText: 'company_name',
+        back: 0
+      }
+    } else {
+      if (back.view === 'CTSView') {
+        return {
+          ...state,
+          view: 'CTSView',
+          item: back.item,
+          dataText: back.dataText
+        }
+      } else {
+        return {
+          ...state,
+          view: back.view,
+          item: back.item,
+          dataText: back.dataText
+        }
+      }
+    }
+
     case CHANGE_CTS_VIEW:
+      backStack.storage[backStack.size - 1].CTSView = action.payload.view
+      backStack.storage[backStack.size - 1].dataText = action.payload.data
       return {
         ...state,
         CTSView: action.payload.view,
