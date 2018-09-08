@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
 import './App.css';
+import { Row } from 'react-materialize'
 import LoginForm from './components/LoginForm'
 import Header from './components/Header'
-// import List from './components/List'
 import CTSView from './components/CTSView'
 import CompanyView from './components/CompanyView'
 import TraitView from './components/TraitView'
@@ -40,7 +40,9 @@ class App extends Component {
     return (
       <div>
         <Header/>
-        {back > 0 ? <BackButton/> : null}
+        <Row className='center-align'>
+          {back > 0 ? <BackButton/> : null}
+        </Row>
         {this.viewHashTable(this.props.view)}
       </div>
     );

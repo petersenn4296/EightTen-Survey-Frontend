@@ -6,14 +6,15 @@ import { navigate } from '../actions'
 
 class List extends Component {
   render() {
-    let { CTSView, dataText, navigate } = this.props
+    let { CTSView, dataText, navigate, data } = this.props
+    console.log(data);
     let destination = CTSView
     if (dataText === 'question') {
       destination = 'SpecificQuestionView'
     }
     return (
       <Collection className="container center-align">
-        {this.props.data.map(item => {
+        {data.map(item => {
           let itemText = ''
           for (let listItem in item) {
               itemText = item[dataText]
