@@ -12,7 +12,7 @@ class SurveyView extends Component {
   }
 
   render() {
-    const { navigate, item, loadSurvey, survey } = this.props
+    const { navigate, survey } = this.props
     return (
       <Row>
         <Row className="container">

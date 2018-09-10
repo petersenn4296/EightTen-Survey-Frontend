@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   render() {
-    const { view, back } = this.props
+    const { back } = this.props
     return (
       <div>
         <Header/>

@@ -7,12 +7,15 @@ import {
   LOAD_CLIENT,
   LOAD_TRAIT,
   LOAD_SURVEY,
-  BACK
+  BACK,
+  BUTTONS
 } from '../actions'
 
 const initialState = {
   view: 'login',
   CTSView: 'Clients',
+  button1: 'Traits',
+  button2: 'Surveys',
   CTSData: [],
   dataText: 'company_name',
   back: 0
@@ -42,7 +45,7 @@ class Stack {
   }
 }
 
-const backStack = new Stack
+const backStack = new Stack()
 backStack.push('login')
 
 export default (state = initialState, action) => {
@@ -67,6 +70,8 @@ export default (state = initialState, action) => {
       return {
         view: 'login',
         CTSView: 'Clients',
+        button1: 'Traits',
+        button2: 'Surveys',
         CTSData: [],
         dataText: 'company_name',
         back: 0
@@ -89,13 +94,22 @@ export default (state = initialState, action) => {
       }
     }
 
+    case BUTTONS:
+      return {
+        ...state,
+        button1: action.payload.button1,
+        button2: action.payload.button2
+      }
+
     case CHANGE_CTS_VIEW:
       backStack.storage[backStack.size - 1].CTSView = action.payload.view
       backStack.storage[backStack.size - 1].dataText = action.payload.data
       return {
         ...state,
         CTSView: action.payload.view,
-        dataText: action.payload.data
+        dataText: action.payload.data,
+        button1: action.payload.buttons.button1,
+        button2: action.payload.buttons.button2
       }
 
     case LOAD_CLIENTS:

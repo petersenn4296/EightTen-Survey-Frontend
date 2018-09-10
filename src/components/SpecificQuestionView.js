@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Input, Button, Icon } from 'react-materialize'
-import { navigate } from '../actions'
+import { Row, Input, Button} from 'react-materialize'
 import MultipleChoice from './MultipleChoice'
-import List from './List'
 
 class SpecificQuestionView extends Component {
 
   render() {
-    const { navigate, item } = this.props
+    const { item } = this.props
     const mcData = [item.type]
 
     if(item.type === 'mc'){
@@ -37,7 +35,6 @@ class SpecificQuestionView extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  navigate
 }, dispatch)
 
 const mapStateToProps = state => {

@@ -7,14 +7,14 @@ export const LOAD_CLIENT = 'LOAD_CLIENT'
 export const LOAD_TRAIT = 'LOAD_TRAIT'
 export const LOAD_SURVEY = 'LOAD_SURVEY'
 export const BACK = 'BACK'
-
+export const BUTTONS = 'BUTTONS'
 
 const API = 'http://localhost:3000/'
 
 export const navigate = (destination, item = null) => {
   let data = ''
   if (destination === 'Clients'){
-    data = ''
+    data = 'trait'
   } else if (destination === 'Traits'){
     data = 'trait'
   } else if (destination === 'Surveys'){
@@ -36,16 +36,29 @@ export const back = () => {
 
 export const changeCTSView = view => {
   let data = ''
+  let buttons
   if (view === 'Clients'){
     data = 'company_name'
+    buttons = {
+      button1: 'Traits',
+      button2: 'Surveys'
+    }
   } else if (view === 'Traits'){
     data = 'trait'
+    buttons = {
+      button1: 'Clients',
+      button2: 'Surveys'
+    }
   } else if (view === 'Surveys'){
     data = 'name'
+    buttons = {
+      button1: 'Clients',
+      button2: 'Traits'
+    }
   }
   return {
     type: CHANGE_CTS_VIEW,
-    payload: {view: view, data: data}
+    payload: {view: view, data: data, buttons: buttons}
   }
 }
 

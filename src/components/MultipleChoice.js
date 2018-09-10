@@ -1,19 +1,14 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { Row, Button, Input } from 'react-materialize'
-import { navigate } from '../actions'
+import { Row, Input } from 'react-materialize'
 
-class MultipleChoice extends Component {
-
+export default class MultipleChoice extends Component {
   render() {
-    const { label, defaultValue, mcData } = this.props
-    console.log(this.props.mcData)
+    const { label, mcData } = this.props
     return (
       <Row>
         <Input s={12} type='select' label={label} defaultValue='0'>
           {mcData.map( (option, i) => {
-            return <option value={i}>{option}</option>
+            return <option key={option} value={i}>{option}</option>
           })}
         </Input>
       </Row>
@@ -31,9 +26,9 @@ class MultipleChoice extends Component {
 //     survey: state.mainReducer.survey
 //   }
 // }
-export default connect(
-  // mapStateToProps,
-  // mapDispatchToProps
-  null,
-  null
-)(MultipleChoice);
+// export default connect(
+//   // mapStateToProps,
+//   // mapDispatchToProps
+//   null,
+//   null
+// )(MultipleChoice);

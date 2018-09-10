@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { navigate, back } from '../actions'
+import { back } from '../actions'
 import { Row, Button } from 'react-materialize'
 
 
 class BackButton extends Component {
   render() {
-    const { navigate, back } = this.props
+    const { back } = this.props
     return (
-      <Row className="container">
+      <Row className="container right-align">
         <Button onClick={() => {
           back()
         }}
@@ -23,17 +23,16 @@ class BackButton extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  navigate,
   back
 }, dispatch)
 
-const mapStateToProps = state => {
-  return {
-    view: state.mainReducer.view
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     view: state.mainReducer.view
+//   }
+// }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(BackButton);
