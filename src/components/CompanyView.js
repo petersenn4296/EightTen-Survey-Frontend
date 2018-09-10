@@ -12,7 +12,7 @@ class CompanyView extends Component {
   }
 
   render() {
-    const { item, client, traits } = this.props
+    const { item, traits } = this.props
     return (
       <Row className="container center-align">
         <h4>{item.company_name}</h4>
@@ -31,7 +31,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 const mapStateToProps = state => {
   return {
     item: state.mainReducer.item,
-    client: state.mainReducer.client,
     traits: state.mainReducer.traits
   }
 }

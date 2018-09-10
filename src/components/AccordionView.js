@@ -5,7 +5,7 @@ import { Collapsible, CollapsibleItem } from 'react-materialize'
 class AccordionView extends Component {
 
   render() {
-    const { item, client, traits, employee_impact, community_impact, talent_lifecycle, viewData } = this.props
+    const { viewData } = this.props
     return (
         <Collapsible accordion>
           {viewData.map(item => {
@@ -27,9 +27,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 const mapStateToProps = state => {
   return {
-    item: state.mainReducer.item,
-    client: state.mainReducer.client,
-    traits: state.mainReducer.traits,
     viewData: state.mainReducer.viewData
   }
 }

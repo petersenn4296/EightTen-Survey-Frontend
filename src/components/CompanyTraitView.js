@@ -7,7 +7,7 @@ import AccordionView from './AccordionView'
 class CompanyTraitView extends Component {
 
   render() {
-    const { item, client, viewData } = this.props
+    const { item, client } = this.props
     return (
       <Row className="container center-align">
         <h4>{item.company_name}</h4>
@@ -25,8 +25,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 const mapStateToProps = state => {
   return {
     item: state.mainReducer.item,
-    client: state.mainReducer.client,
-    viewData: state.mainReducer.viewData
+    client: state.mainReducer.client
   }
 }
 
