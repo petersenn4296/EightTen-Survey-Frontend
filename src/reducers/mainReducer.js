@@ -8,8 +8,7 @@ import {
   LOAD_TRAIT,
   LOAD_SURVEY,
   BACK,
-  BUTTONS,
-  ALLOCATE_QUESTIONS
+  BUTTONS
 } from '../actions'
 
 const initialState = {
