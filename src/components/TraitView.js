@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { Row, Input, Button, Icon } from 'react-materialize'
-import { navigate } from '../actions'
+// import { bindActionCreators } from 'redux'
+import { Row } from 'react-materialize'
 
 class TraitView extends Component {
 
   render() {
-    const { navigate, item } = this.props
+    const { item } = this.props
     return (
       <Row className="container center-align">
         Response: {item.response}
@@ -16,18 +15,16 @@ class TraitView extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  navigate
-}, dispatch)
+// const mapDispatchToProps = dispatch => bindActionCreators({
+// }, dispatch)
 
 const mapStateToProps = state => {
   return {
     item: state.mainReducer.item,
-    // trait: state.mainReducer.trait
   }
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(TraitView);

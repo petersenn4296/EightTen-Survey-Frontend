@@ -1,28 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Input, Button, Icon } from 'react-materialize'
+import { Row, Button, Icon } from 'react-materialize'
 import List from './List'
 import { changeCTSView, loadSurveys, loadTraits, loadClients } from '../actions'
 
 class CTSView extends Component {
-  state = {
-    button1: '',
-    button2: ''
-  }
-
-  buttons = view => {
-    if(view === 'Clients'){
-      this.state.button1 = 'Traits'
-      this.state.button2 = 'Surveys'
-    } else if (view === 'Traits') {
-      this.state.button1 = 'Clients'
-      this.state.button2 = 'Surveys'
-    } else if (view === 'Surveys') {
-      this.state.button1 = 'Clients'
-      this.state.button2 = 'Traits'
-    }
-  }
 
   async componentDidMount() {
     this.props.loadClients()
@@ -31,9 +14,8 @@ class CTSView extends Component {
   }
 
   render() {
-    let { CTSView, changeCTSView, clients, traits, surveys } = this.props
+    let { CTSView, changeCTSView, button1, button2 } = this.props
     let data = this.props[CTSView.toLowerCase()]
-    this.buttons(CTSView)
     return (
       <div>
         <Row className="container center-align">
@@ -44,18 +26,18 @@ class CTSView extends Component {
         </Row>
         <Row className="container center-align">
           <Button onClick={() => {
-            changeCTSView(this.state.button1)
+            changeCTSView(button1)
           }}
           id="login-button"
           waves='light'>
-            {this.state.button1}<Icon left>cloud</Icon>
+            {button1}<Icon left>cloud</Icon>
           </Button>
           <Button onClick={() => {
-            changeCTSView(this.state.button2)
+            changeCTSView(button2)
           }}
           id="login-button"
           waves='light'>
-            {this.state.button2}<Icon left>cloud</Icon>
+            {button2}<Icon left>cloud</Icon>
           </Button>
         </Row>
       </div>
@@ -75,7 +57,9 @@ const mapStateToProps = state => {
     CTSView: state.mainReducer.CTSView,
     traits: state.mainReducer.traits,
     clients: state.mainReducer.clients,
-    surveys: state.mainReducer.surveys
+    surveys: state.mainReducer.surveys,
+    button1: state.mainReducer.button1,
+    button2: state.mainReducer.button2
   }
 }
 
