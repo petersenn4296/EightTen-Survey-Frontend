@@ -11,6 +11,10 @@ class List extends Component {
     if (dataText === 'question') {
       destination = 'SpecificQuestionView'
     }
+    if (data[0].trait && CTSView === 'Clients') {
+      destination = 'CompanyTraitView'
+    }
+    console.log(data);
     return (
       <Collection className="container center-align">
         {data.map(item => {
