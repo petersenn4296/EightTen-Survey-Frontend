@@ -8,7 +8,9 @@ import {
   LOAD_TRAIT,
   LOAD_SURVEY,
   BACK,
-  BUTTONS
+  BUTTONS,
+  QUESTION_DATA,
+  ADD_QUESTION
 } from '../actions'
 
 const initialState = {
@@ -18,7 +20,13 @@ const initialState = {
   button2: 'Surveys',
   CTSData: [],
   dataText: 'company_name',
-  back: 0
+  back: 0,
+  questionObj: {
+    survey_id: null,
+    question: null,
+    value: null,
+    type: null
+  }
 }
 
 class Stack {
@@ -60,6 +68,23 @@ export default (state = initialState, action) => {
         view: ap.destination,
         item: ap.item,
         dataText: ap.dataText,
+      }
+
+    case ADD_QUESTION:
+    console.log('reducer line 74', action.payload);
+      return {
+        ...state
+      }
+
+    case QUESTION_DATA:
+      let key = action.payload.key
+      let value = action.payload.value
+      return {
+        ...state,
+        questionObj: {
+          ...state.questionObj,
+          [key]: value
+        }
       }
 
     case BACK:

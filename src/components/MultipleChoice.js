@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { Row, Input } from 'react-materialize'
+import { questionDataDispatch } from '../actions'
 
-export default class MultipleChoice extends Component {
+class MultipleChoice extends Component {
   render() {
-    const { label, mcData } = this.props
+    const { label, mcData, changeType, questionDataDispatch } = this.props
     return (
       <Row>
-        <Input s={12} type='select' label={label} defaultValue='0'>
+        <Input s={12} type='select' label={label} defaultValue='0' onChange={(e) => questionDataDispatch('type', e.target.value)}>
           {mcData.map( (option, i) => {
             return <option key={option} value={i}>{option}</option>
           })}
@@ -16,19 +19,16 @@ export default class MultipleChoice extends Component {
   }
 }
 
-// const mapDispatchToProps = dispatch => bindActionCreators({
-//   navigate
-// }, dispatch)
-//
-// const mapStateToProps = state => {
-//   return {
-//     item: state.mainReducer.item,
-//     survey: state.mainReducer.survey
-//   }
-// }
-// export default connect(
-//   // mapStateToProps,
-//   // mapDispatchToProps
-//   null,
-//   null
-// )(MultipleChoice);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  questionDataDispatch
+}, dispatch)
+
+const mapStateToProps = state => {
+  return {
+    mcType: state.mainReducer.mcType
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MultipleChoice);
