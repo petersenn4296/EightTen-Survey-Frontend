@@ -11,6 +11,7 @@ import {
   BUTTONS,
   QUESTION_DATA,
   ADD_QUESTION,
+  EDIT_RESPONSE,
   UPDATE_CREDENTIALS,
   LOGIN
 } from '../actions'
@@ -33,6 +34,7 @@ const initialState = {
   employee_impact: [],
   community_impact: [],
   talent_lifecycle: [],
+  response: {},
   email: '',
   password: ''
 }
@@ -82,6 +84,12 @@ export default (state = initialState, action) => {
         dataText: ap.dataText,
         trait_id: ap.trait_id,
         viewData: viewData
+      }
+
+    case EDIT_RESPONSE:
+      return {
+        ...state,
+        response: action.payload
       }
 
     case ADD_QUESTION:

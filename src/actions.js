@@ -10,43 +10,92 @@ export const BACK = 'BACK'
 export const BUTTONS = 'BUTTONS'
 export const QUESTION_DATA = 'QUESTION_DATA'
 export const ADD_QUESTION = 'ADD_QUESTION'
+export const EDIT_RESPONSE = 'EDIT_RESPONSE'
 export const UPDATE_CREDENTIALS = 'UPDATE_CREDENTIALS'
 export const LOGIN = 'LOGIN'
 
+
 const API = 'http://localhost:3000/'
 
-export const addQuestion = (question) => {
-  console.log('add question function', question);
+export const editTraitResponse = (response, id) => {
+  let obj = {
+    trait_id: id,
+    response
+  }
   return async dispatch => {
-    const response = await fetch(`${API}questions`, {
-      method: 'POST',
-      body: JSON.stringify(question),
+    const response = await fetch(`${API}traits/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(obj),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       }
     })
     const message = await response.json()
-    console.log('action line 28', message);
-    dispatch ({
-      type: ADD_QUESTION,
-      // payload: message
-    })
+    // dispatch ({
+    //   type: ADD_QUESTION,
+    //   // payload: message
+    // })
+  }
+}
+
+export const addQuestion = (question) => {
+  if(question.id){
+    let obj = {
+      question: question.question,
+      value: question.value,
+      type: question.type
+    }
+    console.log('obj', obj);
+    return async dispatch => {
+      const response = await fetch(`${API}questions/${question.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(obj),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        }
+      })
+    }
+  } else {
+    return async dispatch => {
+      const response = await fetch(`${API}questions`, {
+        method: 'POST',
+        body: JSON.stringify(question),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        }
+      })
+      const message = await response.json()
+      console.log('action line 28', message);
+      dispatch ({
+        type: ADD_QUESTION,
+        // payload: message
+      })
+    }
   }
 }
 
 export const questionDataDispatch = (key, value) => {
-  console.log('the key and value', key, value);
-  return dispatch => {
-    questionData(key, value, dispatch)
-  }
+  // console.log('key', key, 'value', value);
+    return dispatch => {
+      questionData(key, value, dispatch)
+    }
 }
 
 export const questionData = (key, value, dispatch) => {
-  dispatch({
-    type: QUESTION_DATA,
-    payload: {key: key, value: value}
-  })
+  if(key === 'response'){
+    dispatch({
+      type: EDIT_RESPONSE,
+      payload: value
+    })
+  } else {
+    dispatch({
+      type: QUESTION_DATA,
+      payload: {key: key, value: value}
+    })
+  }
 }
 
 export const updateCredentials = (key, value) => {
@@ -73,8 +122,10 @@ export const navigate = (destination, item = null, questionObj = null, trait_id 
       trait_id = item.id
       data = 'question'
     } else if (destination === 'SpecificQuestionView'){
+      console.log('item', item);
       questionData('question', item.question, dispatch)
       questionData('type', item.type, dispatch)
+      questionData('id', item.question_id, dispatch)
     } else {
       data = 'company_name'
     }
