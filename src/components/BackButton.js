@@ -10,7 +10,9 @@ class BackButton extends Component {
     const { back } = this.props
     return (
       <Row className="container right-align">
-        <Button onClick={() => {
+        <Button
+          className='eightten_button'
+          onClick={() => {
           back()
         }}
         id="login-button"

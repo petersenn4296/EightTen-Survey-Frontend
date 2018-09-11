@@ -21,7 +21,7 @@ class TraitView extends Component {
           onChange={(e)=> questionDataDispatch('response', e.target.value)}
         />
         <Row>
-          <Button type='submit' value='Save' onClick={()=>editTraitResponse(this.props.response, item.id)}>Save</Button>
+          <Button className='eightten_button' type='submit' value='Save' onClick={()=>editTraitResponse(this.props.response, item.id)}>Save</Button>
         </Row>
       </Row>
     )
