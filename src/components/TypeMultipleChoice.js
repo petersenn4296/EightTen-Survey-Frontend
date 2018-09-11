@@ -4,15 +4,17 @@ import { bindActionCreators } from 'redux'
 import { Row, Input } from 'react-materialize'
 import { questionDataDispatch } from '../actions'
 
-class MultipleChoice extends Component {
+class TypeMultipleChoice extends Component {
+
   render() {
-    const { label, mcData, changeType, questionDataDispatch } = this.props
+    const { label, mcData, questionDataDispatch } = this.props
     return (
       <Row>
-        <Input s={12} type='select' label={label} defaultValue='0' onChange={(e) => questionDataDispatch('type', e.target[e.target.value].innerText)}>
+        <Input s={12} type='select' label={label} defaultValue='0' onChange={(e) => questionDataDispatch(label, e.target[e.target.value].innerText)}>
           {mcData.map( (option, i) => {
             return <option key={option} value={i}>{option}</option>
-          })}
+            })
+          }
         </Input>
       </Row>
     )
@@ -31,4 +33,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MultipleChoice);
+)(TypeMultipleChoice);

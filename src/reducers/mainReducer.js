@@ -101,6 +101,7 @@ export default (state = initialState, action) => {
     case QUESTION_DATA:
       let key = action.payload.key
       let value = action.payload.value
+      console.log(key, value);
       return {
         ...state,
         questionObj: {
