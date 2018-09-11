@@ -14,16 +14,14 @@ class List extends Component {
     if (data[0].trait && CTSView === 'Clients') {
       destination = 'CompanyTraitView'
     }
-    console.log(data);
     return (
       <Collection className="container center-align">
         {data.map(item => {
           let itemText = ''
           itemText = item[dataText]
           return <CollectionItem key={itemText} onClick={() => navigate(destination, item)}>{itemText}</CollectionItem>
-        }
-      )}
-
+          }
+        )}
       </Collection>
     )
   }

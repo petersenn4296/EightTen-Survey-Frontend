@@ -34,7 +34,6 @@ export const addQuestion = (question) => {
 }
 
 export const questionDataDispatch = (key, value) => {
-  console.log('the key and value', key, value);
   return dispatch => {
     questionData(key, value, dispatch)
   }
