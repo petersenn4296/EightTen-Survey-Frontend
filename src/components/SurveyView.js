@@ -2,17 +2,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Row, Button } from 'react-materialize'
-import { navigate, loadSurvey } from '../actions'
+import { navigate, loadSurvey, questionDataDispatch } from '../actions'
 import List from './List'
 
 class SurveyView extends Component {
 
   async componentDidMount() {
     this.props.loadSurvey(this.props.item.id)
+    this.props.questionDataDispatch('survey_id', this.props.item.id)
   }
 
   render() {
-    const { navigate, survey } = this.props
+    const { navigate, survey, item } = this.props
     return (
       <Row>
         <Row className="container">
@@ -29,7 +30,8 @@ class SurveyView extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   navigate,
-  loadSurvey
+  loadSurvey,
+  questionDataDispatch
 }, dispatch)
 
 const mapStateToProps = state => {
