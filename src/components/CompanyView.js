@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row } from 'react-materialize'
+import { Row, Input } from 'react-materialize'
 import { loadClient } from '../actions'
 import List from './List'
 
@@ -38,6 +38,9 @@ class CompanyView extends Component {
         <h4>{item.company_name} {company_average ? ` | Avg. Score: ${company_average}` : ` | Avg. Score: 0`}</h4>
         <Row>
           {traits ? <List data={traits} employee_impact={employee_impact_average} community_impact={community_impact_average} talent_lifecycle_average={talent_lifecycle}/> : null}
+        </Row>
+        <Row>
+          <Input name='on' type='switch' value='1' />
         </Row>
       </Row>
     )

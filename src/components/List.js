@@ -31,7 +31,7 @@ class List extends Component {
             }
           }
 
-          return <CollectionItem key={itemText} onClick={() => navigate(destination, item)}>{itemText}{scoreText ? ` | Avg. Score: ${scoreText}` : null}</CollectionItem>
+          return <CollectionItem key={itemText} onClick={() => navigate(destination, item)}>{itemText}{scoreText ? ` [Avg. Score: ${scoreText}]` : null }</CollectionItem>
         }
       )}
 
