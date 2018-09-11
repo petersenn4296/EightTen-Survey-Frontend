@@ -8,6 +8,7 @@ class CompanyTraitView extends Component {
 
   render() {
     const { item, client } = this.props
+        console.log('client', client);
     return (
       <Row className="container center-align">
         <h4>{item.company_name}</h4>

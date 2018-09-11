@@ -109,7 +109,17 @@ export default (state = initialState, action) => {
         button2: 'Surveys',
         CTSData: [],
         dataText: 'company_name',
-        back: 0
+        back: 0,
+        questionObj: {
+          survey_id: null,
+          question: null,
+          value: null,
+          type: null
+        },
+        viewData: [],
+        employee_impact: [],
+        community_impact: [],
+        talent_lifecycle: []
       }
     } else {
       if (back.view === 'CTSView') {
