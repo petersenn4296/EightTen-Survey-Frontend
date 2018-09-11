@@ -9,7 +9,7 @@ class MultipleChoice extends Component {
     const { label, mcData, changeType, questionDataDispatch } = this.props
     return (
       <Row>
-        <Input s={12} type='select' label={label} defaultValue='0' onChange={(e) => questionDataDispatch('type', e.target.value)}>
+        <Input s={12} type='select' label={label} defaultValue='0' onChange={(e) => questionDataDispatch('type', e.target[e.target.value].innerText)}>
           {mcData.map( (option, i) => {
             return <option key={option} value={i}>{option}</option>
           })}
