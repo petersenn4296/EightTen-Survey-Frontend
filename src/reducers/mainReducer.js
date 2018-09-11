@@ -18,7 +18,11 @@ const initialState = {
   button2: 'Surveys',
   CTSData: [],
   dataText: 'company_name',
-  back: 0
+  back: 0,
+  viewData: [],
+  employee_impact: [],
+  community_impact: [],
+  talent_lifecycle: []
 }
 
 class Stack {
@@ -55,11 +59,17 @@ export default (state = initialState, action) => {
     let ap = action.payload
     backStack.push(ap.destination, ap.item, ap.dataText)
     state.back++
+    let viewData
+    if (ap.trait_id === 1) viewData = state.employee_impact
+    if (ap.trait_id === 2) viewData = state.community_impact
+    if (ap.trait_id === 3) viewData = state.talent_lifecycle
       return {
         ...state,
         view: ap.destination,
         item: ap.item,
         dataText: ap.dataText,
+        trait_id: ap.trait_id,
+        viewData: viewData
       }
 
     case BACK:
@@ -121,7 +131,10 @@ export default (state = initialState, action) => {
     case LOAD_CLIENT:
       return {
         ...state,
-        client: action.payload
+        client: action.payload.client,
+        employee_impact: action.payload.employee_impact,
+        community_impact: action.payload.community_impact,
+        talent_lifecycle: action.payload.talent_lifecycle
     }
 
     case LOAD_TRAITS:
@@ -147,6 +160,7 @@ export default (state = initialState, action) => {
         ...state,
         survey: action.payload
     }
+
 
 
     default: return state

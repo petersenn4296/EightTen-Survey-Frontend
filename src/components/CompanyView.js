@@ -12,12 +12,10 @@ class CompanyView extends Component {
   }
 
   render() {
-    const { item, client, traits } = this.props
-    console.log(client);
-    console.log(traits);
+    const { item, traits } = this.props
     return (
-      <Row className="container">
-        hello {item.company_name}
+      <Row className="container center-align">
+        <h4>{item.company_name}</h4>
         <Row>
           {traits ? <List data={traits}/> : null}
         </Row>
@@ -27,13 +25,12 @@ class CompanyView extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  loadClient
+  loadClient,
 }, dispatch)
 
 const mapStateToProps = state => {
   return {
     item: state.mainReducer.item,
-    client: state.mainReducer.client,
     traits: state.mainReducer.traits
   }
 }
