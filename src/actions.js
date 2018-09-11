@@ -8,32 +8,65 @@ export const LOAD_TRAIT = 'LOAD_TRAIT'
 export const LOAD_SURVEY = 'LOAD_SURVEY'
 export const BACK = 'BACK'
 export const BUTTONS = 'BUTTONS'
-export const ALLOCATE_QUESTIONS = 'ALLOCATE_QUESTIONS'
+export const QUESTION_DATA = 'QUESTION_DATA'
+export const ADD_QUESTION = 'ADD_QUESTION'
 
 const API = 'http://localhost:3000/'
 
-export const navigate = (destination, item = null, trait_id = null) => {
-  let data = ''
-  if (destination === 'Clients'){
-    data = 'trait'
-  } else if (destination === 'Traits'){
-    data = 'trait'
-  } else if (destination === 'Surveys'){
-    data = 'question'
-  } else if (destination === 'CompanyTraitView'){
-    trait_id = item.id
-    data = 'question'
-  } else {
-    data = 'company_name'
+export const addQuestion = (question) => {
+  console.log('add question function', question);
+  return async dispatch => {
+    const response = await fetch(`${API}questions`, {
+      method: 'POST',
+      body: JSON.stringify(question),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    const message = await response.json()
+    console.log('action line 28', message);
+    // dispatch ({
+    //   type: ADD_QUESTION,
+    //   payload: message
+    // })
   }
-  return {
-    type: NAVIGATE,
-    payload: {
-      destination: destination,
-      item: item,
-      dataText: data,
-      trait_id: trait_id
+}
+
+export const questionDataDispatch = (key, value) => {
+  return dispatch => {
+    questionData(key, value, dispatch)
+  }
+}
+
+export const questionData = (key, value, dispatch) => {
+  dispatch({
+    type: QUESTION_DATA,
+    payload: {key: key, value: value}
+  })
+}
+
+export const navigate = (destination, item = null, questionObj = null) => {
+  return dispatch => {
+    let data = ''
+    if (destination === 'Clients'){
+      data = 'trait'
+    } else if (destination === 'Traits'){
+      data = 'trait'
+    } else if (destination === 'Surveys'){
+      data = 'question'
+    } else if (destination === 'CompanyTraitView'){
+      trait_id = item.id
+      data = 'question'
+    } else if (destination === 'SpecificQuestionView'){
+      questionData('question', item.question, dispatch)
+    }  else {
+      data = 'company_name'
     }
+    dispatch({
+      type: NAVIGATE,
+      payload: {destination: destination, item: item, dataText: data, questionObj: questionObj, trait_id: trait_id}
+    })
   }
 }
 
