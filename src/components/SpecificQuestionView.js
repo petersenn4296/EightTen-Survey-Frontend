@@ -9,7 +9,7 @@ import { questionDataDispatch, addQuestion } from '../actions'
 class SpecificQuestionView extends Component {
 
   render() {
-    const { item, questionDataDispatch } = this.props
+    const { item, questionDataDispatch, addQuestion } = this.props
     const mcData = [item.type]
     if(item.type === 'mc'){
       mcData.push('scale', 'nested', 'text')

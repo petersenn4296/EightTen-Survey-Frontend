@@ -26,14 +26,15 @@ export const addQuestion = (question) => {
     })
     const message = await response.json()
     console.log('action line 28', message);
-    // dispatch ({
-    //   type: ADD_QUESTION,
-    //   payload: message
-    // })
+    dispatch ({
+      type: ADD_QUESTION,
+      // payload: message
+    })
   }
 }
 
 export const questionDataDispatch = (key, value) => {
+  console.log('the key and value', key, value);
   return dispatch => {
     questionData(key, value, dispatch)
   }
@@ -46,7 +47,7 @@ export const questionData = (key, value, dispatch) => {
   })
 }
 
-export const navigate = (destination, item = null, questionObj = null) => {
+export const navigate = (destination, item = null, questionObj = null, trait_id = null) => {
   return dispatch => {
     let data = ''
     if (destination === 'Clients'){
@@ -60,7 +61,8 @@ export const navigate = (destination, item = null, questionObj = null) => {
       data = 'question'
     } else if (destination === 'SpecificQuestionView'){
       questionData('question', item.question, dispatch)
-    }  else {
+      questionData('type', item.type, dispatch)
+    } else {
       data = 'company_name'
     }
     dispatch({

@@ -26,7 +26,7 @@ const initialState = {
     question: null,
     value: null,
     type: null
-  }
+  },
   viewData: [],
   employee_impact: [],
   community_impact: [],
