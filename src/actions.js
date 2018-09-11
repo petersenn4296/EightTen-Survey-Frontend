@@ -55,6 +55,9 @@ export const navigate = (destination, item = null, questionObj = null) => {
       data = 'trait'
     } else if (destination === 'Surveys'){
       data = 'question'
+    } else if (destination === 'CompanyTraitView'){
+      trait_id = item.id
+      data = 'question'
     } else if (destination === 'SpecificQuestionView'){
       questionData('question', item.question, dispatch)
     }  else {
@@ -62,7 +65,7 @@ export const navigate = (destination, item = null, questionObj = null) => {
     }
     dispatch({
       type: NAVIGATE,
-      payload: {destination: destination, item: item, dataText: data, questionObj: questionObj}
+      payload: {destination: destination, item: item, dataText: data, questionObj: questionObj, trait_id: trait_id}
     })
   }
 }
@@ -116,9 +119,17 @@ export const loadClient = (id) => {
   return async dispatch => {
     const response = await fetch(`${API}users/${id}/responses`)
     const client = await response.json()
+    const employeeImpactQuestions = client.filter(client => client.trait_id === 1)
+    const communityImpactQuestions = client.filter(client => client.trait_id === 2)
+    const talentLifeCycleQuestions = client.filter(client => client.trait_id === 3)
     dispatch({
       type: LOAD_CLIENT,
-      payload: client
+      payload: {
+        client: client,
+        employee_impact: employeeImpactQuestions,
+        community_impact: communityImpactQuestions,
+        talent_lifecycle: talentLifeCycleQuestions
+      }
     })
   }
 }
