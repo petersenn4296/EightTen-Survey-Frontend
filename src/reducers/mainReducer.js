@@ -10,7 +10,9 @@ import {
   BACK,
   BUTTONS,
   QUESTION_DATA,
-  ADD_QUESTION
+  ADD_QUESTION,
+  UPDATE_CREDENTIALS,
+  LOGIN
 } from '../actions'
 
 const initialState = {
@@ -30,7 +32,9 @@ const initialState = {
   viewData: [],
   employee_impact: [],
   community_impact: [],
-  talent_lifecycle: []
+  talent_lifecycle: [],
+  email: '',
+  password: ''
 }
 
 class Stack {
@@ -96,6 +100,12 @@ export default (state = initialState, action) => {
           [key]: value
         }
       }
+
+      case UPDATE_CREDENTIALS:
+        return {
+          ...state,
+          [action.payload.key]: action.payload.value
+        }
 
     case BACK:
     backStack.pop()
@@ -196,6 +206,12 @@ export default (state = initialState, action) => {
         survey: action.payload
     }
 
+    case LOGIN:
+    console.log('LOGIN ACTION PAYLOAD', action.payload);
+      return {
+        ...state,
+
+      }
 
 
     default: return state
