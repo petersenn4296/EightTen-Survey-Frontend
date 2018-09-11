@@ -11,7 +11,9 @@ import {
   BUTTONS,
   QUESTION_DATA,
   ADD_QUESTION,
-  EDIT_RESPONSE
+  EDIT_RESPONSE,
+  UPDATE_CREDENTIALS,
+  LOGIN
 } from '../actions'
 
 const initialState = {
@@ -32,7 +34,9 @@ const initialState = {
   employee_impact: [],
   community_impact: [],
   talent_lifecycle: [],
-  response: {}
+  response: {},
+  email: '',
+  password: ''
 }
 
 class Stack {
@@ -105,6 +109,12 @@ export default (state = initialState, action) => {
         }
       }
 
+      case UPDATE_CREDENTIALS:
+        return {
+          ...state,
+          [action.payload.key]: action.payload.value
+        }
+
     case BACK:
     backStack.pop()
     state.back--
@@ -117,7 +127,17 @@ export default (state = initialState, action) => {
         button2: 'Surveys',
         CTSData: [],
         dataText: 'company_name',
-        back: 0
+        back: 0,
+        questionObj: {
+          survey_id: null,
+          question: null,
+          value: null,
+          type: null
+        },
+        viewData: [],
+        employee_impact: [],
+        community_impact: [],
+        talent_lifecycle: []
       }
     } else {
       if (back.view === 'CTSView') {
@@ -194,6 +214,12 @@ export default (state = initialState, action) => {
         survey: action.payload
     }
 
+    case LOGIN:
+    console.log('LOGIN ACTION PAYLOAD', action.payload);
+      return {
+        ...state,
+
+      }
 
 
     default: return state

@@ -11,6 +11,9 @@ export const BUTTONS = 'BUTTONS'
 export const QUESTION_DATA = 'QUESTION_DATA'
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const EDIT_RESPONSE = 'EDIT_RESPONSE'
+export const UPDATE_CREDENTIALS = 'UPDATE_CREDENTIALS'
+export const LOGIN = 'LOGIN'
+
 
 const API = 'http://localhost:3000/'
 
@@ -94,6 +97,17 @@ export const questionData = (key, value, dispatch) => {
     })
   }
 }
+
+export const updateCredentials = (key, value) => {
+  return {
+    type: UPDATE_CREDENTIALS,
+    payload: {
+      key: key,
+      value: value
+    }
+  }
+}
+
 
 export const navigate = (destination, item = null, questionObj = null, trait_id = null) => {
   return dispatch => {
@@ -226,6 +240,30 @@ export const loadSurveys = () => {
     dispatch({
       type: LOAD_SURVEYS,
       payload: surveys
+    })
+  }
+}
+
+export const login = (email, password) => {
+  console.log('LOGIN ACTIONS: ', email, password);
+  const user = {
+    email: email,
+    password: password
+  }
+  return async dispatch => {
+    const response = await fetch(`${API}login`, {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    const userData = await response.json()
+    console.log('LOGIN USER DATA RESPONSE: ', userData)
+    dispatch ({
+      type: LOGIN,
+      payload: userData
     })
   }
 }
