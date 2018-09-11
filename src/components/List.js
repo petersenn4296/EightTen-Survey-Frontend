@@ -19,7 +19,6 @@ class List extends Component {
         {data.map(item => {
           let itemText = ''
           itemText = item[dataText]
-
           let scoreText = ''
           if (item.id) {
             if (item.id === 1) {
@@ -34,7 +33,6 @@ class List extends Component {
           return <CollectionItem key={itemText} onClick={() => navigate(destination, item)}>{itemText}{scoreText ? ` [Avg. Score: ${scoreText}]` : null }</CollectionItem>
         }
       )}
-
       </Collection>
     )
   }

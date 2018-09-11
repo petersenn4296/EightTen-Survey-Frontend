@@ -74,8 +74,7 @@ export const addQuestion = (question) => {
         // payload: message
       })
     }
-  }
-}
+
 
 export const questionDataDispatch = (key, value) => {
   // console.log('key', key, 'value', value);
