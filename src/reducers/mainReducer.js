@@ -10,7 +10,8 @@ import {
   BACK,
   BUTTONS,
   QUESTION_DATA,
-  ADD_QUESTION
+  ADD_QUESTION,
+  EDIT_RESPONSE
 } from '../actions'
 
 const initialState = {
@@ -30,7 +31,8 @@ const initialState = {
   viewData: [],
   employee_impact: [],
   community_impact: [],
-  talent_lifecycle: []
+  talent_lifecycle: [],
+  response: {}
 }
 
 class Stack {
@@ -78,6 +80,12 @@ export default (state = initialState, action) => {
         dataText: ap.dataText,
         trait_id: ap.trait_id,
         viewData: viewData
+      }
+
+    case EDIT_RESPONSE:
+      return {
+        ...state,
+        response: action.payload
       }
 
     case ADD_QUESTION:
