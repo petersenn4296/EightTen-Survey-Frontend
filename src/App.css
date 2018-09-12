@@ -6,39 +6,61 @@
   font-style: italic;
 }
 
+/* button styling  */
 .eightten_button {
-    background: #ffffff;
-    text-transform: uppercase;
-    color: #7a7581;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #7a7581;
-    border-radius: 2px;
-    box-shadow: 0px 0px;
+  background: #ffffff;
+  text-transform: uppercase;
+  color: #7a7581;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #7a7581;
+  border-radius: 2px;
+  box-shadow: 0px 0px;
 }
 
 .eightten_button:hover {
-    background: #ffffff;
-    text-transform: uppercase;
-    color: #ec6432;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #ec6432;
-    border-radius: 2px;
-    box-shadow: 2px 2px;
+  background: #ffffff;
+  text-transform: uppercase;
+  color: #ec6432;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ec6432;
+  border-radius: 2px;
+  box-shadow: 2px 2px;
 }
 
 .eightten_button:focus {
-    background: #ffffff;
-    text-transform: uppercase;
-    color: #7a7581;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #7a7581;
-    border-radius: 2px;
-    box-shadow: 0px 0px;
+  background: #ffffff;
+  text-transform: uppercase;
+  color: #7a7581;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #7a7581;
+  border-radius: 2px;
+  box-shadow: 0px 0px;
 }
 
-.eightten_input {
-  border-color: red;
+/* input styling */
+Input[type=text] {
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+}
+
+Input[type=text]:not(.broswer-default) {
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+}
+
+Input[type=text]:focus:not(.broswer-default){
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+  box-shadow: 0px 1px;
+  transition: all .3s
+}
+
+Input[type=text]:focus:not(.broswer-default)+label{
+  color : #1e73be;
 }

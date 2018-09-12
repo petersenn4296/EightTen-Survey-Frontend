@@ -10,7 +10,6 @@ class TraitView extends Component {
     const { item, questionDataDispatch, editTraitResponse, traitDataDispatch } = this.props
     return (
       <Row className="container center-align">
-        Response:
         <Input
           s={12}
           placeholder="Enter your question..."

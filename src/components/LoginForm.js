@@ -13,9 +13,9 @@ class LoginForm extends Component {
     return (
       <Row className="container">
 
-          <Input className='eightten_input' onChange={(e) => updateCredentials('email', e.target.value)} placeholder="you@address.com" s={12} label="Email" required />
+          <Input type='text' className='eightten_input' onChange={(e) => updateCredentials('email', e.target.value)} s={12} label="Email" required />
 
-          <Input onChange={(e) => updateCredentials('password', e.target.value)} s={12} placeholder="Password..." label="Password" required />
+          <Input onChange={(e) => updateCredentials('password', e.target.value)} s={12} label="Password" required />
 
           <div className="center-align">
               <Button
