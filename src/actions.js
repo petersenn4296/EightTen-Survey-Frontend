@@ -13,6 +13,7 @@ export const ADD_QUESTION = 'ADD_QUESTION'
 export const EDIT_RESPONSE = 'EDIT_RESPONSE'
 export const UPDATE_CREDENTIALS = 'UPDATE_CREDENTIALS'
 export const LOGIN = 'LOGIN'
+export const NEW_USER = 'NEW_USER'
 
 
 const API = 'http://localhost:3000/'
@@ -270,5 +271,13 @@ export const login = (email, password) => {
         payload: userData
       })
     }
+  }
+}
+
+export const newUser = (email, password, first_name, last_name, phone, title, company_name, size, location) => {
+  const user = { email, password, first_name, last_name, phone, title, company_name, size, location }
+  return {
+    type: NEW_USER,
+    payload: user
   }
 }

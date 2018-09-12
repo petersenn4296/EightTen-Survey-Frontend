@@ -13,7 +13,8 @@ import {
   ADD_QUESTION,
   EDIT_RESPONSE,
   UPDATE_CREDENTIALS,
-  LOGIN
+  LOGIN,
+  NEW_USER
 } from '../actions'
 
 const initialState = {
@@ -114,6 +115,7 @@ export default (state = initialState, action) => {
       }
 
       case UPDATE_CREDENTIALS:
+      console.log(action.payload);
         return {
           ...state,
           [action.payload.key]: action.payload.value
@@ -238,6 +240,12 @@ export default (state = initialState, action) => {
           is_admin: action.payload.is_admin,
           is_logged_in: true
         }
+      }
+
+    case NEW_USER:
+    console.log(action.payload);
+      return {
+        ...state
       }
 
 

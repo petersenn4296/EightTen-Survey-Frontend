@@ -89,3 +89,78 @@ Input[type=password]:focus:not(.broswer-default){
 Input[type=password]:focus:not(.broswer-default)+label{
   color : #1e73be;
 }
+
+/* Email input styling */
+Input[type=email] {
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+}
+
+Input[type=email]:not(.broswer-default) {
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+}
+
+Input[type=email]:focus:not(.broswer-default){
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+  box-shadow: 0px 1px;
+  transition: all .3s
+}
+
+Input[type=email]:focus:not(.broswer-default)+label{
+  color : #1e73be;
+}
+
+/* Telephone input styling */
+Input[type=tel] {
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+}
+
+Input[type=tel]:not(.broswer-default) {
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+}
+
+Input[type=tel]:focus:not(.broswer-default){
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+  box-shadow: 0px 1px;
+  transition: all .3s
+}
+
+Input[type=tel]:focus:not(.broswer-default)+label{
+  color : #1e73be;
+}
+
+/* Number input styling */
+Input[type=number] {
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+}
+
+Input[type=number]:not(.broswer-default) {
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+}
+
+Input[type=number]:focus:not(.broswer-default){
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+  box-shadow: 0px 1px;
+  transition: all .3s
+}
+
+Input[type=number]:focus:not(.broswer-default)+label{
+  color : #1e73be;
+}

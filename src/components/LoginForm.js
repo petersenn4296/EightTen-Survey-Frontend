@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Input, Button, Icon } from 'react-materialize'
+import { Row, Input, Button, Icon, Modal } from 'react-materialize'
 import { updateCredentials, login } from '../actions'
+import ClientIntakeForm from './ClientIntakeForm'
 import '../App.css'
 
 class LoginForm extends Component {
@@ -38,12 +39,16 @@ class LoginForm extends Component {
             id="login-button"
             waves='light'
           >
-            login
+            log in
             <Icon left>cloud</Icon>
           </Button>
           <br></br>
           <br></br>
-          <span id="new-user-text">New user?  Click <a href="#">here</a> to sign up.</span>
+          <Modal
+            fixedFooter
+            trigger={<Button className="eightten_button"><Icon left>person_add</Icon>SIGN UP</Button>}>
+              <ClientIntakeForm/>
+          </Modal>
         </div>
 
       </Row>
