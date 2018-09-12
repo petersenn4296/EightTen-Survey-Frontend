@@ -39,7 +39,8 @@ const initialState = {
   password: '',
   is_admin: false,
   first_name: '',
-  is_logged_in: false
+  is_logged_in: false,
+  login_error: ''
 }
 
 class Stack {
@@ -146,7 +147,8 @@ export default (state = initialState, action) => {
         password: '',
         is_admin: false,
         first_name: '',
-        is_logged_in: false
+        is_logged_in: false,
+        login_error: ''
       }
     } else {
       if (back.view === 'CTSView') {
@@ -224,12 +226,18 @@ export default (state = initialState, action) => {
     }
 
     case LOGIN:
-    console.log('LOGIN ACTION PAYLOAD', action.payload);
-      return {
-        ...state,
-        first_name: action.payload.first,
-        is_admin: action.payload.is_admin,
-        is_logged_in: true
+      if (action.payload.errorMessage) {
+        return {
+          ...state,
+          login_error: action.payload.errorMessage
+        }
+      } else {
+        return {
+          ...state,
+          first_name: action.payload.first,
+          is_admin: action.payload.is_admin,
+          is_logged_in: true
+        }
       }
 
 
