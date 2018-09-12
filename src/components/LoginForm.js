@@ -13,7 +13,7 @@ class LoginForm extends Component {
 
     return (
       <Row className="container">
-
+      
         <Input
           onChange={(e) => updateCredentials('email', e.target.value)}
           type="text"
