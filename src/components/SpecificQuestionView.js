@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Row, Input, Button} from 'react-materialize'
 import TraitMultipleChoice from './TraitMultipleChoice'
 import TypeMultipleChoice from './TypeMultipleChoice'
-import ValueMultipleChoice from './ValueMultipleChoice'
+import CreateMultipleChoiceOptions from './CreateMultipleChoiceOptions'
 import { questionDataDispatch, addQuestion } from '../actions'
 
 
@@ -42,14 +42,6 @@ class SpecificQuestionView extends Component {
             name="question"
             onChange={(e)=> questionDataDispatch('question', e.target.value)}
           />
-          <Input
-            s={12}
-            placeholder="5"
-            label="Value"
-            type="text"
-            name="value"
-            onChange={(e)=> questionDataDispatch('value', e.target.value)}
-          />
           <TraitMultipleChoice
             label="trait_id"
             defaultValue={traits[0]}
@@ -65,14 +57,16 @@ class SpecificQuestionView extends Component {
             name="Type"
           />
           { questionObj.type === 'mc' || questionObj.type === 'nested' ?
-           'Enter mulitiple choices'
+           <CreateMultipleChoiceOptions/>
            : null }
           { questionObj.type === 'scale' ?
-            <ValueMultipleChoice
-              label="value"
-              defaultValue={item.value}
-              type="value"
-              name="Value"
+            <Input
+              s={12}
+              placeholder="5"
+              label="Value"
+              type="text"
+              name="value"
+              onChange={(e)=> questionDataDispatch('value', e.target.value)}
             />
            : null
           }
