@@ -23,7 +23,7 @@ export const editTraitResponse = (response, id) => {
     response
   }
   return async dispatch => {
-    const response = await fetch(`${API}traits/${id}`, {
+    await fetch(`${API}traits/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(obj),
       headers: {
@@ -31,11 +31,6 @@ export const editTraitResponse = (response, id) => {
         'Accept': 'application/json',
       }
     })
-    const message = await response.json()
-    // dispatch ({
-    //   type: ADD_QUESTION,
-    //   // payload: message
-    // })
   }
 }
 
@@ -46,9 +41,8 @@ export const addQuestion = (question) => {
       value: question.value,
       type: question.type
     }
-    console.log('obj', obj);
     return async dispatch => {
-      const response = await fetch(`${API}questions/${question.id}`, {
+      await fetch(`${API}questions/${question.id}`, {
         method: 'PATCH',
         body: JSON.stringify(obj),
         headers: {
@@ -59,7 +53,7 @@ export const addQuestion = (question) => {
     }
   } else {
     return async dispatch => {
-      const response = await fetch(`${API}questions`, {
+      await fetch(`${API}questions`, {
         method: 'POST',
         body: JSON.stringify(question),
         headers: {
@@ -67,19 +61,14 @@ export const addQuestion = (question) => {
           'Accept': 'application/json',
         }
       })
-      const message = await response.json()
-      console.log('action line 28', message);
       dispatch ({
         type: ADD_QUESTION,
-        // payload: message
       })
     }
   }
 }
 
-
 export const questionDataDispatch = (key, value) => {
-  // console.log('key', key, 'value', value);
     return dispatch => {
       questionData(key, value, dispatch)
     }
@@ -106,34 +95,6 @@ export const updateCredentials = (key, value) => {
       key: key,
       value: value
     }
-  }
-}
-
-
-export const navigate = (destination, item = null, questionObj = null, trait_id = null) => {
-  return dispatch => {
-    let data = ''
-    if (destination === 'Clients'){
-      data = 'trait'
-    } else if (destination === 'Traits'){
-      data = 'trait'
-    } else if (destination === 'Surveys'){
-      data = 'question'
-    } else if (destination === 'CompanyTraitView'){
-      trait_id = item.id
-      data = 'question'
-    } else if (destination === 'SpecificQuestionView'){
-      console.log('item', item);
-      questionData('question', item.question, dispatch)
-      questionData('type', item.type, dispatch)
-      questionData('id', item.question_id, dispatch)
-    } else {
-      data = 'company_name'
-    }
-    dispatch({
-      type: NAVIGATE,
-      payload: {destination: destination, item: item, dataText: data, questionObj: questionObj, trait_id: trait_id}
-    })
   }
 }
 
@@ -245,8 +206,38 @@ export const loadSurveys = () => {
   }
 }
 
+export const navigateDispatch = (destination, item = null, questionObj = null, trait_id = null) => {
+  return dispatch => {
+    navigate(dispatch, destination, item, questionObj, trait_id)
+  }
+}
+
+export const navigate = (dispatch, destination, item = null, questionObj = null, trait_id = null) => {
+  let data = ''
+  if (destination === 'Clients'){
+    data = 'trait'
+  } else if (destination === 'Traits'){
+    data = 'trait'
+  } else if (destination === 'Surveys'){
+    data = 'question'
+  } else if (destination === 'CompanyTraitView'){
+    trait_id = item.id
+    data = 'question'
+  } else if (destination === 'SpecificQuestionView'){
+    console.log('item', item);
+    questionData('question', item.question, dispatch)
+    questionData('type', item.type, dispatch)
+    questionData('id', item.question_id, dispatch)
+  } else {
+    data = 'company_name'
+  }
+  dispatch({
+    type: NAVIGATE,
+    payload: {destination: destination, item: item, dataText: data, questionObj: questionObj, trait_id: trait_id}
+  })
+}
+
 export const login = (email, password) => {
-  console.log('LOGIN ACTIONS: ', email, password);
   const user = {
     email: email,
     password: password
@@ -261,10 +252,12 @@ export const login = (email, password) => {
       }
     })
     const userData = await response.json()
-    console.log('LOGIN USER DATA RESPONSE: ', userData)
-    dispatch ({
-      type: LOGIN,
-      payload: userData
-    })
+    if (userData.errorMessage) {
+      console.log('userData.errorMessage >>>> ', userData.errorMessage);
+    } else if (userData.is_admin) {
+      return navigate(dispatch, 'CTSView')
+    } else if (!userData.is_admin) {
+      console.log('User Data is not Admin', userData);
+    }
   }
 }

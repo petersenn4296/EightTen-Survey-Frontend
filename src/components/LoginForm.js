@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Row, Input, Button, Icon } from 'react-materialize'
-import { navigate, updateCredentials, login } from '../actions'
+import { updateCredentials, login } from '../actions'
 
 class LoginForm extends Component {
 
   render() {
 
-    const { navigate, updateCredentials, email, password, login } = this.props
+    const { updateCredentials, email, password, login } = this.props
     return (
       <Row className="container">
           <Input onChange={(e) => updateCredentials('email', e.target.value)} placeholder="you@address.com" s={12} label="Email" required />
@@ -16,7 +16,6 @@ class LoginForm extends Component {
           <div className="center-align">
               <Button onClick={() => {
                 login(email, password)
-                navigate('CTSView')
               }}
               id="login-button"
               waves='light'>
@@ -29,7 +28,6 @@ class LoginForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  navigate,
   updateCredentials,
   login
 }, dispatch)
@@ -38,7 +36,7 @@ const mapStateToProps = state => {
   return {
     view: state.mainReducer.view,
     email: state.mainReducer.email,
-    password: state.mainReducer.password
+    password: state.mainReducer.password,
   }
 }
 
