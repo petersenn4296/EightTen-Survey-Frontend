@@ -76,7 +76,7 @@ class SpecificQuestionView extends Component {
             />
            : null
           }
-          <Button type='submit' value='Submit' onClick={()=>addQuestion(questionObj)}>Submit</Button>
+          <Button className='eightten_button' type='submit' value='Submit' onClick={()=>addQuestion(questionObj)}>Submit</Button>
       </Row>
     )
   }
