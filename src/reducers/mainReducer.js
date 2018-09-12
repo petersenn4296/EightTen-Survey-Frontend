@@ -115,7 +115,6 @@ export default (state = initialState, action) => {
       }
 
       case UPDATE_CREDENTIALS:
-      console.log(action.payload);
         return {
           ...state,
           [action.payload.key]: action.payload.value
@@ -229,6 +228,7 @@ export default (state = initialState, action) => {
 
     case LOGIN:
       if (action.payload.errorMessage) {
+        console.log(action.payload.errorMessage);
         return {
           ...state,
           login_error: action.payload.errorMessage
@@ -236,16 +236,18 @@ export default (state = initialState, action) => {
       } else {
         return {
           ...state,
-          first_name: action.payload.first,
+          first_name: action.payload.first_name,
           is_admin: action.payload.is_admin,
           is_logged_in: true
         }
       }
 
     case NEW_USER:
-    console.log(action.payload);
       return {
-        ...state
+        ...state,
+        first_name: action.payload.first_name,
+        is_admin: action.payload.is_admin,
+        is_logged_in: true
       }
 
 

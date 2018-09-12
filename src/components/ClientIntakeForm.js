@@ -9,24 +9,26 @@ class ClientIntakeForm extends Component {
 
   render() {
 
-    const { updateCredentials, newUser, email, password, first_name, last_name, phone, title, company_name, size, location } = this.props
+    const { updateCredentials, newUser, email, password, first_name, last_name, phone, company_name } = this.props
 
     return (
       <Row className="container">
         <Input s={12} onChange={(e) => updateCredentials(e.target.name, e.target.value)} name="first_name" type="text" label="First Name" required />
         <Input s={12} onChange={(e) => updateCredentials(e.target.name, e.target.value)} name="last_name" type="text" label="Last Name" required />
-        <Input s={12} onChange={(e) => updateCredentials(e.target.name, e.target.value)} name="title" type="text" label="Title" required />
+        {/* <Input s={12} onChange={(e) => updateCredentials(e.target.name, e.target.value)} name="title" type="text" label="Title" required /> */}
         <Input s={12} onChange={(e) => updateCredentials(e.target.name, e.target.value)} name="company_name" type="text" label="Company Name" required />
-        <Input s={12} onChange={(e) => updateCredentials(e.target.name, e.target.value)} name="size" type="number" label="Company Size" required />
-        <Input s={12} onChange={(e) => updateCredentials(e.target.name, e.target.value)} name="location" type="text" label="Location" required />
+        {/* <Input s={12} onChange={(e) => updateCredentials(e.target.name, e.target.value)} name="size" type="number" label="Company Size" required /> */}
+        {/* <Input s={12} onChange={(e) => updateCredentials(e.target.name, e.target.value)} name="location" type="text" label="Location" required /> */}
         <Input s={12} onChange={(e) => updateCredentials(e.target.name, e.target.value)} name="phone" type="tel" label="Phone" required />
           <Input s={12} onChange={(e) => updateCredentials(e.target.name, e.target.value)} name="email" type="email" label="Email" required />
           <Input s={12} onChange={(e) => updateCredentials(e.target.name, e.target.value)} name="password" type="password" label="Password" required />
           <div className="center-align">
             <Button
-              onClick={() => newUser(email, password, first_name, last_name, phone, title, company_name, size, location)}
+              onClick={() => {
+                newUser(email, password, first_name, last_name, phone, company_name)
+              }}
               className='eightten_button'
-              id="login-button"
+              id="new-user-button"
               waves='light'>
               Create Account<Icon left>cloud</Icon>
             </Button>
@@ -48,10 +50,10 @@ const mapStateToProps = state => {
     first_name: state.mainReducer.first_name,
     last_name: state.mainReducer.last_name,
     phone: state.mainReducer.phone,
-    title: state.mainReducer.title,
+    // title: state.mainReducer.title,
     company_name: state.mainReducer.company_name,
-    size: state.mainReducer.size,
-    location: state.mainReducer.location
+    // size: state.mainReducer.size,
+    // location: state.mainReducer.location
   }
 }
 

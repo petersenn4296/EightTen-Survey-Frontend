@@ -46,6 +46,7 @@ class LoginForm extends Component {
           <br></br>
           <Modal
             fixedFooter
+            id="sign-up-modal"
             trigger={<Button className="eightten_button"><Icon left>person_add</Icon>SIGN UP</Button>}>
               <ClientIntakeForm/>
           </Modal>
