@@ -253,11 +253,22 @@ export const login = (email, password) => {
     })
     const userData = await response.json()
     if (userData.errorMessage) {
-      console.log('userData.errorMessage >>>> ', userData.errorMessage);
+      dispatch({
+        type: LOGIN,
+        payload: userData
+      })
     } else if (userData.is_admin) {
-      return navigate(dispatch, 'CTSView')
+      navigate(dispatch, 'CTSView')
+      dispatch({
+        type: LOGIN,
+        payload: userData
+      })
     } else if (!userData.is_admin) {
       console.log('User Data is not Admin', userData);
+      dispatch({
+        type: LOGIN,
+        payload: userData
+      })
     }
   }
 }
