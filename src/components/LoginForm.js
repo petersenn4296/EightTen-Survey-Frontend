@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Input, Button, Icon, Toast } from 'react-materialize'
+import { Row, Input, Button, Icon } from 'react-materialize'
 import { updateCredentials, login } from '../actions'
 import '../App.css'
 
@@ -13,7 +13,7 @@ class LoginForm extends Component {
 
     return (
       <Row className="container">
-      
+
         <Input
           onChange={(e) => updateCredentials('email', e.target.value)}
           type="text"
