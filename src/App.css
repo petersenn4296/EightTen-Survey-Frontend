@@ -64,3 +64,28 @@ Input[type=text]:focus:not(.broswer-default){
 Input[type=text]:focus:not(.broswer-default)+label{
   color : #1e73be;
 }
+
+/* Password input styling */
+Input[type=password] {
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+}
+
+Input[type=password]:not(.broswer-default) {
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+}
+
+Input[type=password]:focus:not(.broswer-default){
+  border-bottom: 2px solid #1e73be;
+  border-right: none;
+  color : #1e73be;
+  box-shadow: 0px 1px;
+  transition: all .3s
+}
+
+Input[type=password]:focus:not(.broswer-default)+label{
+  color : #1e73be;
+}
