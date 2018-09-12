@@ -10,7 +10,6 @@ class TraitView extends Component {
     const { item, questionDataDispatch, editTraitResponse } = this.props
     return (
       <Row className="container center-align">
-        Response:
         <Input
           s={12}
           placeholder="Enter your question..."
@@ -21,7 +20,7 @@ class TraitView extends Component {
           onChange={(e)=> questionDataDispatch('response', e.target.value)}
         />
         <Row>
-          <Button type='submit' value='Save' onClick={()=>editTraitResponse(this.props.response, item.id)}>Save</Button>
+          <Button className='eightten_button' type='submit' value='Save' onClick={()=>editTraitResponse(this.props.response, item.id)}>Save</Button>
         </Row>
       </Row>
     )

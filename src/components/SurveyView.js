@@ -21,7 +21,7 @@ class SurveyView extends Component {
           {survey ? <List data={survey}/> : null}
         </Row>
         <Row className="center-align">
-          <Button onClick={() => navigateDispatch('SpecificQuestionView', {type: 'scale'})}>Add Question</Button>
+          <Button className='eightten_button' onClick={() => navigateDispatch('SpecificQuestionView', {type: 'scale'})}>Add Question</Button>
         </Row>
       </Row>
     )

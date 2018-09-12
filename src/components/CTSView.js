@@ -27,14 +27,19 @@ class CTSView extends Component {
           {data ? <List data={data}/> : null}
         </Row>
         <Row className="container center-align">
-          <Button onClick={() => {
+          <Button
+            className='eightten_button'
+            onClick={() => {
             changeCTSView(button1)
           }}
           id="login-button"
           waves='light'>
             {button1}<Icon left>cloud</Icon>
           </Button>
-          <Button onClick={() => {
+
+          <Button
+            className='eightten_button'
+            onClick={() => {
             changeCTSView(button2)
           }}
           id="login-button"
