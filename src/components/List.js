@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Collection, CollectionItem } from 'react-materialize'
-import { navigate } from '../actions'
+import { navigateDispatch } from '../actions'
 
 class List extends Component {
   render() {
-    let { CTSView, dataText, navigate, data, employee_impact, community_impact, talent_lifecycle } = this.props
+    let { CTSView, dataText, navigateDispatch, data, employee_impact, community_impact, talent_lifecycle } = this.props
     let destination = CTSView
     if (dataText === 'question') {
       destination = 'SpecificQuestionView'
@@ -30,7 +30,7 @@ class List extends Component {
             }
           }
 
-          return <CollectionItem key={itemText} onClick={() => navigate(destination, item)}>{itemText}{scoreText ? ` [Avg. Score: ${scoreText}]` : null }</CollectionItem>
+          return <CollectionItem key={itemText} onClick={() => navigateDispatch(destination, item)}>{itemText}{scoreText ? ` [Avg. Score: ${scoreText}]` : null }</CollectionItem>
         }
       )}
       </Collection>
@@ -39,7 +39,7 @@ class List extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  navigate
+  navigateDispatch
 }, dispatch)
 
 const mapStateToProps = state => {

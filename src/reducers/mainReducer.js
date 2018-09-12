@@ -36,7 +36,10 @@ const initialState = {
   talent_lifecycle: [],
   response: {},
   email: '',
-  password: ''
+  password: '',
+  is_admin: false,
+  first_name: '',
+  is_logged_in: false
 }
 
 class Stack {
@@ -93,7 +96,6 @@ export default (state = initialState, action) => {
       }
 
     case ADD_QUESTION:
-    console.log('reducer line 74', action.payload);
       return {
         ...state
       }
@@ -138,7 +140,13 @@ export default (state = initialState, action) => {
         viewData: [],
         employee_impact: [],
         community_impact: [],
-        talent_lifecycle: []
+        talent_lifecycle: [],
+        response: {},
+        email: '',
+        password: '',
+        is_admin: false,
+        first_name: '',
+        is_logged_in: false
       }
     } else {
       if (back.view === 'CTSView') {
@@ -219,7 +227,9 @@ export default (state = initialState, action) => {
     console.log('LOGIN ACTION PAYLOAD', action.payload);
       return {
         ...state,
-
+        first_name: action.payload.first,
+        is_admin: action.payload.is_admin,
+        is_logged_in: true
       }
 
 

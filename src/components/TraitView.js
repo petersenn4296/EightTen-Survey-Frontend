@@ -7,7 +7,7 @@ import { questionDataDispatch, editTraitResponse } from '../actions'
 class TraitView extends Component {
 
   render() {
-    const { item, questionDataDispatch, editTraitResponse, traitDataDispatch } = this.props
+    const { item, questionDataDispatch, editTraitResponse } = this.props
     return (
       <Row className="container center-align">
         <Input

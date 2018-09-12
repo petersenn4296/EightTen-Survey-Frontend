@@ -9,7 +9,7 @@ class LoginForm extends Component {
 
   render() {
 
-    const { navigate, updateCredentials, email, password, login } = this.props
+    const { updateCredentials, email, password, login } = this.props
     return (
       <Row className="container">
 
@@ -22,8 +22,7 @@ class LoginForm extends Component {
                 className='eightten_button'
                 onClick={() => {
                 login(email, password)
-                navigate('CTSView')
-                }}
+              }}
               id="login-button"
               waves='light'>
                 login
@@ -36,7 +35,6 @@ class LoginForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  navigate,
   updateCredentials,
   login
 }, dispatch)
@@ -45,7 +43,7 @@ const mapStateToProps = state => {
   return {
     view: state.mainReducer.view,
     email: state.mainReducer.email,
-    password: state.mainReducer.password
+    password: state.mainReducer.password,
   }
 }
 
