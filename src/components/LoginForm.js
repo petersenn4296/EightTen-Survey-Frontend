@@ -13,21 +13,19 @@ class LoginForm extends Component {
     return (
       <Row className="container">
 
-          <Input type='text' className='eightten_input' onChange={(e) => updateCredentials('email', e.target.value)} s={12} label="Email" required />
-
+          <Input onChange={(e) => updateCredentials('email', e.target.value)} s={12} label="Email" required />
           <Input onChange={(e) => updateCredentials('password', e.target.value)} s={12} label="Password" required />
 
           <div className="center-align">
-              <Button
-                className='eightten_button'
-                onClick={() => {
+            <Button
+              className='eightten_button'
+              onClick={() => {
                 login(email, password)
               }}
               id="login-button"
               waves='light'>
-                login
-                <Icon left>cloud</Icon>
-              </Button>
+              login<Icon left>cloud</Icon>
+            </Button>
           </div>
       </Row>
     )
