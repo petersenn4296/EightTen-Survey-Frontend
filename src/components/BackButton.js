@@ -15,7 +15,7 @@ class BackButton extends Component {
           onClick={() => {
           back()
         }}
-        id="login-button"
+        id="back-button"
         waves='light'>
           Back
         </Button>

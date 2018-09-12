@@ -265,7 +265,6 @@ export const login = (email, password) => {
         payload: userData
       })
     } else if (!userData.is_admin) {
-      console.log('User Data is not Admin', userData);
       dispatch({
         type: LOGIN,
         payload: userData
@@ -274,10 +273,22 @@ export const login = (email, password) => {
   }
 }
 
-export const newUser = (email, password, first_name, last_name, phone, title, company_name, size, location) => {
-  const user = { email, password, first_name, last_name, phone, title, company_name, size, location }
-  return {
-    type: NEW_USER,
-    payload: user
+export const newUser = (email, password, first_name, last_name, phone, company_name) => {
+  const user = { email, password, first_name, last_name, phone, company_name }
+  return async dispatch => {
+    const response = await fetch(`${API}users`, {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    const userData = await response.json()
+    navigate(dispatch, 'SurveyQuestionView')
+    dispatch({
+      type: NEW_USER,
+      payload: userData
+    })
   }
 }
