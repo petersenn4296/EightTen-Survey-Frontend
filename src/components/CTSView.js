@@ -14,9 +14,10 @@ class CTSView extends Component {
   }
 
   render() {
-    let { CTSView, changeCTSView, button1, button2 } = this.props
+    let { CTSView, changeCTSView, button1, button2, is_admin } = this.props
     let data = this.props[CTSView.toLowerCase()]
 
+    console.log('is_admin >>>> ', is_admin);
     return (
       <div>
         <Row className="container center-align">
@@ -60,7 +61,8 @@ const mapStateToProps = state => {
     clients: state.mainReducer.clients,
     surveys: state.mainReducer.surveys,
     button1: state.mainReducer.button1,
-    button2: state.mainReducer.button2
+    button2: state.mainReducer.button2,
+    is_admin: state.mainReducer.is_admin
   }
 }
 
