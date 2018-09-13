@@ -15,6 +15,8 @@ export const UPDATE_CREDENTIALS = 'UPDATE_CREDENTIALS'
 export const LOGIN = 'LOGIN'
 export const ADD_OPTION = 'ADD_OPTION'
 export const NEW_USER = 'NEW_USER'
+export const RETRIEVE_QUESTIONS_BY_CLIENT_ID = 'RETRIEVE_QUESTIONS_BY_CLIENT_ID'
+export const INITIALIZE_QUESTIONS = 'INITIALIZE_QUESTIONS'
 
 const API = 'http://localhost:3000/'
 
@@ -43,11 +45,9 @@ export const editTraitResponse = (response, id) => {
 }
 
 export const addQuestion = (question) => {
-  if(question.id){  //if question is existing question
-    // make patch request; adjust logic to accomidate pre populate patch types values mc and on
+  if(question.id){
     let obj = {
       question: question.question,
-      value: question.value, //scale value?
       type: question.type
     }
     return async dispatch => {
@@ -62,8 +62,7 @@ export const addQuestion = (question) => {
     }
   } else {      /// new question post **MVP**
     return async dispatch => {
-      console.log(question)
-      console.log(question.type)
+
       const response = await fetch(`${API}questions`, {
         method: 'POST',
         body: JSON.stringify(question),
@@ -72,22 +71,28 @@ export const addQuestion = (question) => {
           'Accept': 'application/json',
         }
       })
+
+      if (question.type === 'scale') {
+        // back(dispatch)
+      }
+
       if (question.type === 'mc' || question.type === 'nested') {
         const questionID = await response.json()
+        console.log('questionID', questionID);
         let optionsObj = {
           [questionID]: question.optionsArray
         }
         console.log(optionsObj);
-        // multiple_choice post route sends {ID#: Array(2)}
-        // await fetch(`${API}multiple_choice`, {
-        //   method: 'POST',
-        //   body: JSON.stringify(),
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     'Accept': 'application/json',
-        //   }
-        // })
+        fetch(`${API}multiple_choice`, {
+          method: 'POST',
+          body: JSON.stringify(optionsObj),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          }
+        })
       }
+      // back(dispatch)
       dispatch ({
         type: ADD_QUESTION
       })
@@ -316,4 +321,20 @@ export const newUser = (email, password, first_name, last_name, phone, company_n
       payload: userData
     })
   }
+}
+
+export const retrieveQuestionsByClientId = (client_id) => {
+  return async dispatch => {
+    const response = await fetch(`${API}questions/client_id/${client_id}`)
+    const questions = await response.json()
+    console.log('retrieveQuestionsByClientId', questions);
+    dispatch({
+      type: RETRIEVE_QUESTIONS_BY_CLIENT_ID,
+      payload: questions
+    })
+  }
+}
+
+export const initializeQuestions = () => {
+
 }

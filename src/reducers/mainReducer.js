@@ -15,7 +15,9 @@ import {
   UPDATE_CREDENTIALS,
   LOGIN,
   ADD_OPTION,
-  NEW_USER
+  NEW_USER,
+  RETRIEVE_QUESTIONS_BY_CLIENT_ID,
+  INITIALIZE_QUESTIONS
 } from '../actions'
 
 const initialState = {
@@ -29,7 +31,6 @@ const initialState = {
   back: 0,
   questionObj: {
     survey_id: null,
-    scale_value: null,
     question: null,
     type: null,
     optionsArray: []
@@ -43,8 +44,10 @@ const initialState = {
   password: '',
   is_admin: false,
   first_name: '',
+  client_id: null,
   is_logged_in: false,
-  login_error: ''
+  login_error: '',
+  questions: {}
 }
 
 class Stack {
@@ -156,8 +159,10 @@ export default (state = initialState, action) => {
         password: '',
         is_admin: false,
         first_name: '',
+        client_id: null,
         is_logged_in: false,
-        login_error: ''
+        login_error: '',
+        questions: {}
       }
     } else {
       if (back.view === 'CTSView') {
@@ -244,6 +249,7 @@ export default (state = initialState, action) => {
         return {
           ...state,
           first_name: action.payload.first_name,
+          client_id: action.payload.id,
           is_admin: action.payload.is_admin,
           is_logged_in: true
         }
@@ -254,7 +260,21 @@ export default (state = initialState, action) => {
         ...state,
         first_name: action.payload.first_name,
         is_admin: action.payload.is_admin,
+        client_id: action.payload.id,
         is_logged_in: true
+      }
+
+    case RETRIEVE_QUESTIONS_BY_CLIENT_ID:
+    console.log(action.payload);
+      return {
+        ...state,
+
+      }
+
+    case INITIALIZE_QUESTIONS:
+    console.log(action.payload);
+      return {
+        ...state
       }
 
 
