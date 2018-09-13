@@ -16,8 +16,6 @@ class CTSView extends Component {
   render() {
     let { CTSView, changeCTSView, button1, button2, is_admin } = this.props
     let data = this.props[CTSView.toLowerCase()]
-
-    console.log('is_admin >>>> ', is_admin);
     return (
       <div>
         <Row className="container center-align">
@@ -32,7 +30,6 @@ class CTSView extends Component {
             onClick={() => {
             changeCTSView(button1)
           }}
-          id="login-button"
           waves='light'>
             {button1}<Icon left>cloud</Icon>
           </Button>
@@ -42,7 +39,6 @@ class CTSView extends Component {
             onClick={() => {
             changeCTSView(button2)
           }}
-          id="login-button"
           waves='light'>
             {button2}<Icon left>cloud</Icon>
           </Button>

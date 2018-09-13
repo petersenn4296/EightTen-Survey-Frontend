@@ -12,6 +12,7 @@ import SurveyView from './components/SurveyView'
 import SpecificQuestionView from './components/SpecificQuestionView'
 import BackButton from './components/BackButton'
 import CompanyTraitView from './components/CompanyTraitView'
+import SurveyQuestionView from './components/SurveyQuestionView'
 
 class App extends Component {
 
@@ -34,8 +35,13 @@ class App extends Component {
 
       case 'CompanyTraitView':
         return <CompanyTraitView/>
+          
+      case 'SurveyQuestionView':
+        return <SurveyQuestionView/>
+          
+      // default: return <LoginForm/>
+      default: return <CTSView/>
 
-      default: return <LoginForm/>
     }
   }
 

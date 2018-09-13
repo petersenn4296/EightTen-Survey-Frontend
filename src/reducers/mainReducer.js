@@ -13,11 +13,14 @@ import {
   ADD_QUESTION,
   EDIT_RESPONSE,
   UPDATE_CREDENTIALS,
-  LOGIN
+  LOGIN,
+  ADD_OPTION,
+  NEW_USER
 } from '../actions'
 
 const initialState = {
   view: 'login',
+  survey: [],
   CTSView: 'Clients',
   button1: 'Traits',
   button2: 'Surveys',
@@ -26,9 +29,10 @@ const initialState = {
   back: 0,
   questionObj: {
     survey_id: null,
+    scale_value: null,
     question: null,
-    value: null,
-    type: null
+    type: null,
+    optionsArray: []
   },
   viewData: [],
   employee_impact: [],
@@ -39,7 +43,8 @@ const initialState = {
   password: '',
   is_admin: false,
   first_name: '',
-  is_logged_in: false
+  is_logged_in: false,
+  login_error: ''
 }
 
 class Stack {
@@ -72,6 +77,12 @@ backStack.push('login')
 export default (state = initialState, action) => {
   switch (action.type) {
 
+    case ADD_OPTION:
+      return {
+        ...state,
+        questionObj: {...state.questionObj, optionsArray: [...state.questionObj.optionsArray, action.payload]}
+      }
+
     case NAVIGATE:
     let ap = action.payload
     backStack.push(ap.destination, ap.item, ap.dataText)
@@ -103,7 +114,6 @@ export default (state = initialState, action) => {
     case QUESTION_DATA:
       let key = action.payload.key
       let value = action.payload.value
-      console.log(key, value);
       return {
         ...state,
         questionObj: {
@@ -146,7 +156,8 @@ export default (state = initialState, action) => {
         password: '',
         is_admin: false,
         first_name: '',
-        is_logged_in: false
+        is_logged_in: false,
+        login_error: ''
       }
     } else {
       if (back.view === 'CTSView') {
@@ -224,10 +235,24 @@ export default (state = initialState, action) => {
     }
 
     case LOGIN:
-    console.log('LOGIN ACTION PAYLOAD', action.payload);
+      if (action.payload.errorMessage) {
+        return {
+          ...state,
+          login_error: action.payload.errorMessage
+        }
+      } else {
+        return {
+          ...state,
+          first_name: action.payload.first_name,
+          is_admin: action.payload.is_admin,
+          is_logged_in: true
+        }
+      }
+
+    case NEW_USER:
       return {
         ...state,
-        first_name: action.payload.first,
+        first_name: action.payload.first_name,
         is_admin: action.payload.is_admin,
         is_logged_in: true
       }

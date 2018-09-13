@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Row, Input, Button} from 'react-materialize'
 import TraitMultipleChoice from './TraitMultipleChoice'
 import TypeMultipleChoice from './TypeMultipleChoice'
-import ValueMultipleChoice from './ValueMultipleChoice'
+import CreateMultipleChoiceOptions from './CreateMultipleChoiceOptions'
 import { questionDataDispatch, addQuestion } from '../actions'
 
 
@@ -29,8 +29,6 @@ class SpecificQuestionView extends Component {
       console.log('yeeeehaawwwwww');
     }
 
-    console.log('obj type', questionObj.type);
-
     return (
       <Row className="container">
           <Input
@@ -41,14 +39,6 @@ class SpecificQuestionView extends Component {
             type="text"
             name="question"
             onChange={(e)=> questionDataDispatch('question', e.target.value)}
-          />
-          <Input
-            s={12}
-            placeholder="5"
-            label="Value"
-            type="text"
-            name="value"
-            onChange={(e)=> questionDataDispatch('value', e.target.value)}
           />
           <TraitMultipleChoice
             label="trait_id"
@@ -64,15 +54,28 @@ class SpecificQuestionView extends Component {
             type="text"
             name="Type"
           />
+          { questionObj.type === 'nested' ?
+            <Input
+              s={12}
+              placeholder="enter your nested question"
+              label="Question"
+              validate defaultValue={item.nested_question}
+              type="text"
+              name="question"
+              onChange={(e)=> questionDataDispatch('nested_question', e.target.value)}
+            />
+           : null}
           { questionObj.type === 'mc' || questionObj.type === 'nested' ?
-           'Enter mulitiple choices'
+           <CreateMultipleChoiceOptions/>
            : null }
           { questionObj.type === 'scale' ?
-            <ValueMultipleChoice
-              label="value"
-              defaultValue={item.value}
-              type="value"
-              name="Value"
+            <Input
+              s={12}
+              placeholder="5"
+              label="Value"
+              type="text"
+              name="value"
+              onChange={(e)=> questionDataDispatch('scale_value', e.target.value)}
             />
            : null
           }

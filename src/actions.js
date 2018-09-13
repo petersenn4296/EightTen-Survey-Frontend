@@ -13,9 +13,17 @@ export const ADD_QUESTION = 'ADD_QUESTION'
 export const EDIT_RESPONSE = 'EDIT_RESPONSE'
 export const UPDATE_CREDENTIALS = 'UPDATE_CREDENTIALS'
 export const LOGIN = 'LOGIN'
-
+export const ADD_OPTION = 'ADD_OPTION'
+export const NEW_USER = 'NEW_USER'
 
 const API = 'http://localhost:3000/'
+
+export const addOption = (optionObj) => {
+  return {
+    type: ADD_OPTION,
+    payload: optionObj
+  }
+}
 
 export const editTraitResponse = (response, id) => {
   let obj = {
@@ -35,10 +43,11 @@ export const editTraitResponse = (response, id) => {
 }
 
 export const addQuestion = (question) => {
-  if(question.id){
+  if(question.id){  //if question is existing question
+    // make patch request; adjust logic to accomidate pre populate patch types values mc and on
     let obj = {
       question: question.question,
-      value: question.value,
+      value: question.value, //scale value?
       type: question.type
     }
     return async dispatch => {
@@ -51,9 +60,11 @@ export const addQuestion = (question) => {
         }
       })
     }
-  } else {
+  } else {      /// new question post **MVP**
     return async dispatch => {
-      await fetch(`${API}questions`, {
+      console.log(question)
+      console.log(question.type)
+      const response = await fetch(`${API}questions`, {
         method: 'POST',
         body: JSON.stringify(question),
         headers: {
@@ -61,8 +72,24 @@ export const addQuestion = (question) => {
           'Accept': 'application/json',
         }
       })
+      if (question.type === 'mc' || question.type === 'nested') {
+        const questionID = await response.json()
+        let optionsObj = {
+          [questionID]: question.optionsArray
+        }
+        console.log(optionsObj);
+        // multiple_choice post route sends {ID#: Array(2)}
+        // await fetch(`${API}multiple_choice`, {
+        //   method: 'POST',
+        //   body: JSON.stringify(),
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //     'Accept': 'application/json',
+        //   }
+        // })
+      }
       dispatch ({
-        type: ADD_QUESTION,
+        type: ADD_QUESTION
       })
     }
   }
@@ -224,7 +251,6 @@ export const navigate = (dispatch, destination, item = null, questionObj = null,
     trait_id = item.id
     data = 'question'
   } else if (destination === 'SpecificQuestionView'){
-    console.log('item', item);
     questionData('question', item.question, dispatch)
     questionData('type', item.type, dispatch)
     questionData('id', item.question_id, dispatch)
@@ -253,11 +279,41 @@ export const login = (email, password) => {
     })
     const userData = await response.json()
     if (userData.errorMessage) {
-      console.log('userData.errorMessage >>>> ', userData.errorMessage);
+      dispatch({
+        type: LOGIN,
+        payload: userData
+      })
     } else if (userData.is_admin) {
-      return navigate(dispatch, 'CTSView')
+      navigate(dispatch, 'CTSView')
+      dispatch({
+        type: LOGIN,
+        payload: userData
+      })
     } else if (!userData.is_admin) {
-      console.log('User Data is not Admin', userData);
+      dispatch({
+        type: LOGIN,
+        payload: userData
+      })
     }
+  }
+}
+
+export const newUser = (email, password, first_name, last_name, phone, company_name) => {
+  const user = { email, password, first_name, last_name, phone, company_name }
+  return async dispatch => {
+    const response = await fetch(`${API}users`, {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    const userData = await response.json()
+    navigate(dispatch, 'SurveyQuestionView')
+    dispatch({
+      type: NEW_USER,
+      payload: userData
+    })
   }
 }
