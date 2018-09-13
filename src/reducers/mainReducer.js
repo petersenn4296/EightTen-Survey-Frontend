@@ -236,7 +236,6 @@ export default (state = initialState, action) => {
 
     case LOGIN:
       if (action.payload.errorMessage) {
-        console.log(action.payload.errorMessage);
         return {
           ...state,
           login_error: action.payload.errorMessage
