@@ -33,6 +33,10 @@ class LoginForm extends Component {
         />
 
         <div className="center-align">
+          {login_error ? <span className="error-text">{login_error}</span> : null}
+        </div>
+        <br></br>
+        <div className="center-align">
           <Button
             className='eightten_button'
             onClick={() => login(email, password)}
