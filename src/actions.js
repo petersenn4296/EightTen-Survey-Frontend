@@ -15,6 +15,8 @@ export const UPDATE_CREDENTIALS = 'UPDATE_CREDENTIALS'
 export const LOGIN = 'LOGIN'
 export const ADD_OPTION = 'ADD_OPTION'
 export const NEW_USER = 'NEW_USER'
+export const RETRIEVE_QUESTIONS_BY_CLIENT_ID = 'RETRIEVE_QUESTIONS_BY_CLIENT_ID'
+export const INITIALIZE_QUESTIONS = 'INITIALIZE_QUESTIONS'
 
 const API = 'http://localhost:3000/'
 
@@ -316,4 +318,20 @@ export const newUser = (email, password, first_name, last_name, phone, company_n
       payload: userData
     })
   }
+}
+
+export const retrieveQuestionsByClientId = (client_id) => {
+  return async dispatch => {
+    const response = await fetch(`${API}questions/client_id/${client_id}`)
+    const questions = await response.json()
+    console.log('retrieveQuestionsByClientId', questions);
+    dispatch({
+      type: RETRIEVE_QUESTIONS_BY_CLIENT_ID,
+      payload: questions
+    })
+  }
+}
+
+export const initializeQuestions = () => {
+
 }

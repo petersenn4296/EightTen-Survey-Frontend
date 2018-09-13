@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Input, Button, Icon } from 'react-materialize'
+import { Row, Input, Button, Icon, Modal } from 'react-materialize'
 import { updateCredentials, newUser } from '../actions'
 import '../App.css'
 
@@ -27,7 +27,7 @@ class ClientIntakeForm extends Component {
               onClick={() => {
                 newUser(email, password, first_name, last_name, phone, company_name)
               }}
-              className='eightten_button'
+              className='eightten_button modal-close'
               id="new-user-button"
               waves='light'>
               Create Account<Icon left>cloud</Icon>
