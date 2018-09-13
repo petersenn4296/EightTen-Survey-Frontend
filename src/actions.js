@@ -43,11 +43,9 @@ export const editTraitResponse = (response, id) => {
 }
 
 export const addQuestion = (question) => {
-  if(question.id){  //if question is existing question
-    // make patch request; adjust logic to accomidate pre populate patch types values mc and on
+  if(question.id){
     let obj = {
       question: question.question,
-      value: question.value, //scale value?
       type: question.type
     }
     return async dispatch => {
@@ -62,8 +60,7 @@ export const addQuestion = (question) => {
     }
   } else {      /// new question post **MVP**
     return async dispatch => {
-      console.log(question)
-      console.log(question.type)
+
       const response = await fetch(`${API}questions`, {
         method: 'POST',
         body: JSON.stringify(question),
@@ -72,14 +69,19 @@ export const addQuestion = (question) => {
           'Accept': 'application/json',
         }
       })
+
+      if (question.type === 'scale') {
+        // back(dispatch)
+      }
+
       if (question.type === 'mc' || question.type === 'nested') {
         const questionID = await response.json()
+        console.log('questionID', questionID);
         let optionsObj = {
           [questionID]: question.optionsArray
         }
         console.log(optionsObj);
-        // multiple_choice post route sends {ID#: Array(2)}
-        await fetch(`${API}multiple_choice`, {
+        fetch(`${API}multiple_choice`, {
           method: 'POST',
           body: JSON.stringify(optionsObj),
           headers: {
@@ -88,6 +90,7 @@ export const addQuestion = (question) => {
           }
         })
       }
+      // back(dispatch)
       dispatch ({
         type: ADD_QUESTION
       })

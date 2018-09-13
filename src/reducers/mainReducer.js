@@ -29,7 +29,6 @@ const initialState = {
   back: 0,
   questionObj: {
     survey_id: null,
-    scale_value: null,
     question: null,
     type: null,
     optionsArray: []
