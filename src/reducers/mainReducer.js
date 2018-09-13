@@ -14,7 +14,8 @@ import {
   EDIT_RESPONSE,
   UPDATE_CREDENTIALS,
   LOGIN,
-  ADD_OPTION
+  ADD_OPTION,
+  NEW_USER
 } from '../actions'
 
 const initialState = {
@@ -235,6 +236,7 @@ export default (state = initialState, action) => {
 
     case LOGIN:
       if (action.payload.errorMessage) {
+        console.log(action.payload.errorMessage);
         return {
           ...state,
           login_error: action.payload.errorMessage
@@ -242,10 +244,18 @@ export default (state = initialState, action) => {
       } else {
         return {
           ...state,
-          first_name: action.payload.first,
+          first_name: action.payload.first_name,
           is_admin: action.payload.is_admin,
           is_logged_in: true
         }
+      }
+
+    case NEW_USER:
+      return {
+        ...state,
+        first_name: action.payload.first_name,
+        is_admin: action.payload.is_admin,
+        is_logged_in: true
       }
 
 

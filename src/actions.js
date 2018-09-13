@@ -14,7 +14,7 @@ export const EDIT_RESPONSE = 'EDIT_RESPONSE'
 export const UPDATE_CREDENTIALS = 'UPDATE_CREDENTIALS'
 export const LOGIN = 'LOGIN'
 export const ADD_OPTION = 'ADD_OPTION'
-
+export const NEW_USER = 'NEW_USER'
 
 const API = 'http://localhost:3000/'
 
@@ -290,11 +290,30 @@ export const login = (email, password) => {
         payload: userData
       })
     } else if (!userData.is_admin) {
-      console.log('User Data is not Admin', userData);
       dispatch({
         type: LOGIN,
         payload: userData
       })
     }
+  }
+}
+
+export const newUser = (email, password, first_name, last_name, phone, company_name) => {
+  const user = { email, password, first_name, last_name, phone, company_name }
+  return async dispatch => {
+    const response = await fetch(`${API}users`, {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    const userData = await response.json()
+    navigate(dispatch, 'SurveyQuestionView')
+    dispatch({
+      type: NEW_USER,
+      payload: userData
+    })
   }
 }

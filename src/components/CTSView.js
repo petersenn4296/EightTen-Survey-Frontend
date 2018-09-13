@@ -30,7 +30,6 @@ class CTSView extends Component {
             onClick={() => {
             changeCTSView(button1)
           }}
-          id="login-button"
           waves='light'>
             {button1}<Icon left>cloud</Icon>
           </Button>
@@ -40,7 +39,6 @@ class CTSView extends Component {
             onClick={() => {
             changeCTSView(button2)
           }}
-          id="login-button"
           waves='light'>
             {button2}<Icon left>cloud</Icon>
           </Button>
