@@ -35,11 +35,13 @@ class App extends Component {
 
       case 'CompanyTraitView':
         return <CompanyTraitView/>
-
+          
       case 'SurveyQuestionView':
         return <SurveyQuestionView/>
+          
+      // default: return <LoginForm/>
+      default: return <CTSView/>
 
-      default: return <LoginForm/>
     }
   }
 

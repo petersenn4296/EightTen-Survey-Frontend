@@ -12,13 +12,15 @@ class SurveyView extends Component {
     this.props.questionDataDispatch('survey_id', this.props.item.id)
   }
 
+// go into survey back and into another survey... redifines state.survey as undefined
+
   render() {
     const { navigateDispatch, survey } = this.props
     return (
       <Row>
         <Row className="container">
           hello survey view
-          {survey ? <List data={survey}/> : null}
+          {survey[0] ? <List data={survey}/> : null}
         </Row>
         <Row className="center-align">
           <Button className='eightten_button' onClick={() => navigateDispatch('SpecificQuestionView', {type: 'scale'})}>Add Question</Button>

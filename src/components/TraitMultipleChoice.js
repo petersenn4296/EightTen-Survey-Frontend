@@ -7,14 +7,14 @@ import { questionDataDispatch } from '../actions'
 class TraitMultipleChoice extends Component {
 
   render() {
-    const { label, mcData, questionDataDispatch } = this.props
+    const { label, name, mcData, questionDataDispatch } = this.props
 
     return (
       <Row>
-        <Input s={12} type='select' label={label} defaultValue='0'
+        <Input s={12} type='select' label={name} defaultValue='0'
           onChange={(e) => questionDataDispatch(label, e.target.value)}>
           { mcData.map( (option, i) => {
-            return <option key={option} value={i}>{option}</option>
+            return <option key={option} value={i + 1}>{option}</option>
             })
           }
         </Input>

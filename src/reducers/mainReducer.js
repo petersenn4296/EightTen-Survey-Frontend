@@ -14,11 +14,13 @@ import {
   EDIT_RESPONSE,
   UPDATE_CREDENTIALS,
   LOGIN,
+  ADD_OPTION,
   NEW_USER
 } from '../actions'
 
 const initialState = {
   view: 'login',
+  survey: [],
   CTSView: 'Clients',
   button1: 'Traits',
   button2: 'Surveys',
@@ -27,9 +29,10 @@ const initialState = {
   back: 0,
   questionObj: {
     survey_id: null,
+    scale_value: null,
     question: null,
-    value: null,
-    type: null
+    type: null,
+    optionsArray: []
   },
   viewData: [],
   employee_impact: [],
@@ -74,6 +77,12 @@ backStack.push('login')
 export default (state = initialState, action) => {
   switch (action.type) {
 
+    case ADD_OPTION:
+      return {
+        ...state,
+        questionObj: {...state.questionObj, optionsArray: [...state.questionObj.optionsArray, action.payload]}
+      }
+
     case NAVIGATE:
     let ap = action.payload
     backStack.push(ap.destination, ap.item, ap.dataText)
@@ -105,7 +114,6 @@ export default (state = initialState, action) => {
     case QUESTION_DATA:
       let key = action.payload.key
       let value = action.payload.value
-      console.log(key, value);
       return {
         ...state,
         questionObj: {
