@@ -79,14 +79,14 @@ export const addQuestion = (question) => {
         }
         console.log(optionsObj);
         // multiple_choice post route sends {ID#: Array(2)}
-        // await fetch(`${API}multiple_choice`, {
-        //   method: 'POST',
-        //   body: JSON.stringify(),
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     'Accept': 'application/json',
-        //   }
-        // })
+        await fetch(`${API}multiple_choice`, {
+          method: 'POST',
+          body: JSON.stringify(optionsObj),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          }
+        })
       }
       dispatch ({
         type: ADD_QUESTION
