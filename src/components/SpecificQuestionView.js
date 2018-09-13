@@ -29,8 +29,6 @@ class SpecificQuestionView extends Component {
       console.log('yeeeehaawwwwww');
     }
 
-    console.log('obj type', questionObj.type);
-
     return (
       <Row className="container">
           <Input
@@ -56,6 +54,17 @@ class SpecificQuestionView extends Component {
             type="text"
             name="Type"
           />
+          { questionObj.type === 'nested' ?
+            <Input
+              s={12}
+              placeholder="enter your nested question"
+              label="Question"
+              validate defaultValue={item.nested_question}
+              type="text"
+              name="question"
+              onChange={(e)=> questionDataDispatch('nested_question', e.target.value)}
+            />
+           : null}
           { questionObj.type === 'mc' || questionObj.type === 'nested' ?
            <CreateMultipleChoiceOptions/>
            : null }
@@ -66,7 +75,7 @@ class SpecificQuestionView extends Component {
               label="Value"
               type="text"
               name="value"
-              onChange={(e)=> questionDataDispatch('value', e.target.value)}
+              onChange={(e)=> questionDataDispatch('scale_value', e.target.value)}
             />
            : null
           }

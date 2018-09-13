@@ -16,8 +16,6 @@ class CTSView extends Component {
   render() {
     let { CTSView, changeCTSView, button1, button2, is_admin } = this.props
     let data = this.props[CTSView.toLowerCase()]
-
-    console.log('is_admin >>>> ', is_admin);
     return (
       <div>
         <Row className="container center-align">

@@ -2,15 +2,20 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Collection, CollectionItem, Row, Button, Input } from 'react-materialize'
-import { navigate } from '../actions'
+import { addOption } from '../actions'
 
 class CreateMultipleChoiceOptions extends Component {
-  render() {
 
+  render() {
+    const { addOption, questionObj } = this.props
+    let optionObj = {}
     return (
       <Row>
         <Collection className="container center-align">
-         <CollectionItem key={'hello'} >Hello</CollectionItem>
+            { questionObj.optionsArray.map(item => {
+              return <CollectionItem key={item.answer}>{`${item.answer} ${item.value}`}</CollectionItem>
+              })
+            }
         </Collection>
         <Input
           s={12}
@@ -18,7 +23,7 @@ class CreateMultipleChoiceOptions extends Component {
           label="Answer"
           type="text"
           name="answer"
-          onChange={(e)=> console.log(e.target.value)}
+          onChange={(e)=> optionObj[e.target.name] = e.target.value}
         />
         <Input
           s={12}
@@ -26,22 +31,22 @@ class CreateMultipleChoiceOptions extends Component {
           label="Value"
           type="text"
           name="value"
-          onChange={(e)=> console.log(e.target.value)}
+          onChange={(e)=> optionObj[e.target.name] = e.target.value}
         />
-        <Button type='submit' value='Submit' onClick={()=> console.log('hello')}>add multiple choice option</Button>
+        <Button type='submit' value='Submit' onClick={()=> addOption(optionObj)}>add multiple choice option</Button>
       </Row>
     )
   }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  navigate
+  addOption
 }, dispatch)
 
 const mapStateToProps = state => {
-  const props = {
+  return {
+    questionObj: state.mainReducer.questionObj
   }
-  return props
 }
 
 export default connect(
