@@ -12,10 +12,8 @@ class SurveyQuestionView extends Component {
   }
 
   render() {
-    const { questions, choices, client_id, initializeQuestions} = this.props
-    //got them here
-    // console.log(questions);
-    // console.log(choices);
+    const { newSurveyQuestions, client_id, initializeQuestions} = this.props
+    console.log(newSurveyQuestions);
     return (
       <Row>
       HI PETER
@@ -30,8 +28,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 const mapStateToProps = state => {
   return {
-    questions: state.mainReducer.questions,
-    choices: state.mainReducer.choices,
+    newSurveyQuestions: state.mainReducer.newSurveyQuestions,
     client_id: state.mainReducer.client_id
   }
 }
