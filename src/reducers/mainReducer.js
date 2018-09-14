@@ -17,7 +17,8 @@ import {
   ADD_OPTION,
   NEW_USER,
   RETRIEVE_QUESTIONS_BY_CLIENT_ID,
-  INITIALIZE_QUESTIONS
+  INITIALIZE_QUESTIONS,
+  SUBMIT_ANSWER
 } from '../actions'
 
 const initialState = {
@@ -47,7 +48,8 @@ const initialState = {
   client_id: null,
   is_logged_in: false,
   login_error: '',
-  questions: {}
+  questions: {},
+  questionIndex: 0
 }
 
 class Stack {
@@ -101,6 +103,12 @@ export default (state = initialState, action) => {
         dataText: ap.dataText,
         trait_id: ap.trait_id,
         viewData: viewData
+      }
+
+    case SUBMIT_ANSWER:
+      return {
+        ...state,
+        questionIndex: state.questionIndex + 1
       }
 
     case EDIT_RESPONSE:
@@ -265,14 +273,12 @@ export default (state = initialState, action) => {
       }
 
     case RETRIEVE_QUESTIONS_BY_CLIENT_ID:
-    console.log(action.payload);
       return {
         ...state,
 
       }
 
     case INITIALIZE_QUESTIONS:
-    console.log(action.payload);
       return {
         ...state,
         newSurveyQuestions: action.payload.newSurveyQuestions
