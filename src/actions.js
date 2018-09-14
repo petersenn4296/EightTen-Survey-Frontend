@@ -262,6 +262,7 @@ export const navigate = (dispatch, destination, item = null, questionObj = null,
   } else {
     data = 'company_name'
   }
+  console.log(destination);
   dispatch({
     type: NAVIGATE,
     payload: {destination: destination, item: item, dataText: data, questionObj: questionObj, trait_id: trait_id}
@@ -336,5 +337,25 @@ export const retrieveQuestionsByClientId = (client_id) => {
 }
 
 export const initializeQuestions = () => {
+ return async dispatch => {
+   const questionCall = await fetch(`${API}questions`)
+   const questions = await questionCall.json()
+   const multipleChoiceCall = await fetch(`${API}multiple_choice`)
+   const choices = await multipleChoiceCall.json()
+   console.log('questions in action', questions)
+   // questions com back as an array of objects with a trait_id
+   // sort questions by trait_id
+   // return an object(or array of arrays?) with 3 key value pairs where the traid_id is the key and the questions array are the value
+   // from each of the keys/arrays randomly select 3 questions
+   // return an array of 9* or 10 starting questions [{},{}]
+   // look through the array for questions type mc and nested
+   // insert all options for questions type mc and nested in a options: [{},{}]
+   // send them off!
 
+   console.log('choices in action', choices)
+   dispatch({
+     type: INITIALIZE_QUESTIONS,
+     payload: {questions: questions, choices: choices}
+   })
+ }
 }
