@@ -335,6 +335,69 @@ export const retrieveQuestionsByClientId = (client_id) => {
     })
   }
 }
+//////////////////////////////////////////returns random survey///////////////
+const randomQuestions = (arr) => {
+  let result = []
+  let choices = [...arr]
+  while (result.length < 3) {
+   let index = Math.floor(Math.random() * choices.length)
+   result.push(choices[index])
+   choices.splice(index, 1)
+  }
+  return result
+}
+
+const randomize = (arr) => {
+  let result = []
+  let choices = [...arr]
+  while (choices.length > 0) {
+   let index = Math.floor(Math.random() * choices.length)
+   result.push(choices[index])
+   choices.splice(index, 1)
+  }
+ return result
+}
+
+const joinChoices = (arr, choices) => {
+ for (let i = 0; i < arr.length; i++){
+   if (arr[i].type === 'mc' || arr[i].type === 'nested'){
+     arr[i].choices = []
+     for (let j = 0; j < choices.length; j++){
+       if (choices[j].question_id === arr[i].id){
+         arr[i].choices.push(choices[j])
+       }
+     }
+   }
+ }
+ return arr
+}
+
+const sortQuestions = (questions, choices) => {
+  let sortedQuestions = {
+    1: [],
+    2: [],
+    3: []
+  }
+  for (let i = 0; i < questions.length; i++) {
+    if (questions[i].trait_id === 1) {
+      sortedQuestions[1].push(questions[i])
+    }
+    if (questions[i].trait_id === 2) {
+      sortedQuestions[2].push(questions[i])
+    }
+    if (questions[i].trait_id === 3) {
+      sortedQuestions[3].push(questions[i])
+    }
+  }
+  let result = []
+  for (let i = 1 ; i <= 3; i ++ ) {
+    result.push(...randomQuestions(sortedQuestions[i]))
+  }
+  result = randomize(result)
+  result = joinChoices(result, choices)
+  return result
+}
+///////////////////////////////////////////////////////////
 
 export const initializeQuestions = () => {
  return async dispatch => {
@@ -342,20 +405,11 @@ export const initializeQuestions = () => {
    const questions = await questionCall.json()
    const multipleChoiceCall = await fetch(`${API}multiple_choice`)
    const choices = await multipleChoiceCall.json()
-   console.log('questions in action', questions)
-   // questions com back as an array of objects with a trait_id
-   // sort questions by trait_id
-   // return an object(or array of arrays?) with 3 key value pairs where the traid_id is the key and the questions array are the value
-   // from each of the keys/arrays randomly select 3 questions
-   // return an array of 9* or 10 starting questions [{},{}]
-   // look through the array for questions type mc and nested
-   // insert all options for questions type mc and nested in a options: [{},{}]
-   // send them off!
-
-   console.log('choices in action', choices)
+   let randomizedQuestions = sortQuestions(questions, choices)
+   console.log('random >>>>>>>>>>>>>>', randomizedQuestions)
    dispatch({
      type: INITIALIZE_QUESTIONS,
-     payload: {questions: questions, choices: choices}
+     payload: { newSurveyQuestions: randomizedQuestions}
    })
  }
 }

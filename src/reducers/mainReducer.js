@@ -275,8 +275,7 @@ export default (state = initialState, action) => {
     console.log(action.payload);
       return {
         ...state,
-        questions: action.payload.questions,
-        choices: action.payload.choices
+        newSurveyQuestions: action.payload.newSurveyQuestions
       }
 
 
