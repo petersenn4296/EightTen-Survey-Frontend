@@ -274,7 +274,9 @@ export default (state = initialState, action) => {
     case INITIALIZE_QUESTIONS:
     console.log(action.payload);
       return {
-        ...state
+        ...state,
+        questions: action.payload.questions,
+        choices: action.payload.choices
       }
 
 
