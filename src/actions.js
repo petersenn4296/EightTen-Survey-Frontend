@@ -17,8 +17,24 @@ export const ADD_OPTION = 'ADD_OPTION'
 export const NEW_USER = 'NEW_USER'
 export const RETRIEVE_QUESTIONS_BY_CLIENT_ID = 'RETRIEVE_QUESTIONS_BY_CLIENT_ID'
 export const INITIALIZE_QUESTIONS = 'INITIALIZE_QUESTIONS'
+export const SUBMIT_ANSWER = 'SUBMIT_ANSWER'
 
 const API = 'http://localhost:3000/'
+
+export const submitAnswer = (postObj) => {
+  console.log(postObj);
+  fetch(`${API}client_response`, {
+    method: 'POST',
+    body: JSON.stringify(postObj),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    }
+  })
+  return {
+    type: SUBMIT_ANSWER
+  }
+}
 
 export const addOption = (optionObj) => {
   return {
@@ -71,10 +87,6 @@ export const addQuestion = (question) => {
           'Accept': 'application/json',
         }
       })
-
-      if (question.type === 'scale') {
-        // back(dispatch)
-      }
 
       if (question.type === 'mc' || question.type === 'nested') {
         const questionID = await response.json()
@@ -406,7 +418,6 @@ export const initializeQuestions = () => {
    const multipleChoiceCall = await fetch(`${API}multiple_choice`)
    const choices = await multipleChoiceCall.json()
    let randomizedQuestions = sortQuestions(questions, choices)
-   console.log('random >>>>>>>>>>>>>>', randomizedQuestions)
    dispatch({
      type: INITIALIZE_QUESTIONS,
      payload: { newSurveyQuestions: randomizedQuestions}
