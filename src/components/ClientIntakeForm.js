@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Input, Button, Icon, Modal } from 'react-materialize'
+import { Row, Input, Button, Icon } from 'react-materialize'
 import { updateCredentials, newUser } from '../actions'
 import '../App.css'
 
