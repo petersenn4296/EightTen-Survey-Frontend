@@ -17,37 +17,32 @@ class SurveyQuestionView extends Component {
   }
 
   generateQuestion = () => {
-    if (this.props.newSurveyQuestions) {
-       if  (this.props.questionIndex > 8) {
-         this.props.navigateDispatch('ClientResultsView')
-       } else {
-         if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'scale'){
-           return (
-             <ScaleQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
-           )
-         }
-         if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'text'){
-           return (
-             <TextQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
-           )
-         }
-         if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'mc'){
-           return (
-             <McQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
-           )
-         }
-         if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'nested'){
-           return (
-             <NestedQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
-           )
-         }
-       }
+    if (this.props.newSurveyQuestions && this.props.questionIndex < 9) {
+      if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'scale'){
+        return (
+          <ScaleQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
+        )
+      }
+      if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'text'){
+        return (
+          <TextQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
+        )
+      }
+      if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'mc'){
+        return (
+          <McQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
+        )
+      }
+      if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'nested'){
+        return (
+          <NestedQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
+        )
+      }
     }
   }
 
   render() {
-    const { newSurveyQuestions, client_id } = this.props
-
+    const { newSurveyQuestions, client_id, navigateDispatch } = this.props
     return (
       <Row className='container center-align'>
         <Row>

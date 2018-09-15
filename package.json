@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chart.js": "^2.7.2",
     "moment": "^2.22.2",
     "react": "^16.4.2",
+    "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.4.2",
     "react-materialize": "^2.4.5",
     "react-redux": "^5.0.7",

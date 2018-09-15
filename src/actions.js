@@ -18,6 +18,8 @@ export const NEW_USER = 'NEW_USER'
 export const RETRIEVE_QUESTIONS_BY_CLIENT_ID = 'RETRIEVE_QUESTIONS_BY_CLIENT_ID'
 export const INITIALIZE_QUESTIONS = 'INITIALIZE_QUESTIONS'
 export const SUBMIT_ANSWER = 'SUBMIT_ANSWER'
+export const LOAD_RESULTS = 'LOAD_RESULTS'
+
 
 const API = 'http://localhost:3000/'
 
@@ -204,6 +206,25 @@ export const loadClient = (id) => {
   }
 }
 
+export const loadResults = (id) => {
+  return async dispatch => {
+    const response = await fetch(`${API}users/${id}/results`)
+    const client = await response.json()
+    const employeeImpactQuestions = client.filter(client => client.trait_id === 1)
+    const communityImpactQuestions = client.filter(client => client.trait_id === 2)
+    const talentLifeCycleQuestions = client.filter(client => client.trait_id === 3)
+    dispatch({
+      type: LOAD_CLIENT,
+      payload: {
+        client: client,
+        employee_impact: employeeImpactQuestions,
+        community_impact: communityImpactQuestions,
+        talent_lifecycle: talentLifeCycleQuestions
+      }
+    })
+  }
+}
+
 export const loadTrait = (id) => {
   return async dispatch => {
     const response = await fetch(`${API}traits/${id}`)
@@ -293,27 +314,17 @@ export const login = (email, password) => {
       }
     })
     const userData = await response.json()
-    if (userData.errorMessage) {
-      dispatch({
-        type: LOGIN,
-        payload: userData
-      })
-    } else if (userData.is_admin) {
-      navigate(dispatch, 'CTSView')
-      dispatch({
-        type: LOGIN,
-        payload: userData
-      })
-    } else if (!userData.is_admin) {
-      dispatch({
-        type: LOGIN,
-        payload: userData
-      })
-    }
+    console.log('userdata', userData);
+    dispatch({
+      type: LOGIN,
+      payload: userData
+    })
   }
 }
 
 export const newUser = (email, password, first_name, last_name, phone, company_name) => {
+  // let hashWord = hashSync(password)
+  // console.log('hashWord', hashWord);
   const user = { email, password, first_name, last_name, phone, company_name }
   return async dispatch => {
     const response = await fetch(`${API}users`, {

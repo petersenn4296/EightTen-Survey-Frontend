@@ -18,7 +18,8 @@ import {
   NEW_USER,
   RETRIEVE_QUESTIONS_BY_CLIENT_ID,
   INITIALIZE_QUESTIONS,
-  SUBMIT_ANSWER
+  SUBMIT_ANSWER,
+  LOAD_RESULTS
 } from '../actions'
 
 const initialState = {
@@ -49,7 +50,8 @@ const initialState = {
   is_logged_in: false,
   login_error: '',
   questions: {},
-  questionIndex: 0
+  questionIndex: 0,
+  company_name: null
 }
 
 class Stack {
@@ -106,10 +108,17 @@ export default (state = initialState, action) => {
       }
 
     case SUBMIT_ANSWER:
+    if (state.questionIndex === 8) {
+      return {
+        ...state,
+        view: 'ClientResultsView'
+      }
+    } else {
       return {
         ...state,
         questionIndex: state.questionIndex + 1
       }
+    }
 
     case EDIT_RESPONSE:
       return {
@@ -170,7 +179,9 @@ export default (state = initialState, action) => {
         client_id: null,
         is_logged_in: false,
         login_error: '',
-        questions: {}
+        questions: {},
+        questionIndex: 0,
+        company_name: null
       }
     } else {
       if (back.view === 'CTSView') {
@@ -214,6 +225,12 @@ export default (state = initialState, action) => {
         clients: action.payload
     }
 
+    case LOAD_RESULTS:
+      return {
+        ...state,
+        clients: action.payload
+    }
+
     case LOAD_CLIENT:
       return {
         ...state,
@@ -248,18 +265,33 @@ export default (state = initialState, action) => {
     }
 
     case LOGIN:
+    console.log('action payload', action.payload);
       if (action.payload.errorMessage) {
         return {
           ...state,
           login_error: action.payload.errorMessage
         }
-      } else {
+      } else if (action.payload.is_admin) {
+        state.back++
         return {
           ...state,
           first_name: action.payload.first_name,
-          client_id: action.payload.id,
+          client_id: action.payload.client_id,
+          company_name: action.payload.company_name,
           is_admin: action.payload.is_admin,
-          is_logged_in: true
+          is_logged_in: true,
+          view: 'CTSView'
+        }
+      } else if(!action.payload.is_admin) {
+        state.back++
+        return {
+          ...state,
+          first_name: action.payload.first_name,
+          client_id: action.payload.client_id,
+          company_name: action.payload.company_name,
+          is_admin: action.payload.is_admin,
+          is_logged_in: true,
+          view: 'ClientResultsView'
         }
       }
 
@@ -269,7 +301,8 @@ export default (state = initialState, action) => {
         first_name: action.payload.first_name,
         is_admin: action.payload.is_admin,
         client_id: action.payload.id,
-        is_logged_in: true
+        is_logged_in: true,
+        view: 'SurveyQuestionView'
       }
 
     case RETRIEVE_QUESTIONS_BY_CLIENT_ID:
