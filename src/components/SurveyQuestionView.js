@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Row, Button, Input } from 'react-materialize'
-import { initializeQuestions } from '../actions'
+import { initializeQuestions, navigateDispatch } from '../actions'
 import ScaleQuestion from './ScaleQuestion'
 import TextQuestion from './TextQuestion'
 import McQuestion from './McQuestion'
@@ -17,40 +17,36 @@ class SurveyQuestionView extends Component {
   }
 
   generateQuestion = () => {
-
-
     if (this.props.newSurveyQuestions) {
-        if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'scale'){
-          console.log('scale')
-          return (
-            <ScaleQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
-          )
-        }
-        if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'text'){
-          console.log('text')
-          return (
-            <TextQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
-          )
-        }
-        if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'mc'){
-          console.log('mc')
-          return (
-            <McQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
-          )
-        }
-        if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'nested'){
-          console.log('nested')
-          return (
-            <NestedQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
-          )
-        }
-      } else {
-        return null
-      }
+       if  (this.props.questionIndex > 8) {
+         this.props.navigateDispatch('ClientResultsView')
+       } else {
+         if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'scale'){
+           return (
+             <ScaleQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
+           )
+         }
+         if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'text'){
+           return (
+             <TextQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
+           )
+         }
+         if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'mc'){
+           return (
+             <McQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
+           )
+         }
+         if (this.props.newSurveyQuestions[this.props.questionIndex].type === 'nested'){
+           return (
+             <NestedQuestion question={this.props.newSurveyQuestions[this.props.questionIndex]}/>
+           )
+         }
+       }
+    }
   }
 
   render() {
-    const { newSurveyQuestions, client_id, initializeQuestions } = this.props
+    const { newSurveyQuestions, client_id } = this.props
 
     return (
       <Row className='container center-align'>
@@ -66,7 +62,8 @@ class SurveyQuestionView extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  initializeQuestions
+  initializeQuestions,
+  navigateDispatch
 }, dispatch)
 
 const mapStateToProps = state => {

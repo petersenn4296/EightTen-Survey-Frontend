@@ -7,28 +7,38 @@ import '../App.css'
 
 class ScaleQuestion extends Component {
   state = {
-    answer: 5
+    postObj: {
+      question_id: this.props.question.id,
+      client_id: this.props.client_id,
+      answer: '5',
+      score: 5
+    }
   }
 
   render() {
-    const { submitAnswer, client_id } = this.props
-    const { id, question } = this.props.question
-    const postObj = {
-      question_id: id,
-      client_id: client_id,
-      answer: this.state.answer,
-      score: this.state.answer
-    }
+    const { submitAnswer, question } = this.props
+
+    console.log('>>>>>>>>>>>>>>>>>>>>>Scale');
+    console.log(question.id);
+    console.log(this.state.postObj.question_id);
 
     return (
       <Row>
         <Row>
-          {question} question id: {id} client id: {client_id}
+          {question.question}
         </Row>
         <Row >
-          <Input type="range" id="answer" min="0" max="10" onChange={ (e) => this.setState({answer: e.target.value})}/>
+          <Input
+            type="range"
+            id="answer"
+            min="0"
+            max="10"
+            onChange={
+              (e) => this.setState({postObj: {...this.state.postObj, question_id: question.id, answer: e.target.value, score:e.target.value}})
+            }
+          />
         </Row>
-        <Button className="eightten_button" onClick={() => submitAnswer(postObj)}>Submit</Button>
+        <Button className="eightten_button" onClick={() => submitAnswer(this.state.postObj)}>Submit</Button>
       </Row>
     )
   }
@@ -40,7 +50,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 const mapStateToProps = state => {
   return {
-    newSurveyQuestions: state.mainReducer.newSurveyQuestions,
     client_id: state.mainReducer.client_id
   }
 }

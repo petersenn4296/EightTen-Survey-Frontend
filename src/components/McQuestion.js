@@ -7,34 +7,47 @@ import '../App.css'
 
 class McQuestion extends Component {
   state = {
-    answer: null,
-    score: null
+    postObj: {
+      question_id: this.props.question.id,
+      client_id: this.props.client_id,
+      answer: null,
+      score: null
+    }
   }
 
   render() {
-    const { submitAnswer, client_id } = this.props
-    const { id, question } = this.props.question
-    const postObj = {
-      question_id: id,
-      client_id: client_id,
-      answer: this.state.answer,
-      score: this.state.score
-    }
+    const { submitAnswer, question } = this.props
+
+    console.log('>>>>>>>>>>>>>>>>>>>>>MC');
+    console.log(question.id);
+    console.log(this.state.postObj.question_id);
 
     return (
       <Row>
         <Row>
-          {question}
+          {question.question}
         </Row>
         <Row>
-          {this.props.question.choices.map(choice => {
+          {question.choices.map(choice => {
             return (
-              <Input name="mc-choice" id={choice.answer} type='radio' value={choice.value} label={choice.answer} className='with-gap' onChange={(e) => this.setState({answer: e.target.id, score: e.target.value})}/>
-            )
-          })}
+                <Input
+                  key={choice.answer}
+                  name="mc-choice"
+                  id={choice.answer}
+                  type='radio'
+                  value={choice.value}
+                  label={choice.answer}
+                  className='with-gap'
+                  onClick={
+                    (e) => this.setState({postObj: {...this.state.postObj, question_id: question.id, answer: e.target.id, score: e.target.value}})
+                  }
+                />
+              )
+            })
+          }
         </Row>
         <Row>
-          <Button className="eightten_button" onClick={() => submitAnswer(postObj)}>Submit</Button>
+          <Button className="eightten_button" onClick={() => submitAnswer(this.state.postObj)}>Submit</Button>
         </Row>
       </Row>
     )
