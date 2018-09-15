@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Button, Input } from 'react-materialize'
-import { initializeQuestions, navigateDispatch } from '../actions'
+import { Row } from 'react-materialize'
+import { initializeQuestions } from '../actions'
 import ScaleQuestion from './ScaleQuestion'
 import TextQuestion from './TextQuestion'
 import McQuestion from './McQuestion'
@@ -42,7 +42,7 @@ class SurveyQuestionView extends Component {
   }
 
   render() {
-    const { newSurveyQuestions, client_id, navigateDispatch } = this.props
+    const { newSurveyQuestions } = this.props
     return (
       <Row className='container center-align'>
         <Row>
@@ -58,13 +58,11 @@ class SurveyQuestionView extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   initializeQuestions,
-  navigateDispatch
 }, dispatch)
 
 const mapStateToProps = state => {
   return {
     newSurveyQuestions: state.mainReducer.newSurveyQuestions,
-    client_id: state.mainReducer.client_id,
     questionIndex: state.mainReducer.questionIndex
   }
 }
