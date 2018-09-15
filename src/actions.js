@@ -22,17 +22,17 @@ export const SUBMIT_ANSWER = 'SUBMIT_ANSWER'
 const API = 'http://localhost:3000/'
 
 export const submitAnswer = (postObj) => {
-  console.log(postObj);
-  fetch(`${API}client_response`, {
-    method: 'POST',
-    body: JSON.stringify(postObj),
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    }
-  })
-  return {
-    type: SUBMIT_ANSWER
+  return async dispatch => {
+    const response = await fetch(`${API}client_response`, {
+      method: 'POST',
+      body: JSON.stringify(postObj),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    const postedObj = await response.json()
+    dispatch ({type: SUBMIT_ANSWER})
   }
 }
 
@@ -90,11 +90,9 @@ export const addQuestion = (question) => {
 
       if (question.type === 'mc' || question.type === 'nested') {
         const questionID = await response.json()
-        console.log('questionID', questionID);
         let optionsObj = {
           [questionID]: question.optionsArray
         }
-        console.log(optionsObj);
         fetch(`${API}multiple_choice`, {
           method: 'POST',
           body: JSON.stringify(optionsObj),
@@ -274,7 +272,6 @@ export const navigate = (dispatch, destination, item = null, questionObj = null,
   } else {
     data = 'company_name'
   }
-  console.log(destination);
   dispatch({
     type: NAVIGATE,
     payload: {destination: destination, item: item, dataText: data, questionObj: questionObj, trait_id: trait_id}
@@ -340,7 +337,6 @@ export const retrieveQuestionsByClientId = (client_id) => {
   return async dispatch => {
     const response = await fetch(`${API}questions/client_id/${client_id}`)
     const questions = await response.json()
-    console.log('retrieveQuestionsByClientId', questions);
     dispatch({
       type: RETRIEVE_QUESTIONS_BY_CLIENT_ID,
       payload: questions

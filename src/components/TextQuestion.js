@@ -8,30 +8,31 @@ import '../App.css'
 class TextQuestion extends Component {
 
   state = {
-    answer: null
+    postObj: {
+      question_id: this.props.question.id,
+      client_id: this.props.client_id,
+      answer: null,
+      score: '7'
+    }
   }
 
   render() {
-    const { client_id, submitAnswer } = this.props
-    const { id, question  } = this.props.question
+    const { question, submitAnswer } = this.props
 
-    const postObj = {
-      question_id: id,
-      client_id: client_id,
-      answer: this.state.answer,
-      score: 7
-    }
+    console.log('>>>>>>>>>>>>>>>>>>>>>TEXT');
+    console.log(question.id);
+    console.log(this.state.postObj.question_id);
 
     return (
       <Row>
         <Row>
-          {question}
+          {question.question}
         </Row>
         <Row>
-          <Input type="textarea" onChange={(e) => this.setState({answer: e.target.value})}/>
+          <Input type="textarea" onChange={(e) => this.setState({postObj: {...this.state.postObj, question_id: question.id, answer: e.target.value}})}/>
         </Row>
         <Row>
-          <Button className="eightten_button" onClick={() => submitAnswer(postObj)}>Submit</Button>
+          <Button className="eightten_button" onClick={() => submitAnswer(this.state.postObj)}>Submit</Button>
         </Row>
       </Row>
     )
