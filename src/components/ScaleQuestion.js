@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Button, Input } from 'react-materialize'
+import { Row, Col, Button, Input } from 'react-materialize'
 import { submitAnswer } from '../actions'
 import '../App.css'
 
@@ -18,16 +18,12 @@ class ScaleQuestion extends Component {
   render() {
     const { submitAnswer, question } = this.props
 
-    console.log('>>>>>>>>>>>>>>>>>>>>>Scale');
-    console.log(question.id);
-    console.log(this.state.postObj.question_id);
-
     return (
-      <Row>
-        <Row>
+      <div className="container question_box center-align">
+        <Col className="question">
           {question.question}
-        </Row>
-        <Row >
+        </Col>
+        <Col >
           <Input
             type="range"
             id="answer"
@@ -37,9 +33,9 @@ class ScaleQuestion extends Component {
               (e) => this.setState({postObj: {...this.state.postObj, question_id: question.id, answer: e.target.value, score:e.target.value}})
             }
           />
-        </Row>
+        </Col>
         <Button className="eightten_button" onClick={() => submitAnswer(this.state.postObj)}>Submit</Button>
-      </Row>
+      </div>
     )
   }
 }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row } from 'react-materialize'
-import { initializeQuestions } from '../actions'
+import { Row, Col, Button, Input } from 'react-materialize'
+import { initializeQuestions, navigateDispatch } from '../actions'
+
 import ScaleQuestion from './ScaleQuestion'
 import TextQuestion from './TextQuestion'
 import McQuestion from './McQuestion'
@@ -44,14 +45,12 @@ class SurveyQuestionView extends Component {
   render() {
     const { newSurveyQuestions } = this.props
     return (
-      <Row className='container center-align'>
-        <Row>
+      <div className='container'>
+        <Col className='center-align progress_number'>
           {newSurveyQuestions ? `${this.props.questionIndex + 1} / ${newSurveyQuestions.length}` : null}
-        </Row>
-        <Row>
-          {this.generateQuestion()}
-        </Row>
-      </Row>
+        </Col>
+        {this.generateQuestion()}
+      </div>
     )
   }
 }

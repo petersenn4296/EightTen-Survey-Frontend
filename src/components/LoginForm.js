@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Input, Button, Icon, Modal } from 'react-materialize'
+import { Row, Input, Button, Icon, Modal, Col } from 'react-materialize'
 import { updateCredentials, login } from '../actions'
 import ClientIntakeForm from './ClientIntakeForm'
 import '../App.css'
@@ -13,24 +13,26 @@ class LoginForm extends Component {
     const { updateCredentials, email, password, login, login_error } = this.props
 
     return (
-      <Row className="container">
-
-        <Input
-          onChange={(e) => updateCredentials('email', e.target.value)}
-          type="text"
-          className='eightten_input'
-          s={12}
-          label="Email"
-          required
-        />
-
-        <Input
-          onChange={(e) => updateCredentials('password', e.target.value)}
-          type="password"
-          s={12}
-          label="Password"
-          required
-        />
+      <div className="container login_box" s={10} m={8} l={6} >
+          <Col offset="l12 m12 s12" l={12} m={12} s={12}>
+            <Input
+              onChange={(e) => updateCredentials('email', e.target.value)}
+              type="text"
+              className='eightten_input'
+              l={12}
+              label="Email"
+              required
+            />
+          </Col>
+          <Col offset="l12 m12 s12" l={12} m={12} s={12}>
+            <Input
+              onChange={(e) => updateCredentials('password', e.target.value)}
+              type="password"
+              l={12}
+              label="Password"
+              required
+            />
+          </Col>
 
         <div className="center-align">
           {login_error ? <span className="error-text">{login_error}</span> : null}
@@ -56,7 +58,7 @@ class LoginForm extends Component {
           </Modal>
         </div>
 
-      </Row>
+      </div>
     )
   }
 }

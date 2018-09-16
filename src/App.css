@@ -10,7 +10,69 @@
   color: #ee632b;
 }
 
-/* Materialize tabs styling */
+/* Header on app */
+.header {
+  padding-top: 30px;
+}
+
+.result {
+  margin-top: -10vw;
+  width: 550px;
+  border: 2px solid #f5f5f5;
+  border-radius: 2px;
+  background-color: white;
+  /* box-shadow: 2px 2px 9px; */
+  font-family: "PT Sans"
+}
+
+.login_box {
+  border: 2px solid #7a758133;
+  padding: 2vw 10vw 3vw 10vw;
+  margin-top: -9vw;
+  background-color: white;
+  background-opacity: 0.7;
+  box-shadow: 2px 2px 9px;
+}
+
+.jumbotron {
+  height: 250px;
+  background-image: url('./810/random_grey_variations.png');
+}
+
+.progress_number {
+  margin-top: -12vw;
+  margin-bottom: 2vw;
+  font-family: "PT Sans";
+  font-size: 30px;
+  color: #f5f5f5;
+}
+
+.pad-bot {
+  padding-bottom: 6px;
+}
+
+.back {
+  text-transform: uppercase;
+  color: #7a7581;
+  background: #ffffff;
+  border-width: 0px;
+}
+
+.question {
+  font-family: "PT Sans";
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.question_box {
+  border: 2px solid #7a758133;
+  padding: 2vw 10vw 3vw 10vw;
+  /* margin-top: -10vw; */
+  background-color: white;
+  background-opacity: 0.7;
+  box-shadow: 2px 2px 9px;
+
+ /* Materialize tabs styling */
 /*Black color to the text*/
 .tabs .tab a{
     color:#ee632b;
@@ -38,6 +100,7 @@
   background: #ffffff;
   text-transform: uppercase;
   color: #7a7581;
+  margin-top: 14px;
   border-width: 2px;
   border-style: solid;
   border-color: #7a7581;

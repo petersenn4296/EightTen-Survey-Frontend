@@ -5,15 +5,16 @@ import './App.css';
 import { Row } from 'react-materialize'
 import LoginForm from './components/LoginForm'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import CTSView from './components/CTSView'
 import CompanyView from './components/CompanyView'
 import TraitView from './components/TraitView'
 import SurveyView from './components/SurveyView'
 import SpecificQuestionView from './components/SpecificQuestionView'
-import BackButton from './components/BackButton'
 import CompanyTraitView from './components/CompanyTraitView'
 import SurveyQuestionView from './components/SurveyQuestionView'
 import ClientResultsView from './components/ClientResultsView'
+import Jumbotron from './components/Jumbotron'
 
 
 class App extends Component {
@@ -45,39 +46,29 @@ class App extends Component {
         return <ClientResultsView/>
 
       default: return <LoginForm/>
-      // default: return <CTSView/>
-
     }
   }
 
   render() {
-    const { back } = this.props
     return (
       <div>
         <Header/>
-        <Row className='center-align'>
-          {back > 0 ? <BackButton/> : null}
-        </Row>
+        <Jumbotron/>
         {this.viewHashTable(this.props.view)}
+        <Footer/>
       </div>
     );
   }
 }
 
-// const mapDispatchToProps = dispatch => bindActionCreators({
-//
-// }, dispatch)
-
 const mapStateToProps = state => {
   const props = {
-    view: state.mainReducer.view,
-    back: state.mainReducer.back
+    view: state.mainReducer.view
   }
   return props
 }
 
 export default connect(
   mapStateToProps,
-  // mapDispatchToProps
   null
 )(App);

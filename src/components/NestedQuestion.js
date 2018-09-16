@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Button, Input } from 'react-materialize'
+import { Row, Col, Button, Input } from 'react-materialize'
 import { submitAnswer } from '../actions'
 import '../App.css'
 
@@ -18,17 +18,13 @@ class NestedQuestion extends Component {
 
   render() {
     const { submitAnswer, question } = this.props
-
-    console.log('>>>>>>>>>>>>>>>>>>>>>NESTED');
-    console.log(question.id);
-    console.log(this.state.postObj.question_id);
-
+    
     return (
-      <Row>
-        <Row>
+      <div className="container question_box center-align">
+        <Col className="question">
           {question.question}
-        </Row>
-        <Row>
+        </Col>
+        <Col>
           <Input
             name='yesorno'
             type='radio'
@@ -49,8 +45,8 @@ class NestedQuestion extends Component {
               this.setState({nestedToggle: false})
             }}
           />
-        </Row>
-        <Row>
+        </Col>
+        <Col>
           {this.state.nestedToggle ?
             this.props.question.choices.map(choice => {
               return (
@@ -70,11 +66,11 @@ class NestedQuestion extends Component {
             })
             : null
           }
-        </Row>
-        <Row>
+        </Col>
+        <Col>
           <Button className="eightten_button" onClick={() => submitAnswer(this.state.postObj)}>Submit</Button>
-        </Row>
-      </Row>
+        </Col>
+      </div>
     )
   }
 }

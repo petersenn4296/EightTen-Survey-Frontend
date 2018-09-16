@@ -2,24 +2,23 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { back } from '../actions'
-import { Row, Button } from 'react-materialize'
+import { Row, Button, Icon } from 'react-materialize'
 
 
 class BackButton extends Component {
   render() {
     const { back } = this.props
     return (
-      <Row className="container right-align">
         <Button
-          className='eightten_button'
+          className='back'
           onClick={() => {
-          back()
-        }}
-        id="back-button"
-        waves='light'>
-          Back
+            back()
+          }}
+          id="back-button">
+          <Icon>
+            keyboard_arrow_left
+          </Icon>
         </Button>
-      </Row>
     )
   }
 }
