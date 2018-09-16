@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Button, Input } from 'react-materialize'
+import { Row, Col, Button, Input } from 'react-materialize'
 import { submitAnswer } from '../actions'
 import '../App.css'
 
@@ -19,22 +19,18 @@ class TextQuestion extends Component {
   render() {
     const { question, submitAnswer } = this.props
 
-    console.log('>>>>>>>>>>>>>>>>>>>>>TEXT');
-    console.log(question.id);
-    console.log(this.state.postObj.question_id);
-
     return (
-      <Row>
-        <Row>
+      <div className="container question_box center-align">
+        <Col offset="l4" l={4} className="pad-bot question">
           {question.question}
-        </Row>
-        <Row>
+        </Col>
+        <Col offset="l4" l={4}>
           <Input type="textarea" onChange={(e) => this.setState({postObj: {...this.state.postObj, question_id: question.id, answer: e.target.value}})}/>
-        </Row>
-        <Row>
+        </Col>
+        <Col offset="l4" l={4}>
           <Button className="eightten_button" onClick={() => submitAnswer(this.state.postObj)}>Submit</Button>
-        </Row>
-      </Row>
+        </Col>
+      </div>
     )
   }
 }

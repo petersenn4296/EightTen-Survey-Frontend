@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Button, Input } from 'react-materialize'
+import { Row, Col, Button, Input } from 'react-materialize'
 import { initializeQuestions, navigateDispatch } from '../actions'
 import ScaleQuestion from './ScaleQuestion'
 import TextQuestion from './TextQuestion'
@@ -44,14 +44,12 @@ class SurveyQuestionView extends Component {
   render() {
     const { newSurveyQuestions, client_id, navigateDispatch } = this.props
     return (
-      <Row className='container center-align'>
-        <Row>
+      <div className='container'>
+        <Col className='center-align progress_number'>
           {newSurveyQuestions ? `${this.props.questionIndex + 1} / ${newSurveyQuestions.length}` : null}
-        </Row>
-        <Row>
-          {this.generateQuestion()}
-        </Row>
-      </Row>
+        </Col>
+        {this.generateQuestion()}
+      </div>
     )
   }
 }
