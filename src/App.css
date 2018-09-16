@@ -71,6 +71,28 @@
   background-color: white;
   background-opacity: 0.7;
   box-shadow: 2px 2px 9px;
+
+ /* Materialize tabs styling */
+/*Black color to the text*/
+.tabs .tab a{
+    color:#ee632b;
+    font-size: 10px;
+}
+
+/*Text color on hover*/
+.tabs .tab a:hover {
+    background-color:#eee;
+}
+
+/*Background and text color when a tab is active*/
+.tabs .tab a.active {
+    background-color:#f5f5f5;
+    color:#ee632b;
+}
+
+/*Color of underline*/
+.tabs .indicator {
+    background-color:#ee632b;
 }
 
 /* button styling  */
