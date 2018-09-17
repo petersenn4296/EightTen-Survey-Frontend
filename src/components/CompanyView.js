@@ -22,7 +22,10 @@ class CompanyView extends Component {
     return Number(result / arr.length).toFixed(2)
   }
 
+
   render() {
+    console.log(this.props);
+    
     const { item, traits, employee_impact, community_impact, talent_lifecycle } = this.props
     let employee_impact_average = this.averageScore(employee_impact)
     let community_impact_average = this.averageScore(community_impact)
@@ -34,14 +37,14 @@ class CompanyView extends Component {
     ])
 
     return (
-      <Row className="container center-align">
+      <Row className="container center-align login_box">
         <h4>{item.company_name} {company_average ? ` | Avg. Score: ${company_average}` : ` | Avg. Score: 0`}</h4>
         <Row>
-          {traits ? <List data={traits} employee_impact={employee_impact_average} community_impact={community_impact_average} talent_lifecycle_average={talent_lifecycle}/> : null}
+          {traits ? <List data={traits} employee_impact={employee_impact_average} community_impact={community_impact_average} talent_lifecycle={talent_lifecycle_average}/> : null}
         </Row>
-        <Row>
+        {/* <Row>
           <Input name='on' type='switch' value='1' />
-        </Row>
+        </Row> */}
       </Row>
     )
   }

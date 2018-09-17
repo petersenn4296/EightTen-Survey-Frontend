@@ -17,7 +17,7 @@ class CTSView extends Component {
     let { CTSView, changeCTSView, button1, button2 } = this.props
     let data = this.props[CTSView.toLowerCase()]
     return (
-      <div>
+      <div className="cts_box">
         <Row className="container center-align">
             <h4 id="cts-header">{CTSView}</h4>
         </Row>

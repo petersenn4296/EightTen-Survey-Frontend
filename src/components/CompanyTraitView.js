@@ -10,7 +10,7 @@ class CompanyTraitView extends Component {
     const { item, client } = this.props
         console.log('client', client);
     return (
-      <Row className="container center-align">
+      <Row className="container center-align login_box">
         <h4>{item.company_name}</h4>
         <Row>
           {client ? <AccordionView data={client}/> : null}

@@ -314,7 +314,7 @@ export const login = (email, password) => {
       }
     })
     const userData = await response.json()
-    console.log('userdata', userData);
+    console.log(userData);
     dispatch({
       type: LOGIN,
       payload: userData

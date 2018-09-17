@@ -25,21 +25,25 @@ class SpecificQuestionView extends Component {
       mcData.push('mc', 'nested', 'scale')
     }
 
-    if (questionObj.type === 'nested') {
-      console.log('yeeeehaawwwwww');
-    }
+    console.log(item);
 
     return (
-      <Row className="container">
-          <Input
-            s={12}
-            placeholder="Enter your question..."
-            label="Question"
-            validate defaultValue={item.question}
-            type="text"
-            name="question"
-            onChange={(e)=> questionDataDispatch('question', e.target.value)}
-          />
+      <Row className="container cts_box center-align">
+        { item.question ?
+           <div className="question">Edit Question</div> :
+           <div className="question">New Question</div>
+        }
+          <Row className='left-align'>
+            <Input
+              s={12}
+              placeholder="Enter your question..."
+              label="Question"
+              validate defaultValue={item.question}
+              type="text"
+              name="question"
+              onChange={(e)=> questionDataDispatch('question', e.target.value)}
+            />
+          </Row>
           <TraitMultipleChoice
             label="trait_id"
             defaultValue={traits[0]}
