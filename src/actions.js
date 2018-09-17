@@ -240,16 +240,17 @@ export const loadTrait = () => {
   }
 }
 
-export const loadTraits = () => {
-  return async dispatch => {
-    const response = await fetch(`${API}traits`)
-    const traits = await response.json()
-    dispatch({
-      type: LOAD_TRAITS,
-      payload: traits
-    })
-  }
-}
+// export const loadTraits = () => {
+//   return async dispatch => {
+//     const response = await fetch(`${API}traits`)
+//     const traits = await response.json()
+//     console.log('traits actions', traits);
+//     dispatch({
+//       type: LOAD_TRAITS,
+//       payload: traits
+//     })
+//   }
+// }
 
 export const loadSurvey = (id) => {
   return async dispatch => {

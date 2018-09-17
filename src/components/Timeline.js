@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { VerticalTimeline, VerticalTimelineElement, WorkIcon }  from 'react-vertical-timeline-component';
-// import { Icon } from 'react-materialize'
+import { Icon } from 'react-materialize'
 
 import 'react-vertical-timeline-component/style.min.css';
 
@@ -15,7 +15,7 @@ export default class Timeline extends Component {
             return (
               <VerticalTimelineElement
                 className="vertical-timeline-element--work "
-                iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                iconStyle={{ background: '#1f73be', color: '#fff' }}
                 >
                   <p>
                     {response.response}

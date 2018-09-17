@@ -3,19 +3,21 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Row, Button, Icon } from 'react-materialize'
 import List from './List'
-import { changeCTSView, loadSurveys, loadTraits, loadClients } from '../actions'
+import { changeCTSView, loadSurveys, loadClients, loadTrait } from '../actions'
 
 class CTSView extends Component {
 
   async componentDidMount() {
     this.props.loadClients()
-    this.props.loadTraits()
+    this.props.loadTrait()
     this.props.loadSurveys()
   }
 
   render() {
     let { CTSView, changeCTSView, button1, button2 } = this.props
     let data = this.props[CTSView.toLowerCase()]
+    console.log('traits', this.props.traits);
+    console.log('data', data);
     return (
       <div className="cts_box">
         <Row className="container center-align">
@@ -50,7 +52,7 @@ class CTSView extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   changeCTSView,
-  loadTraits,
+  loadTrait,
   loadClients,
   loadSurveys
 }, dispatch)
