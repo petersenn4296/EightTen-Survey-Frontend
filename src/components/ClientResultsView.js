@@ -26,26 +26,35 @@ class ClientResultsView extends Component {
   render() {
     const { employee_impact, community_impact, talent_lifecycle, company_name, traits } = this.props
     const data = {
-      labels: ['Employee Impact', 'Community Impact', 'Talent Life Cycle'],
+      labels: ['Employee Impact', 'Communication', 'Community Impact', 'Talent Life Cycle', 'Policy and Procedure'],
       datasets: [
         {
-          label: 'Inclusion Dispersion',
+          label: 'Your Score',
           backgroundColor: 'rgba(238, 99, 43, 0.4)',
           borderColor: 'rgba(179,181,198,1)',
           pointBackgroundColor: 'rgba(179,181,198,0.4)',
           pointBorderColor: '#fff',
           pointHoverBackgroundColor: '#fff',
           pointHoverBorderColor: 'rgba(179,181,198,1)',
-          data: [this.averageScore(employee_impact), this.averageScore(community_impact), this.averageScore(talent_lifecycle)]
+          data: [this.averageScore(employee_impact), 4, this.averageScore(community_impact), this.averageScore(talent_lifecycle), 6]
         },
         { label: '',
           backgroundColor: 'rgba(0, 0, 0, 0)',
-          borderColor: 'rgba(0,0,0,0)',
-          pointBackgroundColor: 'rgba(0,00,0,0)',
+          borderColor: 'rgba(0, 0, 0, 0)',
+          pointBackgroundColor: 'rgba(0, 0, 0, 0)',
           pointBorderColor: '#fff',
           pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgba(0,0,0,0)',
-          data: [0, 9, 8]
+          pointHoverBorderColor: 'rgba(0, 0, 0, 0)',
+          data: [0, 0, 0, 0, 10]
+        },
+        { label: 'Average Score',
+          backgroundColor: 'rgba(25, 25, 25, 0.6)',
+          borderColor: 'rgba(25, 25, 25, 0.6)',
+          pointBackgroundColor: 'rgba(25, 25, 25, 0.6)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(25, 25, 25, 0.6)',
+          data: [4.2, 5.4, 4.2, 5.1, 6.1]
         }
       ]
     }
@@ -62,36 +71,26 @@ class ClientResultsView extends Component {
         <Col>
           <Tabs className='z-depth-1 tabs-fixed-width'>
               <Tab title="Employee Impact" active>
-                {/* <Row>
-                  {employee_impact ? `Score: ${data.datasets[0].data[0]}` : null}
-                </Row> */}
-                <Row className="response">
+                <div className="response center-align">
                   {traits ? traits[0].response : null}
-                </Row>
+                </div>
               </Tab>
 
-              <Tab title="Community Impact">
-                {/* <Row>
-                  {community_impact ? `Score: ${data.datasets[0].data[1]}` : null}
-                </Row> */}
-                <Row className="response">
+              <Tab title="Community Impact" >
+                <div className="response center-align">
                   {traits ? traits[1].response : null}
-                </Row>
+                </div>
               </Tab>
 
               <Tab title="Talent Life Cycle">
-                {/* <Row>
-                  {talent_lifecycle ? `Score: ${data.datasets[0].data[2]}` : null}
-                </Row> */}
-                <Row className="response">
+                <div className="response center-align">
                   {traits ? traits[2].response : null}
-                </Row>
+                </div>
               </Tab>
           </Tabs>
         </Col>
       </div>
-      </div>
-
+    </div>
     )
   }
 }

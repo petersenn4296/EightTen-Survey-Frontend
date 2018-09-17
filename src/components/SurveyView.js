@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Row, Button } from 'react-materialize'
 import { navigateDispatch, loadSurvey, questionDataDispatch } from '../actions'
-import List from './List'
+import SurveyList from './SurveyList'
 
 class SurveyView extends Component {
 
@@ -17,10 +17,9 @@ class SurveyView extends Component {
   render() {
     const { navigateDispatch, survey } = this.props
     return (
-      <Row>
+      <Row className="cts_box">
         <Row className="container">
-          hello survey view
-          {survey[0] ? <List data={survey}/> : null}
+          {survey[0] ? <SurveyList data={survey}/> : null}
         </Row>
         <Row className="center-align">
           <Button className='eightten_button' onClick={() => navigateDispatch('SpecificQuestionView', {type: 'scale'})}>Add Question</Button>

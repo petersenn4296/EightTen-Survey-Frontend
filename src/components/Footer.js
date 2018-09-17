@@ -1,31 +1,14 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
 import { Row, Col } from 'react-materialize'
-import BackButton from './BackButton'
 
-class Footer extends Component {
+export default class Footer extends Component {
   render() {
-    const { back } = this.props
+    const { back, is_admin } = this.props
     return (
-      <div className="footer-copyright">
-        <Col className="center-align">{back > 0 ? <BackButton/> : null}</Col>
-        <div className="container">
-          © 2018 EightTen LLC  |  All Rights Reserved.
-        </div>
-      </div>
+      <footer className="footer">
+        <div className="blue_bar"></div>
+            © 2018 EightTen LLC  |  All Rights Reserved.
+      </footer>
     )
   }
 }
-
-const mapStateToProps = state => {
-  const props = {
-    back: state.mainReducer.back
-  }
-  return props
-}
-
-export default connect(
-  mapStateToProps,
-  null
-)(Footer);

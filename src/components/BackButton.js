@@ -10,7 +10,7 @@ class BackButton extends Component {
     const { back } = this.props
     return (
         <Button
-          className='back'
+          className='eightten_button'
           onClick={() => {
             back()
           }}

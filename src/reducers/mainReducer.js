@@ -265,13 +265,13 @@ export default (state = initialState, action) => {
     }
 
     case LOGIN:
-    console.log('action payload', action.payload);
       if (action.payload.errorMessage) {
         return {
           ...state,
           login_error: action.payload.errorMessage
         }
       } else if (action.payload.is_admin) {
+        backStack.push('CTSView', null, 'company_name')
         state.back++
         return {
           ...state,
@@ -280,10 +280,10 @@ export default (state = initialState, action) => {
           company_name: action.payload.company_name,
           is_admin: action.payload.is_admin,
           is_logged_in: true,
-          view: 'CTSView'
+          view: 'CTSView',
+          CTSView: 'Clients'
         }
       } else if(!action.payload.is_admin) {
-        state.back++
         return {
           ...state,
           first_name: action.payload.first_name,

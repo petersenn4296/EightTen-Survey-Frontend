@@ -16,6 +16,11 @@
   width: 100vw;
 }
 
+.survey_list {
+  height: 400px;
+  overflow: scroll;
+}
+
 .result {
   margin-top: -200px;
   padding-top: 1vw;
@@ -37,7 +42,9 @@
 }
 
 .response {
-  margin-top: 20px;
+  margin: 20px auto;
+  width: 300px;
+  overflow: scroll;
 }
 
 .footer-copyright {
@@ -116,6 +123,16 @@ padding: 0px 24% !important;
   box-shadow: 2px 2px 9px;
 }
 
+.cts_box {
+  border: 2px solid #7a758133;
+  padding: 20px 20px 20px 20px;
+  margin: -200px auto 150px auto;
+  width: 80%;
+  background-color: white;
+  background-opacity: 0.7;
+  box-shadow: 2px 2px 9px;
+}
+
  /* Materialize tabs styling */
 /*Black color to the text*/
 .tabs .tab a{
@@ -144,7 +161,7 @@ padding: 0px 24% !important;
   background: #ffffff;
   text-transform: uppercase;
   color: #7a7581;
-  margin-top: 14px;
+  margin: 14px 15px auto 15px;
   border-width: 2px;
   border-style: solid;
   border-color: #7a7581;
@@ -297,4 +314,20 @@ Input[type=number]:focus:not(.broswer-default){
 
 Input[type=number]:focus:not(.broswer-default)+label{
   color : #1e73be;
+}
+
+html {
+  height: 100%;
+}
+
+.footer {
+  margin-top: 21%;
+  padding: 5px 5px 5px 20px;
+  color: #999999;
+}
+
+.blue_bar {
+  height: 1px;
+  background-color: #999999;
+  margin-bottom: 10px;
 }

@@ -9,10 +9,9 @@ class TraitView extends Component {
   render() {
     const { item, questionDataDispatch, editTraitResponse } = this.props
     return (
-      <Row className="container center-align">
+      <Row className="container center-align cts_box">
         <Input
           s={12}
-          placeholder="Enter your question..."
           label="Response"
           validate defaultValue={item.response}
           type="text"

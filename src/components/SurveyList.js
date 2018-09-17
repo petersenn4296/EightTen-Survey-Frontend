@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Collection, CollectionItem } from 'react-materialize'
 import { navigateDispatch } from '../actions'
 
-class List extends Component {
+class SurveyList extends Component {
   render() {
     let { CTSView, dataText, navigateDispatch, data, employee_impact, community_impact, talent_lifecycle } = this.props
     let destination = CTSView
@@ -15,7 +15,7 @@ class List extends Component {
       destination = 'CompanyTraitView'
     }
     return (
-      <Collection className="container center-align">
+      <Collection className="container center-align survey_list">
         {data.map(item => {
           let itemText = ''
           itemText = item[dataText]
@@ -29,6 +29,7 @@ class List extends Component {
               scoreText = talent_lifecycle
             }
           }
+
           return <CollectionItem key={itemText} onClick={() => navigateDispatch(destination, item)}>{itemText}{scoreText ? ` [Avg. Score: ${scoreText}]` : null }</CollectionItem>
         }
       )}
@@ -52,4 +53,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(List);
+)(SurveyList);
