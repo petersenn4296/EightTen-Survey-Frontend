@@ -24,8 +24,7 @@ class CompanyView extends Component {
 
 
   render() {
-    console.log(this.props);
-    
+
     const { item, traits, employee_impact, community_impact, talent_lifecycle } = this.props
     let employee_impact_average = this.averageScore(employee_impact)
     let community_impact_average = this.averageScore(community_impact)
