@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { Row, Col, Tab, Tabs } from 'react-materialize'
-import { loadResults, loadTraits, loadTrait } from '../actions'
+import { loadResults, loadTrait } from '../actions'
 import { Radar } from 'react-chartjs-2';
 import Timeline from './Timeline'
 
@@ -12,7 +12,7 @@ class ClientResultsView extends Component {
 
   async componentDidMount() {
     this.props.loadResults(this.props.client_id)
-    this.props.loadTraits()
+    // this.props.loadTraits()
     this.props.loadTrait()
   }
 
@@ -90,7 +90,6 @@ class ClientResultsView extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   loadResults,
-  loadTraits,
   loadTrait
 }, dispatch)
 
