@@ -225,13 +225,17 @@ export const loadResults = (id) => {
   }
 }
 
-export const loadTrait = (id) => {
+export const loadTrait = () => {
   return async dispatch => {
-    const response = await fetch(`${API}traits/${id}`)
-    const trait = await response.json()
+    const response1 = await fetch(`${API}traits/1`)
+    const trait1 = await response1.json()
+    const response2 = await fetch(`${API}traits/2`)
+    const trait2 = await response2.json()
+    const response3 = await fetch(`${API}traits/3`)
+    const trait3 = await response3.json()
     dispatch({
-      type: LOAD_TRAITS,
-      payload: trait
+      type: LOAD_TRAIT,
+      payload: {trait1_responses: trait1, trait2_responses: trait2, trait3_responses: trait3}
     })
   }
 }

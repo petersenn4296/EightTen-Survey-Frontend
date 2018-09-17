@@ -249,7 +249,9 @@ export default (state = initialState, action) => {
     case LOAD_TRAIT:
       return {
         ...state,
-        trait: action.payload
+        trait1_responses: action.payload.trait1_responses,
+        trait2_responses: action.payload.trait2_responses,
+        trait3_responses: action.payload.trait3_responses
     }
 
     case LOAD_SURVEYS:

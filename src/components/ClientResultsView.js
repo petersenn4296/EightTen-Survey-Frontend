@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { Row, Col, Tab, Tabs } from 'react-materialize'
-import { loadResults, loadTraits } from '../actions'
+import { loadResults, loadTraits, loadTrait } from '../actions'
 import { Radar } from 'react-chartjs-2';
+import Timeline from './Timeline'
 
 
 class ClientResultsView extends Component {
@@ -12,6 +13,7 @@ class ClientResultsView extends Component {
   async componentDidMount() {
     this.props.loadResults(this.props.client_id)
     this.props.loadTraits()
+    this.props.loadTrait()
   }
 
   averageScore = (arr) => {
@@ -24,7 +26,7 @@ class ClientResultsView extends Component {
   }
 
   render() {
-    const { employee_impact, community_impact, talent_lifecycle, company_name, traits } = this.props
+    const { employee_impact, community_impact, talent_lifecycle, company_name, traits, trait1_responses, trait2_responses, trait3_responses } = this.props
     const data = {
       labels: ['Employee Impact', 'Communication', 'Community Impact', 'Talent Life Cycle', 'Policy and Procedure'],
       datasets: [
@@ -71,20 +73,20 @@ class ClientResultsView extends Component {
         <Col>
           <Tabs className='z-depth-1 tabs-fixed-width'>
               <Tab title="Employee Impact" active>
-                <div className="response center-align">
-                  {traits ? traits[0].response : null}
+                <div className="timeline center-align">
+                  <Timeline responses={trait1_responses}/>
                 </div>
               </Tab>
 
               <Tab title="Community Impact" >
-                <div className="response center-align">
-                  {traits ? traits[1].response : null}
+                <div className="timeline center-align">
+                  <Timeline responses={trait2_responses}/>
                 </div>
               </Tab>
 
               <Tab title="Talent Life Cycle">
-                <div className="response center-align">
-                  {traits ? traits[2].response : null}
+                <div className="timeline center-align">
+                  <Timeline responses={trait3_responses}/>
                 </div>
               </Tab>
           </Tabs>
@@ -97,7 +99,8 @@ class ClientResultsView extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   loadResults,
-  loadTraits
+  loadTraits,
+  loadTrait
 }, dispatch)
 
 const mapStateToProps = state => {
@@ -108,7 +111,10 @@ const mapStateToProps = state => {
     community_impact: state.mainReducer.community_impact,
     talent_lifecycle: state.mainReducer.talent_lifecycle,
     company_name: state.mainReducer.company_name,
-    traits: state.mainReducer.traits
+    traits: state.mainReducer.traits,
+    trait1_responses: state.mainReducer.trait1_responses,
+    trait2_responses: state.mainReducer.trait2_responses,
+    trait3_responses: state.mainReducer.trait3_responses
   }
 }
 
