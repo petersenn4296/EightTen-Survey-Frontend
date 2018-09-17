@@ -15,8 +15,28 @@ export const UPDATE_CREDENTIALS = 'UPDATE_CREDENTIALS'
 export const LOGIN = 'LOGIN'
 export const ADD_OPTION = 'ADD_OPTION'
 export const NEW_USER = 'NEW_USER'
+export const RETRIEVE_QUESTIONS_BY_CLIENT_ID = 'RETRIEVE_QUESTIONS_BY_CLIENT_ID'
+export const INITIALIZE_QUESTIONS = 'INITIALIZE_QUESTIONS'
+export const SUBMIT_ANSWER = 'SUBMIT_ANSWER'
+export const LOAD_RESULTS = 'LOAD_RESULTS'
+
 
 const API = 'http://localhost:3000/'
+
+export const submitAnswer = (postObj) => {
+  return async dispatch => {
+    const response = await fetch(`${API}client_response`, {
+      method: 'POST',
+      body: JSON.stringify(postObj),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    const postedObj = await response.json()
+    dispatch ({type: SUBMIT_ANSWER})
+  }
+}
 
 export const addOption = (optionObj) => {
   return {
@@ -43,11 +63,9 @@ export const editTraitResponse = (response, id) => {
 }
 
 export const addQuestion = (question) => {
-  if(question.id){  //if question is existing question
-    // make patch request; adjust logic to accomidate pre populate patch types values mc and on
+  if(question.id){
     let obj = {
       question: question.question,
-      value: question.value, //scale value?
       type: question.type
     }
     return async dispatch => {
@@ -62,8 +80,7 @@ export const addQuestion = (question) => {
     }
   } else {      /// new question post **MVP**
     return async dispatch => {
-      console.log(question)
-      console.log(question.type)
+
       const response = await fetch(`${API}questions`, {
         method: 'POST',
         body: JSON.stringify(question),
@@ -72,22 +89,22 @@ export const addQuestion = (question) => {
           'Accept': 'application/json',
         }
       })
+
       if (question.type === 'mc' || question.type === 'nested') {
         const questionID = await response.json()
         let optionsObj = {
           [questionID]: question.optionsArray
         }
-        console.log(optionsObj);
-        // multiple_choice post route sends {ID#: Array(2)}
-        // await fetch(`${API}multiple_choice`, {
-        //   method: 'POST',
-        //   body: JSON.stringify(),
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     'Accept': 'application/json',
-        //   }
-        // })
+        fetch(`${API}multiple_choice`, {
+          method: 'POST',
+          body: JSON.stringify(optionsObj),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          }
+        })
       }
+      // back(dispatch)
       dispatch ({
         type: ADD_QUESTION
       })
@@ -189,13 +206,36 @@ export const loadClient = (id) => {
   }
 }
 
-export const loadTrait = (id) => {
+export const loadResults = (id) => {
   return async dispatch => {
-    const response = await fetch(`${API}traits/${id}`)
-    const trait = await response.json()
+    const response = await fetch(`${API}users/${id}/results`)
+    const client = await response.json()
+    const employeeImpactQuestions = client.filter(client => client.trait_id === 1)
+    const communityImpactQuestions = client.filter(client => client.trait_id === 2)
+    const talentLifeCycleQuestions = client.filter(client => client.trait_id === 3)
     dispatch({
-      type: LOAD_TRAITS,
-      payload: trait
+      type: LOAD_CLIENT,
+      payload: {
+        client: client,
+        employee_impact: employeeImpactQuestions,
+        community_impact: communityImpactQuestions,
+        talent_lifecycle: talentLifeCycleQuestions
+      }
+    })
+  }
+}
+
+export const loadTrait = () => {
+  return async dispatch => {
+    const response1 = await fetch(`${API}traits/1`)
+    const trait1 = await response1.json()
+    const response2 = await fetch(`${API}traits/2`)
+    const trait2 = await response2.json()
+    const response3 = await fetch(`${API}traits/3`)
+    const trait3 = await response3.json()
+    dispatch({
+      type: LOAD_TRAIT,
+      payload: {trait1_responses: trait1, trait2_responses: trait2, trait3_responses: trait3}
     })
   }
 }
@@ -278,27 +318,17 @@ export const login = (email, password) => {
       }
     })
     const userData = await response.json()
-    if (userData.errorMessage) {
-      dispatch({
-        type: LOGIN,
-        payload: userData
-      })
-    } else if (userData.is_admin) {
-      navigate(dispatch, 'CTSView')
-      dispatch({
-        type: LOGIN,
-        payload: userData
-      })
-    } else if (!userData.is_admin) {
-      dispatch({
-        type: LOGIN,
-        payload: userData
-      })
-    }
+    console.log(userData);
+    dispatch({
+      type: LOGIN,
+      payload: userData
+    })
   }
 }
 
 export const newUser = (email, password, first_name, last_name, phone, company_name) => {
+  // let hashWord = hashSync(password)
+  // console.log('hashWord', hashWord);
   const user = { email, password, first_name, last_name, phone, company_name }
   return async dispatch => {
     const response = await fetch(`${API}users`, {
@@ -316,4 +346,92 @@ export const newUser = (email, password, first_name, last_name, phone, company_n
       payload: userData
     })
   }
+}
+
+export const retrieveQuestionsByClientId = (client_id) => {
+  return async dispatch => {
+    const response = await fetch(`${API}questions/client_id/${client_id}`)
+    const questions = await response.json()
+    dispatch({
+      type: RETRIEVE_QUESTIONS_BY_CLIENT_ID,
+      payload: questions
+    })
+  }
+}
+//////////////////////////////////////////returns random survey///////////////
+const randomQuestions = (arr) => {
+  let result = []
+  let choices = [...arr]
+  while (result.length < 3) {
+   let index = Math.floor(Math.random() * choices.length)
+   result.push(choices[index])
+   choices.splice(index, 1)
+  }
+  return result
+}
+
+const randomize = (arr) => {
+  let result = []
+  let choices = [...arr]
+  while (choices.length > 0) {
+   let index = Math.floor(Math.random() * choices.length)
+   result.push(choices[index])
+   choices.splice(index, 1)
+  }
+ return result
+}
+
+const joinChoices = (arr, choices) => {
+ for (let i = 0; i < arr.length; i++){
+   if (arr[i].type === 'mc' || arr[i].type === 'nested'){
+     arr[i].choices = []
+     for (let j = 0; j < choices.length; j++){
+       if (choices[j].question_id === arr[i].id){
+         arr[i].choices.push(choices[j])
+       }
+     }
+   }
+ }
+ return arr
+}
+
+const sortQuestions = (questions, choices) => {
+  let sortedQuestions = {
+    1: [],
+    2: [],
+    3: []
+  }
+  for (let i = 0; i < questions.length; i++) {
+    if (questions[i].trait_id === 1) {
+      sortedQuestions[1].push(questions[i])
+    }
+    if (questions[i].trait_id === 2) {
+      sortedQuestions[2].push(questions[i])
+    }
+    if (questions[i].trait_id === 3) {
+      sortedQuestions[3].push(questions[i])
+    }
+  }
+  let result = []
+  for (let i = 1 ; i <= 3; i ++ ) {
+    result.push(...randomQuestions(sortedQuestions[i]))
+  }
+  result = randomize(result)
+  result = joinChoices(result, choices)
+  return result
+}
+///////////////////////////////////////////////////////////
+
+export const initializeQuestions = () => {
+ return async dispatch => {
+   const questionCall = await fetch(`${API}questions`)
+   const questions = await questionCall.json()
+   const multipleChoiceCall = await fetch(`${API}multiple_choice`)
+   const choices = await multipleChoiceCall.json()
+   let randomizedQuestions = sortQuestions(questions, choices)
+   dispatch({
+     type: INITIALIZE_QUESTIONS,
+     payload: { newSurveyQuestions: randomizedQuestions}
+   })
+ }
 }

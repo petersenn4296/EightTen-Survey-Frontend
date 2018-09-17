@@ -5,13 +5,13 @@ import { Row, Input, Button} from 'react-materialize'
 import TraitMultipleChoice from './TraitMultipleChoice'
 import TypeMultipleChoice from './TypeMultipleChoice'
 import CreateMultipleChoiceOptions from './CreateMultipleChoiceOptions'
-import { questionDataDispatch, addQuestion } from '../actions'
+import { questionDataDispatch, addQuestion, back } from '../actions'
 
 
 class SpecificQuestionView extends Component {
 
   render() {
-    const { item, questionDataDispatch, addQuestion, questionObj } = this.props
+    const { item, questionDataDispatch, addQuestion, questionObj, back } = this.props
     const traits = ['Employee Impact', 'Community Impact', 'Talent Life Cycle']
 
     const mcData = [item.type]
@@ -25,21 +25,25 @@ class SpecificQuestionView extends Component {
       mcData.push('mc', 'nested', 'scale')
     }
 
-    if (questionObj.type === 'nested') {
-      console.log('yeeeehaawwwwww');
-    }
+    console.log(item);
 
     return (
-      <Row className="container">
-          <Input
-            s={12}
-            placeholder="Enter your question..."
-            label="Question"
-            validate defaultValue={item.question}
-            type="text"
-            name="question"
-            onChange={(e)=> questionDataDispatch('question', e.target.value)}
-          />
+      <Row className="container cts_box center-align">
+        { item.question ?
+           <div className="question">Edit Question</div> :
+           <div className="question">New Question</div>
+        }
+          <Row className='left-align'>
+            <Input
+              s={12}
+              placeholder="Enter your question..."
+              label="Question"
+              validate defaultValue={item.question}
+              type="text"
+              name="question"
+              onChange={(e)=> questionDataDispatch('question', e.target.value)}
+            />
+          </Row>
           <TraitMultipleChoice
             label="trait_id"
             defaultValue={traits[0]}
@@ -68,18 +72,7 @@ class SpecificQuestionView extends Component {
           { questionObj.type === 'mc' || questionObj.type === 'nested' ?
            <CreateMultipleChoiceOptions/>
            : null }
-          { questionObj.type === 'scale' ?
-            <Input
-              s={12}
-              placeholder="5"
-              label="Value"
-              type="text"
-              name="value"
-              onChange={(e)=> questionDataDispatch('scale_value', e.target.value)}
-            />
-           : null
-          }
-          <Button className='eightten_button' type='submit' value='Submit' onClick={()=>addQuestion(questionObj)}>Submit</Button>
+          <Button className='eightten_button' type='submit' value='Submit' onClick={()=>{addQuestion(questionObj); window.Materialize.toast('Question added!', 10000); back()}}>Submit</Button>
       </Row>
     )
   }
@@ -87,7 +80,8 @@ class SpecificQuestionView extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   questionDataDispatch,
-  addQuestion
+  addQuestion,
+  back
 }, dispatch)
 
 const mapStateToProps = state => {

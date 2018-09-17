@@ -15,7 +15,11 @@ import {
   UPDATE_CREDENTIALS,
   LOGIN,
   ADD_OPTION,
-  NEW_USER
+  NEW_USER,
+  RETRIEVE_QUESTIONS_BY_CLIENT_ID,
+  INITIALIZE_QUESTIONS,
+  SUBMIT_ANSWER,
+  LOAD_RESULTS
 } from '../actions'
 
 const initialState = {
@@ -29,7 +33,6 @@ const initialState = {
   back: 0,
   questionObj: {
     survey_id: null,
-    scale_value: null,
     question: null,
     type: null,
     optionsArray: []
@@ -43,8 +46,12 @@ const initialState = {
   password: '',
   is_admin: false,
   first_name: '',
+  client_id: null,
   is_logged_in: false,
-  login_error: ''
+  login_error: '',
+  questions: {},
+  questionIndex: 0,
+  company_name: null
 }
 
 class Stack {
@@ -99,6 +106,19 @@ export default (state = initialState, action) => {
         trait_id: ap.trait_id,
         viewData: viewData
       }
+
+    case SUBMIT_ANSWER:
+    if (state.questionIndex === 8) {
+      return {
+        ...state,
+        view: 'ClientResultsView'
+      }
+    } else {
+      return {
+        ...state,
+        questionIndex: state.questionIndex + 1
+      }
+    }
 
     case EDIT_RESPONSE:
       return {
@@ -156,8 +176,12 @@ export default (state = initialState, action) => {
         password: '',
         is_admin: false,
         first_name: '',
+        client_id: null,
         is_logged_in: false,
-        login_error: ''
+        login_error: '',
+        questions: {},
+        questionIndex: 0,
+        company_name: null
       }
     } else {
       if (back.view === 'CTSView') {
@@ -201,6 +225,12 @@ export default (state = initialState, action) => {
         clients: action.payload
     }
 
+    case LOAD_RESULTS:
+      return {
+        ...state,
+        clients: action.payload
+    }
+
     case LOAD_CLIENT:
       return {
         ...state,
@@ -219,7 +249,9 @@ export default (state = initialState, action) => {
     case LOAD_TRAIT:
       return {
         ...state,
-        trait: action.payload
+        trait1_responses: action.payload.trait1_responses,
+        trait2_responses: action.payload.trait2_responses,
+        trait3_responses: action.payload.trait3_responses
     }
 
     case LOAD_SURVEYS:
@@ -240,12 +272,28 @@ export default (state = initialState, action) => {
           ...state,
           login_error: action.payload.errorMessage
         }
-      } else {
+      } else if (action.payload.is_admin) {
+        backStack.push('CTSView', null, 'company_name')
+        state.back++
         return {
           ...state,
           first_name: action.payload.first_name,
+          client_id: action.payload.client_id,
+          company_name: action.payload.company_name,
           is_admin: action.payload.is_admin,
-          is_logged_in: true
+          is_logged_in: true,
+          view: 'CTSView',
+          CTSView: 'Clients'
+        }
+      } else if(!action.payload.is_admin) {
+        return {
+          ...state,
+          first_name: action.payload.first_name,
+          client_id: action.payload.client_id,
+          company_name: action.payload.company_name,
+          is_admin: action.payload.is_admin,
+          is_logged_in: true,
+          view: 'ClientResultsView'
         }
       }
 
@@ -254,7 +302,21 @@ export default (state = initialState, action) => {
         ...state,
         first_name: action.payload.first_name,
         is_admin: action.payload.is_admin,
-        is_logged_in: true
+        client_id: action.payload.id,
+        is_logged_in: true,
+        view: 'SurveyQuestionView'
+      }
+
+    case RETRIEVE_QUESTIONS_BY_CLIENT_ID:
+      return {
+        ...state,
+
+      }
+
+    case INITIALIZE_QUESTIONS:
+      return {
+        ...state,
+        newSurveyQuestions: action.payload.newSurveyQuestions
       }
 
 

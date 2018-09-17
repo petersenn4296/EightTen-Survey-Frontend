@@ -27,7 +27,7 @@ class ClientIntakeForm extends Component {
               onClick={() => {
                 newUser(email, password, first_name, last_name, phone, company_name)
               }}
-              className='eightten_button'
+              className='eightten_button modal-close'
               id="new-user-button"
               waves='light'>
               Create Account<Icon left>cloud</Icon>

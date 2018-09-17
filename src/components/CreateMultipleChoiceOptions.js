@@ -33,7 +33,7 @@ class CreateMultipleChoiceOptions extends Component {
           name="value"
           onChange={(e)=> optionObj[e.target.name] = e.target.value}
         />
-        <Button type='submit' value='Submit' onClick={()=> addOption(optionObj)}>add multiple choice option</Button>
+        <Button className="eightten_button" type='submit' value='Submit' onClick={()=> addOption(optionObj)}>add multiple choice option</Button>
       </Row>
     )
   }
