@@ -35,6 +35,14 @@ class LoginForm extends Component {
           </Col>
         <Col className="center-align">
           {login_error ? <span className="error-text">{login_error}</span> : null}
+          <br></br>
+          <Button
+            className='eightten_button'
+            onClick={() => login(email, password)}
+            id="login-button">
+            log in
+            <Icon left>cloud</Icon>
+          </Button>
           <Modal
             fixedFooter
             id="sign-up-modal"
@@ -46,13 +54,6 @@ class LoginForm extends Component {
             </Button>}>
               <ClientIntakeForm/>
           </Modal>
-          <Button
-            className='eightten_button'
-            onClick={() => login(email, password)}
-            id="login-button">
-            log in
-            <Icon left>cloud</Icon>
-          </Button>
         </Col>
 
       </Col>

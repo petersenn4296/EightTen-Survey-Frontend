@@ -25,36 +25,28 @@ class ClientResultsView extends Component {
 
   render() {
     const { employee_impact, community_impact, talent_lifecycle, company_name, traits } = this.props
+
     const data = {
-      labels: ['Employee Impact', 'Communication', 'Community Impact', 'Talent Life Cycle', 'Policy and Procedure'],
+      labels: ['Employee Impact', 'Community Impact', 'Talent Life Cycle'],
       datasets: [
         {
           label: 'Your Score',
           backgroundColor: 'rgba(238, 99, 43, 0.4)',
           borderColor: 'rgba(179,181,198,1)',
-          pointBackgroundColor: 'rgba(179,181,198,0.4)',
+          pointBackgroundColor: 'rgba(238, 99, 43, 1)',
           pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
+          pointHoverBackgroundColor: '#ee632b',
           pointHoverBorderColor: 'rgba(179,181,198,1)',
-          data: [this.averageScore(employee_impact), 4, this.averageScore(community_impact), this.averageScore(talent_lifecycle), 6]
-        },
-        { label: '',
-          backgroundColor: 'rgba(0, 0, 0, 0)',
-          borderColor: 'rgba(0, 0, 0, 0)',
-          pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgba(0, 0, 0, 0)',
-          data: [0, 0, 0, 0, 10]
+          data: [this.averageScore(employee_impact), this.averageScore(community_impact), this.averageScore(talent_lifecycle)]
         },
         { label: 'Average Score',
-          backgroundColor: 'rgba(25, 25, 25, 0.6)',
+          backgroundColor: 'rgba(25, 25, 25, 0.1)',
           borderColor: 'rgba(25, 25, 25, 0.6)',
-          pointBackgroundColor: 'rgba(25, 25, 25, 0.6)',
+          pointBackgroundColor: 'rgba(25, 25, 25, 0.4)',
           pointBorderColor: '#fff',
           pointHoverBackgroundColor: '#fff',
           pointHoverBorderColor: 'rgba(25, 25, 25, 0.6)',
-          data: [4.2, 5.4, 4.2, 5.1, 6.1]
+          data: [4.2, 5.1, 6.1]
         }
       ]
     }
