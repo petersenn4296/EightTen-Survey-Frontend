@@ -25,8 +25,6 @@ class SpecificQuestionView extends Component {
       mcData.push('mc', 'nested', 'scale')
     }
 
-    console.log(item);
-
     return (
       <Row className="container cts_box center-align">
         { item.question ?
