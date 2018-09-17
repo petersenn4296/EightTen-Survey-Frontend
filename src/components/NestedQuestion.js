@@ -18,13 +18,13 @@ class NestedQuestion extends Component {
 
   render() {
     const { submitAnswer, question } = this.props
-    
+
     return (
       <div className="container question_box center-align">
         <Col className="question">
           {question.question}
         </Col>
-        <Col>
+        <div className="left-align yes-no-center">
           <Input
             name='yesorno'
             type='radio'
@@ -45,8 +45,8 @@ class NestedQuestion extends Component {
               this.setState({nestedToggle: false})
             }}
           />
-        </Col>
-        <Col>
+        </div>
+        <Col className="left-align">
           {this.state.nestedToggle ?
             this.props.question.choices.map(choice => {
               return (

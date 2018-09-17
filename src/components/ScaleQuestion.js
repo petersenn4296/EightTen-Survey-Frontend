@@ -23,7 +23,7 @@ class ScaleQuestion extends Component {
         <Col className="question">
           {question.question}
         </Col>
-        <Col >
+        <Col className="scale-box">
           <Input
             type="range"
             id="answer"

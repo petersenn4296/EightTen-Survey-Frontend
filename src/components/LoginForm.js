@@ -13,8 +13,8 @@ class LoginForm extends Component {
     const { updateCredentials, email, password, login, login_error } = this.props
 
     return (
-      <div className="container login_box" s={10} m={8} l={6} >
-          <Col offset="l12 m12 s12" l={12} m={12} s={12}>
+      <Col className="container login_box">
+          <Col>
             <Input
               onChange={(e) => updateCredentials('email', e.target.value)}
               type="text"
@@ -24,7 +24,7 @@ class LoginForm extends Component {
               required
             />
           </Col>
-          <Col offset="l12 m12 s12" l={12} m={12} s={12}>
+          <Col>
             <Input
               onChange={(e) => updateCredentials('password', e.target.value)}
               type="password"
@@ -33,32 +33,29 @@ class LoginForm extends Component {
               required
             />
           </Col>
-
-        <div className="center-align">
+        <Col className="center-align">
           {login_error ? <span className="error-text">{login_error}</span> : null}
-        </div>
-        <br></br>
-        <div className="center-align">
-          <Button
-            className='eightten_button'
-            onClick={() => login(email, password)}
-            id="login-button"
-            waves='light'
-          >
-            log in
-            <Icon left>cloud</Icon>
-          </Button>
-          <br></br>
-          <br></br>
           <Modal
             fixedFooter
             id="sign-up-modal"
-            trigger={<Button className="eightten_button"><Icon left>person_add</Icon>SIGN UP</Button>}>
+            trigger={<Button
+              className="eightten_button">
+              <Icon
+                left>person_add
+              </Icon>SIGN UP
+            </Button>}>
               <ClientIntakeForm/>
           </Modal>
-        </div>
+          <Button
+            className='eightten_button'
+            onClick={() => login(email, password)}
+            id="login-button">
+            log in
+            <Icon left>cloud</Icon>
+          </Button>
+        </Col>
 
-      </div>
+      </Col>
     )
   }
 }
