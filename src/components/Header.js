@@ -9,7 +9,7 @@ export default class Header extends Component {
     return (
       <Row className="container header">
         <Col l={2} className="left-align">
-          <img width="150%" height="150%" alt="EightTen company logo" src={require('../810/eight_ten_logo.png')}/>
+          <img width="209.9" height="33.51" alt="EightTen company logo" src={require('../810/eight_ten_logo.png')}/>
         </Col>
         <Col l={4}></Col>
       </Row>

@@ -23,7 +23,7 @@ class McQuestion extends Component {
         <Col className="question">
           {question.question}
         </Col>
-        <Col className="pad-bot">
+        <Col className="pad-bot left-align">
           {question.choices.map(choice => {
             return (
                 <Input

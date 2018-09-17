@@ -8,9 +8,12 @@ class Footer extends Component {
   render() {
     const { back } = this.props
     return (
-      <Row className="container footer">
-        <Col l={1}>{back > 0 ? <BackButton/> : null}</Col>
-      </Row>
+      <div className="footer-copyright">
+        <Col className="center-align">{back > 0 ? <BackButton/> : null}</Col>
+        <div className="container">
+          © 2018 EightTen LLC  |  All Rights Reserved.
+        </div>
+      </div>
     )
   }
 }

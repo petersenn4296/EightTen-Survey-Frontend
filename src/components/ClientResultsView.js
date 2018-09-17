@@ -37,6 +37,15 @@ class ClientResultsView extends Component {
           pointHoverBackgroundColor: '#fff',
           pointHoverBorderColor: 'rgba(179,181,198,1)',
           data: [this.averageScore(employee_impact), this.averageScore(community_impact), this.averageScore(talent_lifecycle)]
+        },
+        { label: '',
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          borderColor: 'rgba(0,0,0,0)',
+          pointBackgroundColor: 'rgba(0,00,0,0)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(0,0,0,0)',
+          data: [0, 9, 8]
         }
       ]
     }
@@ -44,44 +53,43 @@ class ClientResultsView extends Component {
     return (
       <div className="container center-align">
         <div className="container center-align result">
-          <Col>
-            <h4>{`${company_name}'s Results`}</h4>
+          <Col className="question">
+            {`${company_name}'s Results`}
           </Col>
-          <Radar className="center-align" options={options} data={data}/>
+          <Radar className="center-align" data={data}/>
         </div>
+        <div className="container center-align responses">
         <Col>
-          <Tabs className='tab-demo z-depth-1'>
+          <Tabs className='z-depth-1 tabs-fixed-width'>
               <Tab title="Employee Impact" active>
-                <Row>
+                {/* <Row>
                   {employee_impact ? `Score: ${data.datasets[0].data[0]}` : null}
-                </Row>
-                <Row>
+                </Row> */}
+                <Row className="response">
                   {traits ? traits[0].response : null}
                 </Row>
               </Tab>
 
               <Tab title="Community Impact">
-                <Row>
+                {/* <Row>
                   {community_impact ? `Score: ${data.datasets[0].data[1]}` : null}
-                </Row>
-                <Row>
+                </Row> */}
+                <Row className="response">
                   {traits ? traits[1].response : null}
                 </Row>
               </Tab>
 
               <Tab title="Talent Life Cycle">
-                <Row>
+                {/* <Row>
                   {talent_lifecycle ? `Score: ${data.datasets[0].data[2]}` : null}
-                </Row>
-                <Row>
+                </Row> */}
+                <Row className="response">
                   {traits ? traits[2].response : null}
                 </Row>
               </Tab>
           </Tabs>
         </Col>
-        <Col>
-          <h4>{client_id}</h4>
-        </Col>
+      </div>
       </div>
 
     )
