@@ -24,7 +24,7 @@ class ClientResultsView extends Component {
   }
 
   render() {
-    const { employee_impact, community_impact, talent_lifecycle, company_name, traits } = this.props
+    const { employee_impact, community_impact, talent_lifecycle, company_name, traits, client_id } = this.props
     const data = {
       labels: ['Employee Impact', 'Community Impact', 'Talent Life Cycle'],
       datasets: [
@@ -47,7 +47,7 @@ class ClientResultsView extends Component {
           <Col>
             <h4>{`${company_name}'s Results`}</h4>
           </Col>
-          <Radar className="center-align" options={options} data={data}/>
+          <Radar className="center-align" data={data}/>
         </div>
         <Col>
           <Tabs className='tab-demo z-depth-1'>
