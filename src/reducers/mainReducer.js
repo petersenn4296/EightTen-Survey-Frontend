@@ -51,7 +51,8 @@ const initialState = {
   login_error: '',
   questions: {},
   questionIndex: 0,
-  company_name: null
+  company_name: null,
+  traits: [{trait: 'Employee Impact', id: 1}, {trait: 'Community Impact', id: 2}, {trait: 'Talent Lifecycle', id: 3}]
 }
 
 class Stack {
