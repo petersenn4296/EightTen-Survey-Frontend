@@ -27,7 +27,9 @@ const initialState = {
   survey: [],
   CTSView: 'Clients',
   button1: 'Traits',
+  icon1: 'view_list',
   button2: 'Surveys',
+  icon2: 'timeline',
   CTSData: [],
   dataText: 'company_name',
   back: 0,
@@ -129,7 +131,8 @@ export default (state = initialState, action) => {
 
     case ADD_QUESTION:
       return {
-        ...state
+        ...state,
+        survey: [action.payload[0], ...state.survey]
       }
 
     case QUESTION_DATA:
@@ -217,7 +220,9 @@ export default (state = initialState, action) => {
         CTSView: action.payload.view,
         dataText: action.payload.data,
         button1: action.payload.buttons.button1,
-        button2: action.payload.buttons.button2
+        icon1: action.payload.buttons.icon1,
+        button2: action.payload.buttons.button2,
+        icon2: action.payload.buttons.icon2
       }
 
     case LOAD_CLIENTS:
@@ -297,6 +302,7 @@ export default (state = initialState, action) => {
           view: 'ClientResultsView'
         }
       }
+      break;
 
     case NEW_USER:
       return {
@@ -310,8 +316,7 @@ export default (state = initialState, action) => {
 
     case RETRIEVE_QUESTIONS_BY_CLIENT_ID:
       return {
-        ...state,
-
+        ...state
       }
 
     case INITIALIZE_QUESTIONS:

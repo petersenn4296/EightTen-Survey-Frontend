@@ -30,7 +30,7 @@ class SurveyList extends Component {
             }
           }
 
-          return <CollectionItem key={itemText} onClick={() => navigateDispatch(destination, item)}>{itemText}{scoreText ? ` [Avg. Score: ${scoreText}]` : null }</CollectionItem>
+          return <CollectionItem key={itemText} className="clickable" onClick={() => navigateDispatch(destination, item)}>{itemText}{scoreText ? ` [Avg. Score: ${scoreText}]` : null }</CollectionItem>
         }
       )}
       </Collection>

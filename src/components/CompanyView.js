@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Input } from 'react-materialize'
+import { Row } from 'react-materialize'
 import { loadClient } from '../actions'
 import List from './List'
 
@@ -41,6 +41,7 @@ class CompanyView extends Component {
         <Row>
           {traits ? <List data={traits} employee_impact={employee_impact_average} community_impact={community_impact_average} talent_lifecycle={talent_lifecycle_average}/> : null}
         </Row>
+        {/* switch for marking client as viewed */}
         {/* <Row>
           <Input name='on' type='switch' value='1' />
         </Row> */}
