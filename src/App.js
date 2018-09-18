@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
 import './App.css';
-import { Row } from 'react-materialize'
 import LoginForm from './components/LoginForm'
 import Header from './components/Header'
 import Footer from './components/Footer'

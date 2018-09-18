@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Col, Button, Input } from 'react-materialize'
-import { initializeQuestions, navigateDispatch } from '../actions'
+import { Col } from 'react-materialize'
+import { initializeQuestions } from '../actions'
 
 import ScaleQuestion from './ScaleQuestion'
 import TextQuestion from './TextQuestion'

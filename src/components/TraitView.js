@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Input, Button, Collection, CollectionItem } from 'react-materialize'
+import { Row, Button, Collection, CollectionItem } from 'react-materialize'
 import { questionDataDispatch, editTraitResponse } from '../actions'
 
 class TraitView extends Component {
 
 
   render() {
-    const { item, questionDataDispatch, editTraitResponse } = this.props
+    const { item, editTraitResponse } = this.props
     let responses = []
     if(item.id === 1) {
       responses = this.props.trait1_responses
@@ -18,7 +18,6 @@ class TraitView extends Component {
       responses = this.props.trait3_responses
     }
 
-    console.log('item', item);
     return (
       <Row className="container center-align cts_box">
         <h4>{item.trait} Responses</h4>
@@ -28,14 +27,7 @@ class TraitView extends Component {
           }
       ) : null }
     </Collection>
-        {/* <Input
-          s={12}
-          label="Response"
-          validate defaultValue={item.response}
-          type="text"
-          name="response"
-          onChange={(e)=> questionDataDispatch('response', e.target.value)}
-        /> */}
+    {/* write patch for trait response */}
         <Row>
           <Button className='eightten_button' type='submit' value='Save' onClick={()=>editTraitResponse(this.props.response, item.id)}>Save</Button>
         </Row>
