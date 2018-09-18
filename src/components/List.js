@@ -29,7 +29,7 @@ class List extends Component {
               scoreText = talent_lifecycle
             }
           }
-          return <CollectionItem key={itemText} onClick={() => navigateDispatch(destination, item)}>{itemText}{scoreText ? ` - ${scoreText}` : null }</CollectionItem>
+          return <CollectionItem key={itemText} className="clickable" onClick={() => navigateDispatch(destination, item)}>{itemText}{scoreText ? ` - ${scoreText}` : null }</CollectionItem>
         }
       )}
       </Collection>

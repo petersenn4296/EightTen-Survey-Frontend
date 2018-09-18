@@ -50,10 +50,7 @@ const mapStateToProps = state => {
     first_name: state.mainReducer.first_name,
     last_name: state.mainReducer.last_name,
     phone: state.mainReducer.phone,
-    // title: state.mainReducer.title,
-    company_name: state.mainReducer.company_name,
-    // size: state.mainReducer.size,
-    // location: state.mainReducer.location
+    company_name: state.mainReducer.company_name
   }
 }
 

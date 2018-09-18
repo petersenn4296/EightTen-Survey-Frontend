@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Row, Input, Button, Icon, Modal, Col } from 'react-materialize'
+import { Input, Button, Icon, Modal, Col } from 'react-materialize'
 import { updateCredentials, login } from '../actions'
 import ClientIntakeForm from './ClientIntakeForm'
 import '../App.css'
@@ -37,17 +37,17 @@ class LoginForm extends Component {
           {login_error ? <span className="error-text">{login_error}</span> : null}
           <br></br>
           <Button
-            className='eightten_button'
+            className='eightten_button login_button'
             onClick={() => login(email, password)}
             id="login-button">
             log in
-            <Icon left>cloud</Icon>
+            <Icon left>exit_to_app</Icon>
           </Button>
           <Modal
             fixedFooter
             id="sign-up-modal"
             trigger={<Button
-              className="eightten_button">
+              className="eightten_button login_button">
               <Icon
                 left>person_add
               </Icon>SIGN UP

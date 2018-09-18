@@ -25,7 +25,7 @@ const API = 'http://localhost:3000/'
 
 export const submitAnswer = (postObj) => {
   return async dispatch => {
-    const response = await fetch(`${API}client_response`, {
+    fetch(`${API}client_response`, {
       method: 'POST',
       body: JSON.stringify(postObj),
       headers: {
@@ -33,7 +33,6 @@ export const submitAnswer = (postObj) => {
         'Accept': 'application/json',
       }
     })
-    const postedObj = await response.json()
     dispatch ({type: SUBMIT_ANSWER})
   }
 }
@@ -80,7 +79,6 @@ export const addQuestion = (question) => {
     }
   } else {      /// new question post **MVP**
     return async dispatch => {
-
       const response = await fetch(`${API}questions`, {
         method: 'POST',
         body: JSON.stringify(question),
@@ -89,11 +87,10 @@ export const addQuestion = (question) => {
           'Accept': 'application/json',
         }
       })
-
+      const questionData = await response.json()
       if (question.type === 'mc' || question.type === 'nested') {
-        const questionID = await response.json()
         let optionsObj = {
-          [questionID]: question.optionsArray
+          [questionData.id]: question.optionsArray
         }
         fetch(`${API}multiple_choice`, {
           method: 'POST',
@@ -106,7 +103,8 @@ export const addQuestion = (question) => {
       }
       // back(dispatch)
       dispatch ({
-        type: ADD_QUESTION
+        type: ADD_QUESTION,
+        payload: questionData
       })
     }
   }
@@ -155,20 +153,24 @@ export const changeCTSView = view => {
     data = 'company_name'
     buttons = {
       button1: 'Traits',
-      button2: 'Surveys'
+      icon1: 'view_list',
+      button2: 'Surveys',
+      icon2: 'timeline'
     }
   } else if (view === 'Traits'){
     data = 'trait'
     buttons = {
       button1: 'Clients',
-      button2: 'Surveys'
-    }
+      icon1: 'supervisor_account',
+      button2: 'Surveys',
+      icon2: 'timeline'    }
   } else if (view === 'Surveys'){
     data = 'name'
     buttons = {
       button1: 'Clients',
-      button2: 'Traits'
-    }
+      icon1: 'supervisor_account',
+      button2: 'Traits',
+      icon2: 'view_list'    }
   }
   return {
     type: CHANGE_CTS_VIEW,
@@ -180,9 +182,10 @@ export const loadClients = () => {
   return async dispatch => {
     const response = await fetch(`${API}users`)
     const clients = await response.json()
+    let clients1 = clients.filter(client => !client.is_admin)
     dispatch({
       type: LOAD_CLIENTS,
-      payload: clients
+      payload: clients1
     })
   }
 }
@@ -239,18 +242,6 @@ export const loadTrait = () => {
     })
   }
 }
-
-// export const loadTraits = () => {
-//   return async dispatch => {
-//     const response = await fetch(`${API}traits`)
-//     const traits = await response.json()
-//     console.log('traits actions', traits);
-//     dispatch({
-//       type: LOAD_TRAITS,
-//       payload: traits
-//     })
-//   }
-// }
 
 export const loadSurvey = (id) => {
   return async dispatch => {
@@ -319,7 +310,6 @@ export const login = (email, password) => {
       }
     })
     const userData = await response.json()
-    console.log(userData);
     dispatch({
       type: LOGIN,
       payload: userData
@@ -328,8 +318,6 @@ export const login = (email, password) => {
 }
 
 export const newUser = (email, password, first_name, last_name, phone, company_name) => {
-  // let hashWord = hashSync(password)
-  // console.log('hashWord', hashWord);
   const user = { email, password, first_name, last_name, phone, company_name }
   return async dispatch => {
     const response = await fetch(`${API}users`, {

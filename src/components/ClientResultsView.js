@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { Row, Col, Tab, Tabs } from 'react-materialize'
+import { Col, Tab, Tabs } from 'react-materialize'
 import { loadResults, loadTrait } from '../actions'
 import { Radar } from 'react-chartjs-2';
 import Timeline from './Timeline'
@@ -12,7 +12,6 @@ class ClientResultsView extends Component {
 
   async componentDidMount() {
     this.props.loadResults(this.props.client_id)
-    // this.props.loadTraits()
     this.props.loadTrait()
   }
 
@@ -26,7 +25,7 @@ class ClientResultsView extends Component {
   }
 
   render() {
-    const { employee_impact, community_impact, talent_lifecycle, company_name, traits, trait1_responses, trait2_responses, trait3_responses } = this.props
+    const { employee_impact, community_impact, talent_lifecycle, company_name, trait1_responses, trait2_responses, trait3_responses } = this.props
     const data = {
       labels: ['Employee Impact', 'Community Impact', 'Talent Life Cycle'],
       datasets: [
